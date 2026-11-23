@@ -17,7 +17,7 @@ import okio.BufferedSource
 class Frame(val bitmap: Bitmap, val seq: Long, val atMs: Long)
 
 /**
- * Lecture du flux MJPEG de la caméra (1024 × 576). Décodage direct dans un petit groupe de
+ * Lecture du flux MJPEG de la caméra (1280 × 720). Décodage direct dans un petit groupe de
  * bitmaps réutilisés : pas d'allocation par image, retard minimal (aucune mise en mémoire tampon).
  */
 class MjpegStream(private val link: CameraLink) {
