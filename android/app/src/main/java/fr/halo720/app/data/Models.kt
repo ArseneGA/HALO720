@@ -39,6 +39,7 @@ data class CamSettings(
     val bracketOrder: String = "0-+",
     val zoom: Double = 1.0,
     val rotation: Int = 0,
+    val apercu: String = "normal",
     val name: String = "HALO 720",
 ) {
     companion object {
@@ -57,7 +58,7 @@ data class CamSettings(
             intervS = o.optInt("interv_s", 10), intervCount = o.optInt("interv_count", 300),
             intervDelayS = o.optInt("interv_delay_s", 0), bracketN = o.optInt("bracket_n", 3),
             bracketStep = o.optDouble("bracket_step", 1.0), bracketOrder = o.optString("bracket_order", "0-+"),
-            zoom = o.optDouble("zoom", 1.0), rotation = o.optInt("rotation", 0), name = o.optString("name", "HALO 720"),
+            zoom = o.optDouble("zoom", 1.0), rotation = o.optInt("rotation", 0), apercu = o.optString("apercu", "normal"), name = o.optString("name", "HALO 720"),
         )
     }
 
@@ -94,6 +95,7 @@ data class CamSettings(
         "bracket_order" -> copy(bracketOrder = v as String)
         "zoom" -> copy(zoom = (v as Number).toDouble())
         "rotation" -> copy(rotation = (v as Number).toInt())
+        "apercu" -> copy(apercu = v as String)
         "name" -> copy(name = v as String)
         else -> this
     }

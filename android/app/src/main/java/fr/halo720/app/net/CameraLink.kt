@@ -77,7 +77,7 @@ class CameraLink(private val ctx: Context) {
 
     private fun buildClient(net: Network?) = OkHttpClient.Builder()
         .apply { net?.let { socketFactory(it.socketFactory) } }
-        .connectTimeout(2, TimeUnit.SECONDS).readTimeout(8, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS)
+        .connectTimeout(4, TimeUnit.SECONDS).readTimeout(8, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS)
         .connectionPool(ConnectionPool(6, 5, TimeUnit.MINUTES))
         .retryOnConnectionFailure(true)
         .build()
@@ -207,7 +207,7 @@ class CameraLink(private val ctx: Context) {
 
     private fun fetchInfo() {
         val req = Request.Builder().url("${base()}/api/info").build()
-        http.newBuilder().callTimeout(2500, TimeUnit.MILLISECONDS).build().newCall(req).execute().use { r ->
+        http.newBuilder().callTimeout(5000, TimeUnit.MILLISECONDS).build().newCall(req).execute().use { r ->
             if (!r.isSuccessful) throw IOException("HTTP ${r.code}")
             val o = JSONObject(r.body!!.string())
             Looks.load(o)

@@ -134,6 +134,7 @@ DEFAULT_SETTINGS = {
     "bracket_order": "0-+",   # 0-+ | -0+
     "zoom": 1.0,
     "rotation": 0,            # 0 | 180 (caméra montée tête en bas)
+    "apercu": "normal",       # normal | leger (≈ 7 img/s, JPEG plus compressé : Wi-Fi partagé avec le Bluetooth)
     "name": "HALO 720",
 }
 
@@ -170,6 +171,7 @@ SCHEMA = {
     "bracket_order": ("choice", ["0-+", "-0+"]),
     "zoom": ("float", 1.0, 5.0),
     "rotation": ("choice", [0, 180]),
+    "apercu": ("choice", ["normal", "leger"]),
     "name": ("str", 1, 24),
 }
 
@@ -673,7 +675,8 @@ class Stream(io.BufferedIOBase):
         self.skip = 0
 
     def write(self, buf):
-        if system["temp_c"] and system["temp_c"] > 80:   # Pi trop chaud : aperçu réduit
+        hot = system["temp_c"] and system["temp_c"] > 80   # Pi trop chaud : aperçu réduit
+        if hot or settings.get("apercu") == "leger":     # aperçu léger : une image sur deux
             self.skip ^= 1
             if self.skip:
                 return len(buf)
@@ -687,7 +690,8 @@ class Stream(io.BufferedIOBase):
         with cam_lock:
             if self.encoder is None:
                 self.encoder = MJPEGEncoder()
-                picam2.start_encoder(self.encoder, FileOutput(self), name="lores", quality=Quality.HIGH)
+                q = Quality.LOW if settings.get("apercu") == "leger" else Quality.HIGH
+                picam2.start_encoder(self.encoder, FileOutput(self), name="lores", quality=q)
 
     def stop(self):
         with cam_lock:
@@ -1851,6 +1855,7 @@ def api_settings():
     with settings_lock:
         rotation_changed = "rotation" in new and new["rotation"] != settings["rotation"]
         led_changed = "led" in new and new["led"] != settings["led"]
+        apercu_changed = "apercu" in new and new["apercu"] != settings["apercu"]
         if "ev" in new or "shutter_us" in new or "iso" in new:
             tap_ev["v"] = 0.0
         settings.update(new)
@@ -1863,6 +1868,9 @@ def api_settings():
         if led_changed:
             leds.mode = None
             leds.restore()
+        if apercu_changed and stream.encoder is not None:     # nouvelle qualité JPEG : on relance l'encodeur
+            stream.stop()
+            stream.start()
     except Exception as exc:  # noqa: BLE001
         log("Réglages caméra :", exc)
         return jsonify(ok=False, error=f"caméra : {exc}", settings=settings), 500
