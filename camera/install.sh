@@ -35,6 +35,11 @@ grep -q '^camera_auto_detect=1' "$CFG" || echo 'camera_auto_detect=1' | sudo tee
 # la capture 12 MP + RAW (« Failed to allocate buffers »). Vérifié : capture 12 MP + DNG OK à 256 Mo.
 # Pas d'écran : on libère de la mémoire GPU
 grep -q '^gpu_mem' "$CFG" || echo 'gpu_mem=32' | sudo tee -a "$CFG"
+# Flash IR (boîtier v2) : GPIO22 en sortie et à 0 dès le démarrage, avant le service
+grep -q '^gpio=22=op,dl' "$CFG" || echo 'gpio=22=op,dl' | sudo tee -a "$CFG"
+# Bluetooth du Pi inutilisé : on le coupe, la radio 2,4 GHz reste entièrement au Wi-Fi
+grep -q '^dtoverlay=disable-bt' "$CFG" || echo 'dtoverlay=disable-bt' | sudo tee -a "$CFG"
+sudo systemctl disable --now hciuart.service bluetooth.service >/dev/null 2>&1 || true
 
 echo "== 4/6 Extinction sans mot de passe (bouton + interface web)"
 echo "$USER ALL=(ALL) NOPASSWD: /sbin/shutdown, /usr/sbin/shutdown" | sudo tee /etc/sudoers.d/halo-shutdown >/dev/null
@@ -57,6 +62,8 @@ Environment=MALLOC_TRIM_THRESHOLD_=131072
 Environment=MALLOC_ARENA_MAX=2
 Environment=PYTHONUNBUFFERED=1
 ExecStart=/usr/bin/python3 $HALO_DIR/halo_camera.py
+# quoi qu'il arrive au programme : flash éteint
+ExecStopPost=-/usr/bin/pinctrl set 22 op dl
 Restart=always
 RestartSec=2
 

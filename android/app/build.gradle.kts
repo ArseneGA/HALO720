@@ -11,15 +11,18 @@ android {
         applicationId = "fr.halo720.app"
         minSdk = 29
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
     }
     signingConfigs {
         create("halo") {
             storeFile = file("halo720.keystore")
-            storePassword = "halo720"
+            // mot de passe hors du dépôt : ~/.gradle/gradle.properties -> HALO_KEY_PASSWORD=...
+            val pw = providers.gradleProperty("HALO_KEY_PASSWORD").orNull ?: System.getenv("HALO_KEY_PASSWORD")
+                ?: error("HALO_KEY_PASSWORD manquant (~/.gradle/gradle.properties)")
+            storePassword = pw
             keyAlias = "halo720"
-            keyPassword = "halo720"
+            keyPassword = pw
         }
     }
     buildTypes {

@@ -25,6 +25,8 @@ data class CamSettings(
     val nr: String = "light",
     val sharpness: Int = 0,
     val led: Boolean = true,
+    val flash: String = "off",          // off | on | torche (flash IR 850 nm, boîtier v2)
+    val flashAe: Boolean = true,
     val timerS: Int = 0,
     val mode: String = "photo",
     val poseS: Int = 4,
@@ -51,7 +53,8 @@ data class CamSettings(
             awbGains = o.optJSONArray("awb_gains")?.let { a -> List(a.length()) { a.getDouble(it) } },
             af = o.optString("af", "continuous"), lensPosition = o.optDouble("lens_position", 1.0),
             afZone = o.optString("af_zone", "point"), nr = o.optString("nr", "light"),
-            sharpness = o.optInt("sharpness", 0), led = o.optBoolean("led", true), timerS = o.optInt("timer_s", 0),
+            sharpness = o.optInt("sharpness", 0), led = o.optBoolean("led", true),
+            flash = o.optString("flash", "off"), flashAe = o.optBoolean("flash_ae", true), timerS = o.optInt("timer_s", 0),
             mode = o.optString("mode", "photo"), poseS = o.optInt("pose_s", 4), rafaleFps = o.optInt("rafale_fps", 0),
             rafaleLimit = o.optInt("rafale_limit", 100), rafaleRaw = o.optBoolean("rafale_raw", false),
             intervS = o.optInt("interv_s", 10), intervCount = o.optInt("interv_count", 300),
@@ -80,6 +83,8 @@ data class CamSettings(
         "nr" -> copy(nr = v as String)
         "sharpness" -> copy(sharpness = (v as Number).toInt())
         "led" -> copy(led = v as Boolean)
+        "flash" -> copy(flash = v as String)
+        "flash_ae" -> copy(flashAe = v as Boolean)
         "timer_s" -> copy(timerS = (v as Number).toInt())
         "mode" -> copy(mode = v as String)
         "pose_s" -> copy(poseS = (v as Number).toInt())
@@ -142,6 +147,9 @@ data class CamStatus(
     val queueRaw: Int = 0,
     val now: Double = 0.0,
     val uptime: Int = 0,
+    val flashOn: Boolean = false,
+    val torchLeft: Double? = null,
+    val flashCooldown: Double? = null,
 ) {
     val busy get() = phase != "idle" || series != null
 
@@ -150,6 +158,7 @@ data class CamStatus(
             val f = o.optJSONObject("focus") ?: JSONObject()
             val q = o.optJSONObject("queue") ?: JSONObject()
             val s = o.optJSONObject("series")
+            val fl = o.optJSONObject("flash") ?: JSONObject()
             return CamStatus(
                 phase = o.optString("phase", "idle"), timerLeft = o.optDoubleOrNull("timer_left"),
                 exposureStart = o.optDoubleOrNull("exposure_start"), exposureEnd = o.optDoubleOrNull("exposure_end"),
@@ -168,6 +177,8 @@ data class CamStatus(
                 powerWarnings = o.optJSONArray("power_warnings")?.let { a -> List(a.length()) { a.getString(it) } } ?: emptyList(),
                 queueJpg = q.optInt("jpg"), queueRaw = q.optInt("raw"), now = o.optDouble("now", 0.0),
                 uptime = o.optInt("uptime"),
+                flashOn = fl.optBoolean("on"), torchLeft = fl.optDoubleOrNull("torch_left"),
+                flashCooldown = fl.optDoubleOrNull("cooldown"),
             )
         }
     }

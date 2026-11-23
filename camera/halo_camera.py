@@ -16,6 +16,9 @@ téléphone. Déclencher ne change jamais de mode capteur : on garde l'image sui
   * zoom 1× à 5× par recadrage du capteur ; JPEG enregistré à sa définition réelle.
   * déclencheur physique GPIO17 (appui = mode actif ; appui long 3 s = extinction),
     LED GPIO27.
+  * flash infrarouge 850 nm (boîtier v2) : module MOSFET commandé par GPIO22. Réglage « flash » :
+    off | on (éclair synchronisé à chaque photo) | torche (éclairage continu limité dans le temps).
+    Le GPIO ne fait que commander le MOSFET ; le courant de la LED vient du pack 6 × AA.
   * API HTTP/JSON + flux d'événements (SSE) sur le port 8000.
 """
 
@@ -47,7 +50,7 @@ from flask import Flask, Response, abort, jsonify, request, send_from_directory
 from werkzeug.serving import WSGIRequestHandler
 
 try:  # matériel : absent sur un PC de test
-    from gpiozero import Button, PWMLED
+    from gpiozero import Button, DigitalOutputDevice, PWMLED
     from picamera2 import MappedArray, Picamera2
     from picamera2.encoders import MJPEGEncoder, Quality
     from picamera2.outputs import FileOutput
@@ -55,7 +58,7 @@ try:  # matériel : absent sur un PC de test
 except ImportError:  # pragma: no cover
     raise
 
-VERSION = "3.0.0"
+VERSION = "3.1.0"
 HALO_DIR = Path(os.environ.get("HALO_DIR", "/home/pi/HALO"))
 PHOTO_DIR = Path(os.environ.get("HALO_PHOTO_DIR", str(HALO_DIR / "photos")))
 SETTINGS_FILE = Path(os.environ.get("HALO_SETTINGS", str(HALO_DIR / "settings.json")))
@@ -66,6 +69,15 @@ WEB_PORT = int(os.environ.get("HALO_PORT", "8000"))
 
 BUTTON_GPIO = 17
 LED_GPIO = 27
+FLASH_GPIO = 22                  # SIG du module MOSFET (broche 15) ; masses Pi et pack AA reliées
+FLASH_ACTIVE_HIGH = True         # module MOSFET : SIG à 1 = LED allumée
+FLASH_WARMUP_S = 0.08            # démarrage du driver CC/CV après la mise sous tension
+FLASH_AE_FRAMES = 7              # images laissées à l'auto-exposition pour s'adapter au flash (≈ 0,5 s)
+FLASH_LOCKED_FRAMES = 2          # exposition fixe : 2 images suffisent (la 2e est exposée en entier)
+FLASH_MAX_S = 3.0                # sécurité : durée maximale d'un éclair (photo, rafale courte)
+FLASH_POSE_MAX_S = 65.0          # pose longue au flash : 60 s + marge
+TORCH_MAX_S = 60.0               # torche : extinction automatique
+TORCH_COOLDOWN_S = 60.0          # puis refroidissement avant de pouvoir la rallumer
 HOLD_SECONDS = 3.0
 FULL_RES = (4608, 2592)
 PREVIEW_RES = (768, 432)
@@ -120,6 +132,8 @@ DEFAULT_SETTINGS = {
     "nr": "light",            # off | light | strong
     "sharpness": 0,           # -2..+2
     "led": True,
+    "flash": "off",           # off | on | torche (flash IR 850 nm, boîtier v2)
+    "flash_ae": True,         # au flash : laisser l'auto-exposition s'adapter (pré-éclair ≈ 0,5 s)
     "timer_s": 0,             # 0 | 2 | 10
     "mode": "photo",          # photo | pose | rafale | interv | bracket
     "pose_s": 4,              # 0 = B
@@ -156,6 +170,8 @@ SCHEMA = {
     "nr": ("choice", ["off", "light", "strong"]),
     "sharpness": ("int", -2, 2),
     "led": ("bool",),
+    "flash": ("choice", ["off", "on", "torche"]),
+    "flash_ae": ("bool",),
     "timer_s": ("choice", [0, 2, 10]),
     "mode": ("choice", ["photo", "pose", "rafale", "interv", "bracket"]),
     "pose_s": ("choice", POSE_STEPS),
@@ -392,6 +408,117 @@ class LedManager:
 
 
 leds = LedManager()
+
+# --------------------------------------------------------------------------------------
+# Flash infrarouge 850 nm (GPIO22 -> module MOSFET -> driver CC/CV -> LED)
+# --------------------------------------------------------------------------------------
+flash_out = DigitalOutputDevice(FLASH_GPIO, active_high=FLASH_ACTIVE_HIGH, initial_value=False)
+
+
+class Flash:
+    """Allumage du flash avec une durée maximale garantie par un chien de garde : même si un
+    mode plante, la LED s'éteint seule. La torche est limitée à TORCH_MAX_S puis refroidit."""
+
+    def __init__(self):
+        self.lock = threading.Lock()
+        self.deadline = None
+        self.on_since = None
+        self.torch = False
+        self.cooldown_until = 0.0
+        self.fired = 0
+        threading.Thread(target=self._watchdog, daemon=True).start()
+
+    @property
+    def is_on(self):
+        return self.deadline is not None
+
+    def on(self, max_s=FLASH_MAX_S, torch=False):
+        with self.lock:
+            now = time.time()
+            if torch and now < self.cooldown_until:
+                return False
+            self.deadline = now + max_s
+            if self.on_since is None:
+                self.on_since = now
+            self.torch = torch
+            flash_out.on()
+        bus.changed()
+        return True
+
+    def off(self, cooldown=False):
+        with self.lock:
+            was_torch = self.torch
+            flash_out.off()
+            if self.on_since is not None and was_torch and cooldown:
+                self.cooldown_until = time.time() + TORCH_COOLDOWN_S
+            self.deadline = self.on_since = None
+            self.torch = False
+        bus.changed()
+
+    def _watchdog(self):
+        while True:
+            time.sleep(0.05)
+            d = self.deadline
+            if d is not None and time.time() > d:
+                torch = self.torch
+                log("Flash : durée maximale atteinte, extinction" + (" (torche)" if torch else ""))
+                self.off(cooldown=torch)
+                if torch and settings.get("flash") == "torche":
+                    with settings_lock:
+                        settings["flash"] = "off"
+                    save_settings()
+                    bus.changed()
+
+    def status(self):
+        now = time.time()
+        return {"on": self.is_on, "torch": self.torch,
+                "torch_left": round(max(0.0, self.deadline - now), 1) if self.torch and self.deadline else None,
+                "cooldown": round(max(0.0, self.cooldown_until - now), 1) or None,
+                "fired": self.fired}
+
+
+flash = Flash()
+
+
+def flash_wanted():
+    return settings.get("flash") == "on"
+
+
+def skip_frames(n):
+    """check(md) pour grab() : vrai à partir de la n-ième image (images consécutives du flux)."""
+    seen = {"n": 0}
+
+    def check(_md):
+        seen["n"] += 1
+        return seen["n"] >= n
+    return check
+
+
+def drop_frames(n):
+    """Laisse passer n images du flux sans les copier (attente du flash ou de l'exposition)."""
+    for _ in range(n):
+        with cam_lock:
+            req = picam2.capture_request()
+        req.release()
+
+
+def flash_frames():
+    """Nombre d'images à laisser passer après l'allumage : l'image en cours au moment de
+    l'allumage n'est éclairée qu'en partie (obturateur déroulant) ; ensuite, avec l'auto-exposition,
+    on lui laisse le temps de s'adapter à la lumière du flash."""
+    auto = settings["shutter_us"] == 0 and settings["iso"] == 0
+    return FLASH_AE_FRAMES if (settings["flash_ae"] and auto) else FLASH_LOCKED_FRAMES
+
+
+def apply_torch():
+    """Réglage « torche » : allume (limité dans le temps) ; tout autre réglage éteint la torche."""
+    if settings.get("flash") == "torche":
+        if not flash.torch and not flash.on(TORCH_MAX_S, torch=True):
+            with settings_lock:
+                settings["flash"] = "off"
+            set_error("flash en refroidissement")
+    elif flash.torch:
+        flash.off(cooldown=True)
 
 # --------------------------------------------------------------------------------------
 # Caméra
@@ -860,7 +987,7 @@ def build_exif(info, w, h):
     ifd0 = [(0x010E, 2, desc), (0x010F, 2, make), (0x0110, 2, model), (0x0112, 3, orient),
             (0x0131, 2, soft), (0x0132, 2, dt), (0x8769, 4, None)]
     exif = [(0x829A, 5, _rat(exp_s)), (0x8827, 3, min(65535, iso)), (0x9003, 2, dt),
-            (0x920A, 5, (474, 100)), (0xA002, 4, w), (0xA003, 4, h), (0xA405, 3, round(FOCAL_35MM * info.get("zoom", 1)))]
+            (0x9209, 3, 0x01 if info.get("flash") else 0x10), (0x920A, 5, (474, 100)), (0xA002, 4, w), (0xA003, 4, h), (0xA405, 3, round(FOCAL_35MM * info.get("zoom", 1)))]
     TYPES = {2: 1, 3: 2, 4: 4, 5: 8}
 
     def pack_ifd(entries, base, sub_off=None):
@@ -958,8 +1085,21 @@ def take_shot(series=None, raw=None, orientation=0, extra=None):
     raw_wanted = (fmt != "jpg") if raw is None else raw
     t_press = time.time()
     keep = held_reqs["n"] < 1 and series is None      # photo isolée : zéro copie
-    main, rawbuf, md = grab(raw_wanted, check=(extra or {}).get("check"),
-                            timeout=(extra or {}).get("timeout", 5.0), keep=keep)
+    check = (extra or {}).get("check")
+    own_flash = flash_wanted() and not flash.is_on    # éclair pour cette seule image
+    lit = flash.is_on or own_flash
+    if own_flash:
+        flash.on(FLASH_MAX_S)
+        time.sleep(FLASH_WARMUP_S)
+        check = check or skip_frames(flash_frames())
+    try:
+        main, rawbuf, md = grab(raw_wanted, check=check,
+                                timeout=(extra or {}).get("timeout", 5.0), keep=keep)
+    finally:
+        if own_flash:
+            flash.off()
+    if lit:
+        flash.fired += 1
     n, stem = new_stem()
     look = settings["look"]
     crop = md.get("ScalerCrop", current_crop())
@@ -974,7 +1114,7 @@ def take_shot(series=None, raw=None, orientation=0, extra=None):
                                                     "ColourTemperature") if k in md},
                            base_ccm=list(wb["base_ccm"]), look_matrix=LOOKS[effective_look()]),
             "jpg": "pending" if fmt != "raw" else None, "dng": "pending" if rawbuf is not None else None,
-            "preview_only": fmt == "raw"}
+            "preview_only": fmt == "raw", "flash": bool(lit)}
     if extra and extra.get("bracket_ev") is not None:
         info["bracket_ev"] = extra["bracket_ev"]
     with index_lock:
@@ -1396,8 +1536,10 @@ def sequencer():
         orientation = cmd[1] if len(cmd) > 1 else 0
         mode = settings["mode"]
         state["error"] = None
+        session = False
         try:
             if run_timer():
+                session = start_flash_session(mode)
                 MODES[mode](orientation)
         except Exception as exc:  # noqa: BLE001
             log("Erreur prise de vue :", repr(exc))
@@ -1407,11 +1549,33 @@ def sequencer():
             except Exception:  # noqa: BLE001
                 pass
         finally:
+            if session:
+                flash.off()
             state["phase"] = "idle"
             state["timer_end"] = None
             held["v"] = False
             leds.restore()
             bus.changed()
+
+
+def start_flash_session(mode):
+    """Rafale, bracketing et pose : le flash reste allumé pendant toute la série (le photo et
+    l'intervallomètre éclairent image par image dans take_shot)."""
+    if not flash_wanted() or mode in ("photo", "interv") or flash.torch:
+        return False
+    if mode == "pose":
+        if settings["pose_s"] == 0:
+            return False                                  # pose B : durée inconnue, pas de flash
+        max_s = min(FLASH_POSE_MAX_S, 2 * settings["pose_s"] + 3)
+    elif mode == "rafale":
+        max_s = 10.0                                      # rafale au flash : 10 s au plus
+    else:
+        max_s = 5.0 + 3 * settings["bracket_n"]
+    flash.on(max_s)
+    time.sleep(FLASH_WARMUP_S)
+    if mode != "pose":                                    # la pose attend déjà ses propres images
+        drop_frames(flash_frames())
+    return True
 
 
 def busy():
@@ -1601,6 +1765,7 @@ def status_payload():
         "power_warnings": describe_throttled(thr), "battery": None,
         "queue": q, "uptime": round(now - system["started"]),
         "iso_capped": iso_cap["locked"],
+        "flash": flash.status(),
     }
 
 
@@ -1863,6 +2028,8 @@ def api_settings():
         if led_changed:
             leds.mode = None
             leds.restore()
+        if "flash" in new:
+            apply_torch()
     except Exception as exc:  # noqa: BLE001
         log("Réglages caméra :", exc)
         return jsonify(ok=False, error=f"caméra : {exc}", settings=settings), 500
@@ -2081,6 +2248,8 @@ def root():
 # --------------------------------------------------------------------------------------
 def main():
     load_settings()
+    if settings.get("flash") == "torche":       # jamais de torche allumée au démarrage
+        settings["flash"] = "off"
     leds.set("boot")
     load_index()
     init_camera()
@@ -2100,6 +2269,7 @@ def main():
         try:
             power_log("arrêt du service")
             leds.set("off")
+            flash_out.off()
             stream.stop()
             picam2.stop()
         finally:

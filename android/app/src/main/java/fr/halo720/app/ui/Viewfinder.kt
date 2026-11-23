@@ -334,6 +334,16 @@ fun ViewfinderScreen(
                 .padding(start = if (mirror) 0.dp else dp(leftInset), end = if (mirror) dp(rightInset) else 0.dp).width(46.dp).background(Halo.Bg)
             else Modifier.fillMaxWidth().background(Halo.Bg).padding(top = dp(topInset)).height(46.dp),
             onLed = { link.set("led" to !s.led); buzz(); showHint(if (!s.led) "LED de la caméra : oui" else "LED de la caméra : non") },
+            onFlash = {
+                // off -> on (éclair à chaque photo) -> torche (60 s max) -> off
+                val n = when (s.flash) { "off" -> "on"; "on" -> "torche"; else -> "off" }
+                if (n == "torche" && (st.flashCooldown ?: 0.0) > 0) {
+                    link.set("flash" to "off"); buzz(); showHint("Torche IR : refroidissement ${st.flashCooldown!!.toInt()} s")
+                } else {
+                    link.set("flash" to n); buzz(); changed()
+                    showHint(when (n) { "on" -> "Flash IR 850 nm · à chaque photo"; "torche" -> "Torche IR · 60 s max"; else -> "Flash IR : non" })
+                }
+            },
             onTimer = {
                 val n = when (s.timerS) { 0 -> 2; 2 -> 10; else -> 0 }
                 link.set("timer_s" to n); buzz(); changed(); showHint("Retardateur · " + if (n == 0) "non" else "$n s")
@@ -506,10 +516,16 @@ private fun poseText(s: CamSettings, st: CamStatus) = when {
 @Composable
 private fun TopBand(
     landscape: Boolean, mirror: Boolean, s: CamSettings, quickOpen: Boolean, modifier: Modifier,
-    onLed: () -> Unit, onTimer: () -> Unit, onFormat: () -> Unit, onChevron: () -> Unit, onSettings: () -> Unit, onLook: () -> Unit,
+    onLed: () -> Unit, onFlash: () -> Unit, onTimer: () -> Unit, onFormat: () -> Unit, onChevron: () -> Unit, onSettings: () -> Unit, onLook: () -> Unit,
 ) {
     val content: @Composable () -> Unit = {
         BandButton(onLed) { HIcon(if (s.led) HaloIcons.Led else HaloIcons.LedOff, if (s.led) Halo.Ir else Halo.Text) }
+        BandButton(onFlash) {
+            HIcon(when (s.flash) { "on" -> HaloIcons.Flash; "torche" -> HaloIcons.Torch; else -> HaloIcons.FlashOff },
+                if (s.flash == "off") Halo.Text else Halo.Ir)
+            if (s.flash == "torche") Text("IR", style = cam(7.sp, FontWeight.Medium, Halo.Ir),
+                modifier = Modifier.align(Alignment.BottomEnd).offset(2.dp, (-1).dp))
+        }
         BandButton(onTimer) {
             HIcon(HaloIcons.Timer, if (s.timerS > 0) Halo.Ir else Halo.Text)
             Text(if (s.timerS == 0) "OFF" else "${s.timerS} s", style = cam(7.sp, FontWeight.Medium, Halo.Dim),

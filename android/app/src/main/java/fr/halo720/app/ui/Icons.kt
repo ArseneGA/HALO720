@@ -30,6 +30,9 @@ object HaloIcons {
         "M${cx - r},$cy a$r,$r 0 1,0 ${2 * r},0 a$r,$r 0 1,0 ${-2 * r},0"
 
     val Led = icon("led", "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z")
+    val Flash = icon("flash", "M13 2L4 14h7l-1 8 9-12h-7l1-8z")
+    val FlashOff = icon("flashoff", "M13 2L4 14h7l-1 8 9-12h-7l1-8z", "M4 4l16 16")
+    val Torch = icon("torch", "M13 2L4 14h7l-1 8 9-12h-7l1-8z", filled = setOf(0))
     val LedOff = icon("ledoff", "M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z", "M4 4l16 16")
     val Timer = icon("timer", circle(12f, 13f, 8f), "M12 9v4l2.5 2M10 2h4")
     val Chevron = icon("chev", "M6 9l6 6 6-6", width = 2.4f)
