@@ -73,7 +73,7 @@ FLASH_GPIO = 22                  # SIG du module MOSFET (broche 15) ; masses Pi 
 FLASH_ACTIVE_HIGH = True         # module MOSFET : SIG à 1 = LED allumée
 FLASH_WARMUP_S = 0.08            # démarrage du driver CC/CV après la mise sous tension
 FLASH_AE_FRAMES = 7              # images laissées à l'auto-exposition pour s'adapter au flash (≈ 0,5 s)
-FLASH_LOCKED_FRAMES = 2          # exposition fixe : 2 images suffisent (la 2e est exposée en entier)
+FLASH_LOCKED_FRAMES = 3          # exposition fixe : la 3e image est éclairée en entier (obturateur déroulant)
 FLASH_MAX_S = 3.0                # sécurité : durée maximale d'un éclair (photo, rafale courte)
 FLASH_POSE_MAX_S = 65.0          # pose longue au flash : 60 s + marge
 TORCH_MAX_S = 60.0               # torche : extinction automatique
@@ -1089,9 +1089,11 @@ def take_shot(series=None, raw=None, orientation=0, extra=None):
     own_flash = flash_wanted() and not flash.is_on    # éclair pour cette seule image
     lit = flash.is_on or own_flash
     if own_flash:
-        flash.on(FLASH_MAX_S)
+        n_frames = flash_frames()
+        frame_s = max(FRAME_US, settings["shutter_us"]) / 1e6      # pose manuelle longue : images plus longues
+        flash.on(max(FLASH_MAX_S, FLASH_WARMUP_S + (n_frames + 1) * frame_s + 1.0))
         time.sleep(FLASH_WARMUP_S)
-        check = check or skip_frames(flash_frames())
+        check = check or skip_frames(n_frames)
     try:
         main, rawbuf, md = grab(raw_wanted, check=check,
                                 timeout=(extra or {}).get("timeout", 5.0), keep=keep)
