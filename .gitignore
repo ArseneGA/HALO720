@@ -1,0 +1,22 @@
+# Android / Gradle
+**/build/
+**/.gradle/
+**/local.properties
+**/.idea/
+*.iml
+*.apk
+*.aab
+# Clés de signature : ne jamais les publier
+*.jks
+*.keystore
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+# Secrets
+.env
+*.env
+# Système
+.DS_Store
+*.log
