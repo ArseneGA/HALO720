@@ -21,7 +21,10 @@ COMMANDE            Pi broche 15 (GPIO22) ──► MOSFET SIG / TRIG
 Le MOSFET coupe l'**entrée** du driver, pas sa sortie : couper la sortie d'un driver à courant constant
 laisse ses condensateurs se charger à vide et envoie un pic de courant dans la LED au rallumage.
 
-## 2. Broches du Pi (rangée extérieure, côté bord de carte)
+## 2. Broches du Pi
+
+Vue de dessus, carte microSD à gauche : broche 1 (pastille carrée) au bout côté microSD, sur la rangée
+intérieure. Rangée intérieure = impaires (1, 3 … 39), rangée du bord = paires (2, 4 … 40).
 
 | Broche | Fonction | Vers |
 |---|---|---|
@@ -32,7 +35,8 @@ laisse ses condensateurs se charger à vide et envoie un pic de courant dans la 
 | 14 | GND | GND du module MOSFET + cathode LED témoin |
 | 15 | GPIO22 | SIG du module MOSFET — **nouveau** |
 
-13, 14 et 15 sont côte à côte : une nappe Dupont à 3 fils suffit pour la LED témoin et le flash.
+13 et 15 sont côte à côte sur la rangée intérieure, 14 est en face de la 13 côté bord : un petit groupe
+facile à repérer. Ne branche jamais rien sur 2 ou 4 (5 V).
 
 ## 3. Fils
 
