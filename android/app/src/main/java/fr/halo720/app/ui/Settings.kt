@@ -315,7 +315,6 @@ private fun SystemTab(c: Ctx) {
             }
         }
         SwitchRow("Caméra montée à l'envers", "Retourne l'image de 180°", c.s.rotation == 180) { c.cam("rotation", if (it) 180 else 0) }
-        SwitchRow("Aperçu léger", "Moins de Wi-Fi : utile avec de la musique en Bluetooth", c.s.apercu == "leger") { c.cam("apercu", if (it) "leger" else "normal") }
         val bundled = remember { CameraUpdate.bundledVersion(ctx) }
         val needs = ver != null && bundled != null && CameraUpdate.newer(bundled, ver!!)
         ValueRow("Logiciel", "caméra ${ver ?: "—"} · app ${BuildConfig.VERSION_NAME}") {}

@@ -68,7 +68,7 @@ BUTTON_GPIO = 17
 LED_GPIO = 27
 HOLD_SECONDS = 3.0
 FULL_RES = (4608, 2592)
-PREVIEW_RES = (768, 432)
+PREVIEW_RES = (1024, 576)        # aperçu MJPEG matériel (était 768 × 432)
 FRAME_US = 71429                 # 14 img/s : cadence maximale du mode pleine définition
 SD_RESERVE = 300 * 1024 * 1024   # en dessous : microSD considérée pleine
 FOCAL_35MM = 28                  # Camera Module 3 standard : 75° en diagonale ≈ 28 mm
@@ -134,7 +134,6 @@ DEFAULT_SETTINGS = {
     "bracket_order": "0-+",   # 0-+ | -0+
     "zoom": 1.0,
     "rotation": 0,            # 0 | 180 (caméra montée tête en bas)
-    "apercu": "normal",       # normal | leger (≈ 7 img/s, JPEG plus compressé : Wi-Fi partagé avec le Bluetooth)
     "name": "HALO 720",
 }
 
@@ -171,7 +170,6 @@ SCHEMA = {
     "bracket_order": ("choice", ["0-+", "-0+"]),
     "zoom": ("float", 1.0, 5.0),
     "rotation": ("choice", [0, 180]),
-    "apercu": ("choice", ["normal", "leger"]),
     "name": ("str", 1, 24),
 }
 
@@ -496,7 +494,8 @@ def auto_wb_step():
         return
     with cam_lock:
         arr = picam2.capture_array("lores")
-    R, G, B = lores_rgb_means(arr, (96, 54, 672, 378))
+    pw, ph = PREVIEW_RES
+    R, G, B = lores_rgb_means(arr, (pw // 8, ph // 8, pw * 7 // 8, ph * 7 // 8))
     look = effective_look()
     if look != "brut":   # on revient à l'espace « brut » pour mesurer
         M = np.array(LOOKS[look]["m"], dtype=float).reshape(3, 3)
@@ -675,8 +674,7 @@ class Stream(io.BufferedIOBase):
         self.skip = 0
 
     def write(self, buf):
-        hot = system["temp_c"] and system["temp_c"] > 80   # Pi trop chaud : aperçu réduit
-        if hot or settings.get("apercu") == "leger":     # aperçu léger : une image sur deux
+        if system["temp_c"] and system["temp_c"] > 80:   # Pi trop chaud : aperçu réduit
             self.skip ^= 1
             if self.skip:
                 return len(buf)
@@ -690,8 +688,7 @@ class Stream(io.BufferedIOBase):
         with cam_lock:
             if self.encoder is None:
                 self.encoder = MJPEGEncoder()
-                q = Quality.LOW if settings.get("apercu") == "leger" else Quality.HIGH
-                picam2.start_encoder(self.encoder, FileOutput(self), name="lores", quality=q)
+                picam2.start_encoder(self.encoder, FileOutput(self), name="lores", quality=Quality.HIGH)
 
     def stop(self):
         with cam_lock:
@@ -1855,7 +1852,6 @@ def api_settings():
     with settings_lock:
         rotation_changed = "rotation" in new and new["rotation"] != settings["rotation"]
         led_changed = "led" in new and new["led"] != settings["led"]
-        apercu_changed = "apercu" in new and new["apercu"] != settings["apercu"]
         if "ev" in new or "shutter_us" in new or "iso" in new:
             tap_ev["v"] = 0.0
         settings.update(new)
@@ -1868,9 +1864,6 @@ def api_settings():
         if led_changed:
             leds.mode = None
             leds.restore()
-        if apercu_changed and stream.encoder is not None:     # nouvelle qualité JPEG : on relance l'encodeur
-            stream.stop()
-            stream.start()
     except Exception as exc:  # noqa: BLE001
         log("Réglages caméra :", exc)
         return jsonify(ok=False, error=f"caméra : {exc}", settings=settings), 500
