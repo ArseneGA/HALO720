@@ -80,7 +80,7 @@ TORCH_MAX_S = 60.0               # torche : extinction automatique
 TORCH_COOLDOWN_S = 60.0          # puis refroidissement avant de pouvoir la rallumer
 HOLD_SECONDS = 3.0
 FULL_RES = (4608, 2592)
-PREVIEW_RES = (768, 432)
+PREVIEW_RES = (1280, 720)        # aperçu MJPEG matériel 720p (était 768 × 432) ≈ 8–11 Mbit/s en Wi-Fi
 FRAME_US = 71429                 # 14 img/s : cadence maximale du mode pleine définition
 SD_RESERVE = 300 * 1024 * 1024   # en dessous : microSD considérée pleine
 FOCAL_35MM = 28                  # Camera Module 3 standard : 75° en diagonale ≈ 28 mm
@@ -621,7 +621,8 @@ def auto_wb_step():
         return
     with cam_lock:
         arr = picam2.capture_array("lores")
-    R, G, B = lores_rgb_means(arr, (96, 54, 672, 378))
+    pw, ph = PREVIEW_RES
+    R, G, B = lores_rgb_means(arr, (pw // 8, ph // 8, pw * 7 // 8, ph * 7 // 8))
     look = effective_look()
     if look != "brut":   # on revient à l'espace « brut » pour mesurer
         M = np.array(LOOKS[look]["m"], dtype=float).reshape(3, 3)

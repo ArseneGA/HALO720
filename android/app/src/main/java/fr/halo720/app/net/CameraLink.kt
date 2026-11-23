@@ -77,7 +77,7 @@ class CameraLink(private val ctx: Context) {
 
     private fun buildClient(net: Network?) = OkHttpClient.Builder()
         .apply { net?.let { socketFactory(it.socketFactory) } }
-        .connectTimeout(2, TimeUnit.SECONDS).readTimeout(8, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS)
+        .connectTimeout(4, TimeUnit.SECONDS).readTimeout(8, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS)
         .connectionPool(ConnectionPool(6, 5, TimeUnit.MINUTES))
         .retryOnConnectionFailure(true)
         .build()
@@ -148,6 +148,27 @@ class CameraLink(private val ctx: Context) {
         sseCall?.cancel()
     }
 
+    /**
+     * Wi-Fi rejoint à la main (réglages Android) : HALO-720 n'a pas Internet, donc Android garde les
+     * données mobiles comme réseau par défaut dès qu'une app en a besoin (musique en streaming…).
+     * Un client HTTP non lié partait alors en 4G vers 10.42.0.1 et ne trouvait plus la caméra.
+     * On lie donc toujours les connexions au réseau Wi-Fi présent, même quand ce n'est pas le défaut.
+     */
+    @Suppress("DEPRECATION")
+    private fun currentWifi(): Network? = try {
+        cm.allNetworks.firstOrNull { cm.getNetworkCapabilities(it)?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true }
+    } catch (_: Exception) { null }
+
+    /** Sans demande HALO-720 en cours, suit le Wi-Fi courant du téléphone. */
+    private fun followManualWifi() {
+        if (netCallback != null) return          // réseau demandé par l'app : géré par son callback
+        val w = currentWifi()
+        if (w != network) {
+            Log.i(tag, if (w != null) "liaison au Wi-Fi courant" else "plus de Wi-Fi : réseau par défaut")
+            useNetwork(w)
+        }
+    }
+
     /** Le Wi-Fi courant du téléphone est-il HALO-720 (connecté à la main) ? */
     private fun isOnCameraWifiByDefault(): Boolean = try {
         val caps = cm.getNetworkCapabilities(cm.activeNetwork)
@@ -158,6 +179,7 @@ class CameraLink(private val ctx: Context) {
         var autoAsked = prefs.getBoolean("auto_wifi", true).not()
         var fails = 0
         while (scope.isActive) {
+            followManualWifi()
             val ok = try { fetchInfo(); true } catch (e: Exception) { false }
             if (ok) {
                 fails = 0
@@ -175,7 +197,7 @@ class CameraLink(private val ctx: Context) {
             if (link.value == Link.ONLINE) link.value = Link.LOST
             else if (link.value != Link.LOST || fails > 5) link.value = if (wifiRequested.value) Link.CONNECTING else Link.SEARCHING
             // Pas de caméra sur le réseau courant : on demande HALO-720 à Android (une fois, ensuite au bouton)
-            if (!autoAsked && network == null) {
+            if (!autoAsked && netCallback == null) {
                 autoAsked = true
                 withContext(Dispatchers.Main) { requestWifi() }
             }
@@ -185,7 +207,7 @@ class CameraLink(private val ctx: Context) {
 
     private fun fetchInfo() {
         val req = Request.Builder().url("${base()}/api/info").build()
-        http.newBuilder().callTimeout(2500, TimeUnit.MILLISECONDS).build().newCall(req).execute().use { r ->
+        http.newBuilder().callTimeout(5000, TimeUnit.MILLISECONDS).build().newCall(req).execute().use { r ->
             if (!r.isSuccessful) throw IOException("HTTP ${r.code}")
             val o = JSONObject(r.body!!.string())
             Looks.load(o)
