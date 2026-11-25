@@ -24,7 +24,7 @@
 | Rondelles/entretoises M2,5 × 1,5 mm + vis M2,5 × 4 mm | 8 + 8 | Amazon | ≈ 5 € |
 | Vis M2 × 4 mm (carte flash) | 4 | Amazon | — |
 | Câble USB-C silicone souple, données USB 2.0 | 1 | Amazon | ≈ 10 € |
-| Filtre 720 nm verre rond (voir ci-dessous) | 2 | Edmund / AliExpress | 5–35 € pièce |
+| Filtre **Hoya R72** 720 nm, Ø 12,5 × 2,5 mm (Edmund #66-046) — **choisi** | 2 | Edmund Optics (edmundoptics.eu) | ≈ 37 $ pièce |
 
 Si aucun CM4 2 Go/8 Go n'est revenu vers le 15/12 : prendre la meilleure option disponible (Kubii 16 Go ou BCD Atlantik).
 
@@ -32,4 +32,5 @@ Si aucun CM4 2 Go/8 Go n'est revenu vers le 15/12 : prendre la meilleure option 
 
 - Qualité : Hoya R72 (720 nm) verre coloré Ø 12,5 mm × 2,5 mm, Edmund Optics #66-046 (≈ 37 $).
 - Économique : verre noir HWB720 / « 720nm IR pass filter » rond Ø 10–15 mm (AliExpress, eBay).
-- Le collage devant l'objectif se fait dans le boîtier v3 (logement Ø du filtre + 0,2 mm).
+- **Choix retenu (25/11) : Hoya R72 Ø 12,5 × 2,5 mm.** Logement boîtier v3 : Ø 12,7 mm, profondeur 2,7 mm, épaulement Ø 11 mm côté objectif.
+- Le flash 850 nm (LED de la carte flash JLCPCB) passe entièrement à travers le R72 : rien à prévoir en plus.
