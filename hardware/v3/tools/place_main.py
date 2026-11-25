@@ -77,11 +77,11 @@ def build():
         place(b, comps, pins, ref, *M(x, y), r, False, PROJLIB)
     for ref, (x, y, r) in BOT.items():
         place(b, comps, pins, ref, *M(x, y), r, True, PROJLIB)
-    # vias thermiques de l'IP5306 : 0,25 mm (comme les autres vias) au lieu de 0,20 mm,
-    # sinon JLCPCB impose l'option 0,2 mm + test Kelvin + FR4 TG155 (~37 $ de plus)
+    # vias thermiques de l IP5306 : 0,3 mm (comme les autres vias) au lieu de 0,20 mm,
+    # JLCPCB : sous 0,3 mm, test Kelvin + FR4 TG155 imposés (~37 $ de plus)
     for p in b.FindFootprintByReference("U2").Pads():
-        if p.GetDrillSize().x and p.GetDrillSize().x < MM(0.25):
-            p.SetDrillSize(pcbnew.VECTOR2I(MM(0.25), MM(0.25)))
+        if p.GetDrillSize().x and p.GetDrillSize().x < MM(0.3):
+            p.SetDrillSize(pcbnew.VECTOR2I(MM(0.3), MM(0.3)))
     for i, (x, y) in enumerate(HOLES):
         place(b, comps, pins, f"H{i + 1}", *M(x, y), 0, False, PROJLIB)
     for ref, (x, y) in TPS.items():

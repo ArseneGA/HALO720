@@ -20,7 +20,7 @@ LAYERS = [pcbnew.F_Cu, pcbnew.B_Cu]
 
 
 class Router:
-    def __init__(self, board, clearance=0.15, margin=0.05, edge=0.35, via_d=0.5, via_drill=0.25):
+    def __init__(self, board, clearance=0.15, margin=0.05, edge=0.35, via_d=0.5, via_drill=0.3):
         self.b = board
         self.clr = clearance + margin       # garde utilisée sur la grille (marge de discrétisation)
         self.edge = edge

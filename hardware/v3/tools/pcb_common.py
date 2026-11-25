@@ -139,7 +139,7 @@ def add_track(board, net, layer, a, b, w):
     return t
 
 
-def add_via(board, net, p, d=0.5, drill=0.25):
+def add_via(board, net, p, d=0.5, drill=0.3):
     v = pcbnew.PCB_VIA(board)
     v.SetPosition(vec(*p))
     v.SetWidth(MM(d))
@@ -150,7 +150,7 @@ def add_via(board, net, p, d=0.5, drill=0.25):
     return v
 
 
-def set_rules(board, clearance=0.15, track=0.15, via=0.5, drill=0.25, layers=4):
+def set_rules(board, clearance=0.15, track=0.15, via=0.5, drill=0.3, layers=4):
     ds = board.GetDesignSettings()
     board.SetCopperLayerCount(layers)
     ds.m_MinClearance = MM(0.1)
