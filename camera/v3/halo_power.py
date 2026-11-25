@@ -34,13 +34,15 @@ CHG_DIG_CTL0 = 0x24          # bits 4:0 : I = 0,05 A + n x 0,1 A
 READ0, READ1, LEVEL = 0x70, 0x71, 0x78
 
 # SYS_CTL0 : bit5 boost actif, bit4 chargeur actif, bit2 démarrage auto à la connexion d'une charge,
-#            bit1 boost toujours actif (pas d'arrêt « charge légère » : le CM4 au repos tire ~ 0,4 A,
-#            mais pendant l'extinction on veut justement que la coupure se fasse), bit0 bouton actif.
+#            bit1 boost toujours actif (0 : arrêt « charge légère » autorisé),
+#            bit0 = arrêt par le bouton MARCHE. On le met à 0 pendant le fonctionnement : un double appui
+#            accidentel sur MARCHE ne coupe plus le courant. halo-poweroff le remet à 1 en toute fin
+#            d'arrêt, juste avant d'envoyer lui-même le double appui qui coupe l'alimentation.
 # SYS_CTL1 : bit7 = 1 -> le boost s'arrête sur DEUX appuis courts (pas sur un appui long),
 #            bit2 = 1 -> le boost reste actif quand on débranche l'USB-C, bit0 = 1 -> arrêt sous 3,0 V.
 # SYS_CTL2 : bit4 = 0 -> appui long = 2 s ; bits 3:2 = 00 -> arrêt charge légère après 8 s.
 WANTED = {
-    SYS_CTL0: (0b0011_0111, 0b0011_0101),   # (masque, valeur) : boost + chargeur + auto + bouton, bit1 = 0
+    SYS_CTL0: (0b0011_0111, 0b0011_0100),   # (masque, valeur) : boost + chargeur + auto ; bit1 = 0 ; bit0 = 0
     SYS_CTL1: (0b1000_0101, 0b1000_0101),
     SYS_CTL2: (0b0001_1100, 0b0000_0000),
 }

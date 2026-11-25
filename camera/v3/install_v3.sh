@@ -38,11 +38,15 @@ add 'gpio=23=op,dl'               # KEY de l'IP5306 relâché
 add 'dtoverlay=disable-bt'        # pas de Bluetooth : radio entièrement au Wi-Fi
 add 'dtoverlay=dwc2,dr_mode=peripheral'   # USB-C = USB-Ethernet vers un PC (maintenance, test usine)
 add 'gpu_mem=32'
+add 'dtparam=watchdog=on'           # chien de garde matériel : un CM4 bloqué redémarre tout seul
 sudo systemctl disable --now hciuart.service bluetooth.service >/dev/null 2>&1 || true
 CMD=/boot/firmware/cmdline.txt
 [ -f "$CMD" ] || CMD=/boot/cmdline.txt
 grep -q 'modules-load=dwc2,g_ether' "$CMD" || sudo sed -i 's/$/ modules-load=dwc2,g_ether/' "$CMD"
 sudo raspi-config nonint do_wifi_country "$COUNTRY"
+
+sudo mkdir -p /etc/systemd/system.conf.d
+printf "[Manager]\nRuntimeWatchdogSec=15\nRebootWatchdogSec=2min\n" | sudo tee /etc/systemd/system.conf.d/halo-watchdog.conf >/dev/null
 
 echo "== 4/8 Extinction sans mot de passe + coupure de l'IP5306 en fin d'arrêt"
 echo "$USER ALL=(ALL) NOPASSWD: /sbin/shutdown, /usr/sbin/shutdown, /usr/bin/nmcli" | sudo tee /etc/sudoers.d/halo-shutdown >/dev/null

@@ -3,10 +3,15 @@
 # qui coupe alors le 5 V. Installé dans /usr/lib/systemd/system-shutdown/ : systemd l'exécute
 # après avoir démonté / remonté en lecture seule les disques, juste avant l'arrêt.
 # Rien au redémarrage (reboot) : seulement à l'arrêt (poweroff / halt).
+# Le double appui manuel sur MARCHE est désactivé pendant le fonctionnement (voir halo_power.py).
 case "$1" in poweroff|halt) ;; *) exit 0 ;; esac
 P=/usr/bin/pinctrl
 [ -x "$P" ] || exit 0
 $P set 22 op dl                     # flash éteint
+# réautorise l'arrêt par KEY (halo_power.py le désactive pendant le fonctionnement)
+if command -v i2cget >/dev/null 2>&1; then
+    v=$(i2cget -y 1 0x75 0x00 2>/dev/null) && i2cset -y 1 0x75 0x00 $((v | 1)) 2>/dev/null
+fi
 for i in 1 2; do
     $P set 23 op dh; sleep 0.15      # appui
     $P set 23 op dl; sleep 0.35      # relâché
