@@ -2,7 +2,7 @@
  {
   "ref": "J1",
   "value": "DF40HC(3.0)-100DS-0.4V(51)",
-  "fp": "halo720:Hirose_DF40HC3.0-100DS-0.4V",
+  "fp": "halo720:Hirose_DF40HC3.0-100DS_CM4_J1",
   "lcsc": "C424649",
   "mpn": "DF40HC(3.0)-100DS-0.4V(51)",
   "note": "CM4 broches 1-100"
@@ -10,7 +10,7 @@
  {
   "ref": "J2",
   "value": "DF40HC(3.0)-100DS-0.4V(51)",
-  "fp": "halo720:Hirose_DF40HC3.0-100DS-0.4V",
+  "fp": "halo720:Hirose_DF40HC3.0-100DS_CM4_J2",
   "lcsc": "C424649",
   "mpn": "DF40HC(3.0)-100DS-0.4V(51)",
   "note": "CM4 broches 101-200"
@@ -306,7 +306,7 @@
  {
   "ref": "J3",
   "value": "FH12-22S-0.5SH(55)",
-  "fp": "halo720:Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal",
+  "fp": "Connector_FFC-FPC:Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal",
   "lcsc": "C597981",
   "mpn": "FH12-22S-0.5SH(55)",
   "note": ""
@@ -326,14 +326,6 @@
   "lcsc": "C1525",
   "mpn": "",
   "note": ""
- },
- {
-  "ref": "SW3",
-  "value": "BOOT",
-  "fp": "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A",
-  "lcsc": "C318884",
-  "mpn": "TS-1187A-B-A-B",
-  "note": "programmation eMMC en usine"
  },
  {
   "ref": "SW1",

@@ -403,7 +403,7 @@ def build():
         "92": "RUN_PG", "93": "RPIBOOT_N", "99": "GLOBAL_EN",
     })
     s.part("J1", "halo720:CM4_J1", "DF40HC(3.0)-100DS-0.4V(51)", 80.01, 110.49, j1,
-           fp="halo720:Hirose_DF40HC3.0-100DS-0.4V", lcsc="C424649", mpn="DF40HC(3.0)-100DS-0.4V(51)",
+           fp="halo720:Hirose_DF40HC3.0-100DS_CM4_J1", lcsc="C424649", mpn="DF40HC(3.0)-100DS-0.4V(51)",
            note="CM4 broches 1-100", ref_at=(80.01, 41.91), val_at=(80.01, 44.45))
     j2 = {}
     for n in range(101, 201):
@@ -416,7 +416,7 @@ def build():
         "139": "CAM_D3_N", "141": "CAM_D3_P",
     })
     s.part("J2", "halo720:CM4_J2", "DF40HC(3.0)-100DS-0.4V(51)", 80.01, 285.75, j2,
-           fp="halo720:Hirose_DF40HC3.0-100DS-0.4V", lcsc="C424649", mpn="DF40HC(3.0)-100DS-0.4V(51)",
+           fp="halo720:Hirose_DF40HC3.0-100DS_CM4_J2", lcsc="C424649", mpn="DF40HC(3.0)-100DS-0.4V(51)",
            note="CM4 broches 101-200", ref_at=(80.01, 217.17), val_at=(80.01, 219.71))
 
     # ================= Bloc 2 : USB-C + IP5306 =================
@@ -533,7 +533,7 @@ def build():
            "13": "GND", "14": "CAM_D3_N", "15": "CAM_D3_P", "16": "GND", "17": "CAM_EN", "18": None,
            "19": "GND", "20": "CAM_SCL", "21": "CAM_SDA", "22": "+3V3", "MP": "GND"}
     s.part("J3", "Connector_Generic_MountingPin:Conn_01x22_MountingPin", "FH12-22S-0.5SH(55)", cx + 25.4, cy + 50.8, cam,
-           fp="halo720:Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal", lcsc="C597981", mpn="FH12-22S-0.5SH(55)",
+           fp="Connector_FFC-FPC:Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal", lcsc="C597981", mpn="FH12-22S-0.5SH(55)",
            ref_at=(cx + 27.94, cy + 19.05), val_at=(cx + 27.94, cy + 21.59))
     cap("C14", C10U, cx + 45.72, cy + 50.8, "+3V3")
     cap("C15", C100N, cx + 58.42, cy + 50.8, "+3V3")
@@ -542,10 +542,10 @@ def build():
     sx, sy = 345.44, 129.54
     title(5, "Mémoire eMMC et programmation en usine", sx, sy,
           ["CM4 avec eMMC 16 Go intégrée : pas de carte microSD (bus SD du CM4 non utilisé).",
-           "Usine : maintenir BOOT (SW3), brancher l'USB-C, rpiboot puis copie de l'image HALO."])
-    s.part("SW3", "Switch:SW_Push", "BOOT", sx + 35.56, sy + 25.4, {"1": "RPIBOOT_N", "2": "GND"},
-           fp="Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A", lcsc="C318884", mpn="TS-1187A-B-A-B",
-           note="programmation eMMC en usine", ref_at=(sx + 35.56, sy + 21.59), val_at=(sx + 35.56, sy + 29.21))
+           "Usine : ponter JP1 (BOOT) à la pince, brancher l'USB-C, rpiboot puis copie de l'image HALO."])
+    s.part("JP1", "Jumper:SolderJumper_2_Open", "BOOT", sx + 35.56, sy + 25.4, {"1": "RPIBOOT_N", "2": "GND"},
+           fp="Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm", bom=False,
+           ref_at=(sx + 35.56, sy + 21.59), val_at=(sx + 35.56, sy + 29.21))
 
     # ================= Bloc 6 : interface =================
     ix, iy = 452.12, 25.4
@@ -595,7 +595,7 @@ def build():
         "- USB-C branché : l'IP5306 alimente aussi le 5 V, l'appareil reste allumé pendant la charge.",
         "- Logiciel : dtoverlay=imx708 (CAM1), dtoverlay=dwc2,dr_mode=peripheral (USB gadget).",
         "- GPIO libres : 4-13, 16, 18-21, 24-26.",
-        "- Au placement : créer les empreintes DF40HC et FH12-22S d'après les plans constructeur.",
+        "- Empreintes DF40HC : pastilles de l'empreinte officielle CM4IO (Raspberry Pi), motif Hirose 0,2 x 0,7 mm.",
         "- Usine : CM4 clipsé, eMMC programmée, caméra et carte flash branchées, test. Batterie branchée par l'utilisateur.",
     ]
     for i, tx_ in enumerate(notes):

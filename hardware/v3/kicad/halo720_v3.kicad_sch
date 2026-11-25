@@ -2629,6 +2629,192 @@
 		)
 		(embedded_fonts no)
 	)
+(symbol "Jumper:SolderJumper_2_Open"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(property "Reference" "JP"
+			(at 0 2.032 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SolderJumper_2_Open"
+			(at 0 -2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, open"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "solder jumper SPST"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "SolderJumper*Open*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "SolderJumper_2_Open_0_1"
+			(polyline
+				(pts
+					(xy -0.254 1.016) (xy -0.254 -1.016)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -0.254 -1.016)
+				(mid -1.2656 0)
+				(end -0.254 1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -0.254 -1.016)
+				(mid -1.2656 0)
+				(end -0.254 1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(arc
+				(start 0.254 1.016)
+				(mid 1.2656 0)
+				(end 0.254 -1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start 0.254 1.016)
+				(mid 1.2656 0)
+				(end 0.254 -1.016)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type outline)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0.254 1.016) (xy 0.254 -1.016)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "SolderJumper_2_Open_1_1"
+			(pin passive line
+				(at -3.81 0 0)
+				(length 2.54)
+				(name "A"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 3.81 0 180)
+				(length 2.54)
+				(name "B"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
 (symbol "Mechanical:MountingHole"
 		(pin_names
 			(offset 1.016)
@@ -4747,7 +4933,7 @@
     (uuid ec2d3ca9-a79a-5316-bf1e-87ef041cacbe)
     (property "Reference" "J1" (at 80.01 41.91 0) (effects (font (size 1.27 1.27))))
     (property "Value" "DF40HC(3.0)-100DS-0.4V(51)" (at 80.01 44.45 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "halo720:Hirose_DF40HC3.0-100DS-0.4V" (at 80.01 110.49 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Footprint" "halo720:Hirose_DF40HC3.0-100DS_CM4_J1" (at 80.01 110.49 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 80.01 110.49 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C424649" (at 80.01 110.49 0) (effects (font (size 1.27 1.27)) hide))
     (property "MPN" "DF40HC(3.0)-100DS-0.4V(51)" (at 80.01 110.49 0) (effects (font (size 1.27 1.27)) hide))
@@ -5273,7 +5459,7 @@
     (uuid ba5cb8d6-116f-54bf-b344-a271f9e7c1ff)
     (property "Reference" "J2" (at 80.01 217.17 0) (effects (font (size 1.27 1.27))))
     (property "Value" "DF40HC(3.0)-100DS-0.4V(51)" (at 80.01 219.71 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "halo720:Hirose_DF40HC3.0-100DS-0.4V" (at 80.01 285.75 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Footprint" "halo720:Hirose_DF40HC3.0-100DS_CM4_J2" (at 80.01 285.75 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 80.01 285.75 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C424649" (at 80.01 285.75 0) (effects (font (size 1.27 1.27)) hide))
     (property "MPN" "DF40HC(3.0)-100DS-0.4V(51)" (at 80.01 285.75 0) (effects (font (size 1.27 1.27)) hide))
@@ -6976,7 +7162,7 @@
     (uuid 15a976e4-d332-56ea-97da-1e8b6301b244)
     (property "Reference" "J3" (at 373.38 44.45 0) (effects (font (size 1.27 1.27))))
     (property "Value" "FH12-22S-0.5SH(55)" (at 373.38 46.99 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "halo720:Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal" (at 370.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Footprint" "Connector_FFC-FPC:Hirose_FH12-22S-0.5SH_1x22-1MP_P0.50mm_Horizontal" (at 370.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 370.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C597981" (at 370.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
     (property "MPN" "FH12-22S-0.5SH(55)" (at 370.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
@@ -7201,30 +7387,28 @@
   )
   (text "5 - Mémoire eMMC et programmation en usine" (at 345.44 129.54 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid 0e13575f-375d-554e-870f-30beccffa0f9))
   (text "CM4 avec eMMC 16 Go intégrée : pas de carte microSD (bus SD du CM4 non utilisé)." (at 345.44 134.62 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 45fa61c7-2b24-5959-845d-100b14ae954c))
-  (text "Usine : maintenir BOOT (SW3), brancher l'USB-C, rpiboot puis copie de l'image HALO." (at 345.44 138.43 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 60e7ef9e-323d-5512-8d7b-676b5f51e2d4))
-  (symbol (lib_id "Switch:SW_Push") (at 381 154.94 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid d9f1a744-7a11-5403-80e8-c3e3309f9035)
-    (property "Reference" "SW3" (at 381 151.13 0) (effects (font (size 1.27 1.27))))
+  (text "Usine : ponter JP1 (BOOT) à la pince, brancher l'USB-C, rpiboot puis copie de l'image HALO." (at 345.44 138.43 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid fbe266b5-b04d-5965-8f87-25aa0c09f665))
+  (symbol (lib_id "Jumper:SolderJumper_2_Open") (at 381 154.94 0) (unit 1)
+    (in_bom no) (on_board yes) (dnp no)
+    (uuid ddbf149d-1265-5c72-8de4-d07a54933930)
+    (property "Reference" "JP1" (at 381 151.13 0) (effects (font (size 1.27 1.27))))
     (property "Value" "BOOT" (at 381 158.75 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C318884" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
-    (property "MPN" "TS-1187A-B-A-B" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid d2a8c722-3eb5-52dc-a7fd-7b19ac3b2196))
-    (pin "2" (uuid 94b34070-ff60-506f-815d-4318a47d9a74))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "SW3") (unit 1))))
+    (pin "1" (uuid e21222df-c06e-5f3f-bced-3a79b7653a63))
+    (pin "2" (uuid 0539aa41-a137-5bcb-b3bf-19ff8df5f98d))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "JP1") (unit 1))))
   )
-  (wire (pts (xy 375.92 154.94) (xy 373.38 154.94)) (stroke (width 0) (type default)) (uuid eb19dd6c-97cb-5da8-98db-605352df5249))
-  (label "RPIBOOT_N" (at 373.38 154.94 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid f113b34a-b499-58fb-a41b-759f71908764))
-  (wire (pts (xy 386.08 154.94) (xy 388.62 154.94)) (stroke (width 0) (type default)) (uuid fa489027-9811-5b49-aa0a-af09d49f1e4f))
-  (symbol (lib_id "power:GND") (at 388.62 154.94 90) (unit 1)
+  (wire (pts (xy 377.19 154.94) (xy 374.65 154.94)) (stroke (width 0) (type default)) (uuid 0e858e17-db17-5435-8904-f6c41dc0753e))
+  (label "RPIBOOT_N" (at 374.65 154.94 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid fc73c3f5-659e-5c27-a382-a0776278db97))
+  (wire (pts (xy 384.81 154.94) (xy 387.35 154.94)) (stroke (width 0) (type default)) (uuid 794f4142-1f67-5308-9cec-18c0267a2070))
+  (symbol (lib_id "power:GND") (at 387.35 154.94 90) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
     (uuid c01051f1-310b-5fd6-aa87-140bd92b447a)
-    (property "Reference" "#PWR125" (at 388.62 154.94 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 394.12 154.305 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Footprint" "" (at 388.62 154.94 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 388.62 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Reference" "#PWR125" (at 387.35 154.94 90) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 392.85 154.305 90) (effects (font (size 1.27 1.27)) hide))
+    (property "Footprint" "" (at 387.35 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 387.35 154.94 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid bf689781-7a72-5f9f-8533-da321685f171))
     (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR125") (unit 1))))
   )
@@ -7569,7 +7753,7 @@
   (text "- USB-C branché : l'IP5306 alimente aussi le 5 V, l'appareil reste allumé pendant la charge." (at 345.44 274.32 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid af1c9197-9d3c-55d6-8d59-a65142f0207c))
   (text "- Logiciel : dtoverlay=imx708 (CAM1), dtoverlay=dwc2,dr_mode=peripheral (USB gadget)." (at 345.44 279.4 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 90d908b2-3311-5ff5-947d-74e47d96cef5))
   (text "- GPIO libres : 4-13, 16, 18-21, 24-26." (at 345.44 284.48 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 5bec9d12-2945-5345-9f19-f98139e9e211))
-  (text "- Au placement : créer les empreintes DF40HC et FH12-22S d'après les plans constructeur." (at 345.44 289.56 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 377a2e9c-ba00-5189-ab0d-3738135181e1))
+  (text "- Empreintes DF40HC : pastilles de l'empreinte officielle CM4IO (Raspberry Pi), motif Hirose 0,2 x 0,7 mm." (at 345.44 289.56 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid a16e6339-1ab7-5a2e-aa85-da87cc468207))
   (text "- Usine : CM4 clipsé, eMMC programmée, caméra et carte flash branchées, test. Batterie branchée par l'utilisateur." (at 345.44 294.64 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 20886714-09ba-561c-9d82-15de7ba11744))
 
   (sheet_instances
