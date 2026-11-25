@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "halo720")(type "KiCad")(uri "${KIPRJMOD}/halo720.kicad_sym")(options "")(descr "HALO 720 v3"))
+)

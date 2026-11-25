@@ -1,6 +1,6 @@
 # HALO 720 v3 — électronique miniaturisée pour une série de 10
 
-Statut : **choix validés le 25/11/2026**, schéma KiCad à faire. Rien n'est commandé.
+Statut : **choix validés le 25/11/2026**, **schéma rév. A terminé** (voir [SCHEMA_V3.md](SCHEMA_V3.md)). Rien n'est commandé.
 
 ## Choix validés
 
@@ -16,7 +16,7 @@ Statut : **choix validés le 25/11/2026**, schéma KiCad à faire. Rien n'est co
 ## Architecture électrique
 
 ```
-USB-C ──► IP5306-I2C : charge LiPo 2,1 A · boost 5 V 2,4 A · protection · jauge 4 LED
+USB-C ──► IP5306-I2C : charge LiPo 2,1 A · boost 5 V 2,4 A · niveau batterie en I2C
              │                       │
          LiPo 1S                5 V ──► CM4 (connecteurs Hirose DF40 2 × 100 broches)
              │                               ├── CSI-2 (22 broches) ──► Camera Module 3 NoIR
@@ -24,7 +24,7 @@ USB-C ──► IP5306-I2C : charge LiPo 2,1 A · boost 5 V 2,4 A · protection 
              │                               ├── Wi-Fi 2,4 / 5 GHz (antenne du module)
              │                               ├── I2C ──► IP5306-I2C (niveau batterie)
              │                               └── GPIO : flash, déclencheur, LED témoin
-             └──► MT3608 en courant constant 0,87 A ──► LED IR 10 W (EN = GPIO du flash)
+             └──► MT3608 en courant constant 0,88 A ──► LED IR 10 W (GPIO22 : EN + MOSFET)
 USB-C (données) ──► USB 2.0 du CM4 : flasher la microSD / rpiboot, maintenance
 ```
 
@@ -70,7 +70,7 @@ négligeable ; c'est la torche qui dimensionne le dissipateur.
 
 ## Étapes suivantes
 
-1. Schéma KiCad complet + nomenclature LCSC.
+1. ~~Schéma KiCad complet + nomenclature LCSC.~~ Fait (rév. A, 25/11/2026).
 2. Placement et routage, contrôle DRC, rendu 3D de la carte.
 3. Fichiers JLCPCB (Gerber, BOM, CPL) et devis ; devis Europe pour comparaison.
 4. Relecture ensemble, commande d'un lot prototype (2 cartes assemblées) avant les 10.
