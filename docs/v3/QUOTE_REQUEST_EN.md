@@ -6,7 +6,7 @@
 >
 > I would like a quote for a complete turnkey job (PCB + components + assembly + box build + functional test):
 >
-> **Board 1 – CM4 carrier**: 43.0 × 69.5 mm, 4 layers FR-4 1.6 mm, ENIG, min track/space 0.15 mm, vias 0.5/0.25 mm,
+> **Board 1 – CM4 carrier**: 43.0 × 69.5 mm, 4 layers FR-4 1.6 mm, ENIG, min track/space 0.15 mm, vias 0.5/0.3 mm,
 > parts on both sides (47 parts, 29 BOM lines, two Hirose DF40 0.4 mm-pitch connectors).
 > **Board 2 – IR LED board**: 24 × 14 mm, aluminium MCPCB 1 layer 1.6 mm, 3 parts (2 × OSRAM SFH 4715AS, 1 JST-PH).
 >

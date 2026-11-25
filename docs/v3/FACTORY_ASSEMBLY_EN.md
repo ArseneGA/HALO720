@@ -23,7 +23,7 @@ bottom-side X coordinates seen from the top. **Please check component rotations 
 | Copper | 1 oz outer / 0.5 oz inner | 1 oz |
 | Stack-up | L1 signals + GND · L2 **GND plane** · L3 **+5 V plane** · L4 signals + GND | single layer |
 | Min track / space | 0.15 / 0.15 mm | 1.0 / 0.3 mm |
-| Vias | 0.5 mm pad / 0.25 mm drill (230), tented | none |
+| Vias | 0.5 mm pad / 0.3 mm drill (230), tented — JLCPCB option "0.3mm/(0.4/0.45mm)" | none |
 | Surface finish | **ENIG** (0.4 mm-pitch Hirose DF40 connectors) | HASL lead-free or ENIG |
 | Solder mask / silk | green / white, both sides | white mask / black silk preferred (green OK) |
 | Impedance control | not required (CSI-2 traces < 25 mm) | — |

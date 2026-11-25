@@ -118,3 +118,14 @@ Les modèles 3D manquent pour quelques pièces (DF40, boutons, LED OSRAM) : sans
 1. Devis PCBWay / JLCPCB / fournisseurs Alibaba avec [QUOTE_REQUEST_EN.md](QUOTE_REQUEST_EN.md) : **2 prototypes**, puis 10.
 2. À réception : image eMMC maître ([IMAGE_EMMC.md](IMAGE_EMMC.md)), essais ci-dessus.
 3. Boîtier v3 autour de la carte (43 × 69,5 mm), de la LiPo, de la caméra et de la carte flash.
+
+## Commande des prototypes chez JLCPCB (25/11/2026)
+
+- Carte CM4 : 4 couches, ENIG, vias 0,3 mm (option standard, sans test Kelvin), assemblage Standard 2 faces, 2 cartes, ≈ 153 $.
+- Carte flash : aluminium 1 W, blanc, HASL sans plomb, assemblage Standard, 2 cartes, ≈ 60 $.
+- Pièces changées pour le stock JLCPCB : DF40C (C597931, 1,5 mm), bobine Bourns SRP5030T-4R7M (C2045677),
+  LED verte KT-0603G (C12624) avec R19 = 100 Ω.
+- Connecteur caméra FH12-22S-0.5SH(55) (C597981) en rupture : 7 pièces précommandées (≈ 28 jours), à sélectionner
+  dans « Mon inventaire » avant de payer.
+- Rotations corrigées dans l'aperçu JLCPCB : J1/J2 +90° (déjà dans le CPL), U2/U3/U4 90°, D2 180°,
+  carte flash : D1/D2 et J1 90° (pattes sur les pastilles, cathode côté K, broche 1 du JST côté +).
