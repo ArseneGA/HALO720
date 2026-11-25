@@ -1,0 +1,15 @@
+#!/bin/sh
+# HALO 720 v3 - lancé une seule fois, au premier démarrage d'un appareil programmé avec l'image usine.
+#  - nom Wi-Fi unique : HALO-720-<4 derniers caractères du n° de série du CM4> (10 appareils dans la même pièce)
+#  - clés SSH propres à l'appareil (l'image ne doit pas en contenir : voir docs/v3/IMAGE_EMMC.md)
+set -e
+SERIAL=$(tr -d '\0' < /proc/device-tree/serial-number 2>/dev/null || cat /etc/machine-id)
+SUFFIX=$(echo "$SERIAL" | tail -c 5 | tr 'A-F' 'a-f')
+F=/etc/NetworkManager/system-connections/HALO-720.nmconnection
+if [ -f "$F" ]; then
+    sed -i "s/^ssid=HALO-720$/ssid=HALO-720-$SUFFIX/" "$F"
+fi
+ls /etc/ssh/ssh_host_*_key >/dev/null 2>&1 || ssh-keygen -A
+[ -s /etc/machine-id ] || systemd-machine-id-setup
+mkdir -p /var/lib/halo
+echo "$SERIAL" > /var/lib/halo/firstboot-done

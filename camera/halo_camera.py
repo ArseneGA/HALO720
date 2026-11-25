@@ -76,7 +76,7 @@ FLASH_AE_FRAMES = 7              # images laissées à l'auto-exposition pour s'
 FLASH_LOCKED_FRAMES = 3          # exposition fixe : la 3e image est éclairée en entier (obturateur déroulant)
 FLASH_MAX_S = 3.0                # sécurité : durée maximale d'un éclair (photo, rafale courte)
 FLASH_POSE_MAX_S = 65.0          # pose longue au flash : 60 s + marge
-TORCH_MAX_S = 60.0               # torche : extinction automatique
+TORCH_MAX_S = float(os.environ.get("HALO_TORCH_MAX_S", "60"))   # torche : extinction auto (v3 : 30 s)
 TORCH_COOLDOWN_S = 60.0          # puis refroidissement avant de pouvoir la rallumer
 HOLD_SECONDS = 3.0
 FULL_RES = (4608, 2592)
@@ -84,6 +84,7 @@ PREVIEW_RES = (1280, 720)        # aperçu MJPEG matériel 720p (était 768 × 4
 FRAME_US = 71429                 # 14 img/s : cadence maximale du mode pleine définition
 SD_RESERVE = 300 * 1024 * 1024   # en dessous : microSD considérée pleine
 FOCAL_35MM = 28                  # Camera Module 3 standard : 75° en diagonale ≈ 28 mm
+POWER_STATE = Path(os.environ.get("HALO_POWER_STATE", "/run/halo/power.json"))  # écrit par halo_power.py (v3)
 SHUTDOWN_CMD = ["sudo", "-n", "/usr/sbin/shutdown", "-h", "now"]
 REBOOT_CMD = ["sudo", "-n", "/usr/sbin/shutdown", "-r", "now"]
 
@@ -1742,6 +1743,17 @@ def af_state_name():
         return "idle"
 
 
+def battery_state():
+    """v3 : état de la LiPo lu par halo_power.py (IP5306). None sur la v2 (piles AA, pas de mesure)."""
+    try:
+        d = json.loads(POWER_STATE.read_text())
+        if time.time() - d.get("t", 0) > 60:      # service arrêté : donnée périmée
+            return None
+        return {k: d.get(k) for k in ("level", "charging", "full", "usb")}
+    except (OSError, ValueError):
+        return None
+
+
 def status_payload():
     thr = system["throttled"]
     now = time.time()
@@ -1765,7 +1777,7 @@ def status_payload():
         "sd_full": bool(system["disk_free"] is not None and system["disk_free"] < SD_RESERVE),
         "throttled": thr, "undervoltage_now": bool(thr and thr & 1),
         "undervoltage_seen": bool(thr and thr & (1 << 16)),
-        "power_warnings": describe_throttled(thr), "battery": None,
+        "power_warnings": describe_throttled(thr), "battery": battery_state(),
         "queue": q, "uptime": round(now - system["started"]),
         "iso_capped": iso_cap["locked"],
         "flash": flash.status(),
@@ -1886,7 +1898,7 @@ def api_info():
                    preview_res=PREVIEW_RES, focal_35mm=FOCAL_35MM, looks=LOOKS, look_order=LOOK_ORDER,
                    base_ccm=wb["base_ccm"],
                    look_names=LOOK_NAMES, iso_steps=ISO_STEPS, shutter_steps=SHUTTER_STEPS,
-                   pose_steps=POSE_STEPS, max_zoom=5.0, battery=False)
+                   pose_steps=POSE_STEPS, max_zoom=5.0, battery=POWER_STATE.exists())
 
 
 @app.route("/api/state")

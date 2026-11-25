@@ -1,0 +1,14 @@
+#!/bin/sh
+# HALO 720 v3 - dernier geste de l'extinction : 2 appuis courts sur KEY de l'IP5306 (GPIO23 -> Q1),
+# qui coupe alors le 5 V. Installé dans /usr/lib/systemd/system-shutdown/ : systemd l'exécute
+# après avoir démonté / remonté en lecture seule les disques, juste avant l'arrêt.
+# Rien au redémarrage (reboot) : seulement à l'arrêt (poweroff / halt).
+case "$1" in poweroff|halt) ;; *) exit 0 ;; esac
+P=/usr/bin/pinctrl
+[ -x "$P" ] || exit 0
+$P set 22 op dl                     # flash éteint
+for i in 1 2; do
+    $P set 23 op dh; sleep 0.15      # appui
+    $P set 23 op dl; sleep 0.35      # relâché
+done
+exit 0

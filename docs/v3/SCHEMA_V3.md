@@ -1,6 +1,7 @@
 # HALO 720 v3 — schémas électroniques (rév. A)
 
-Statut : **schémas terminés, à relire avant le dessin des cartes.** Rien n'est commandé.
+Statut : **dossier de fabrication complet (rév. A)** : schémas, cartes routées, fichiers d'usine, logiciel et test usine.
+Rien n'est commandé. Prochaine étape : devis (voir [QUOTE_REQUEST_EN.md](QUOTE_REQUEST_EN.md)).
 
 **Principe : tout est fait en usine.** L'usine fabrique et assemble les deux cartes, clipse le CM4,
 installe le logiciel, branche la caméra et la carte flash, puis teste. Tu reçois un bloc prêt à
@@ -8,8 +9,8 @@ poser dans le boîtier ; il ne reste qu'à **brancher la batterie** (un connecte
 
 | Carte | Schéma | Nomenclature |
 |---|---|---|
-| Carte principale CM4 (≈ 55 × 42 mm, FR4 4 couches) | [`HALO720_v3_schema.pdf`](HALO720_v3_schema.pdf) | `hardware/v3/fabrication/BOM_carte_CM4.csv` (26 lignes, 48 composants) |
-| Carte flash IR (aluminium 1 couche, ≈ 20 × 14 mm) | [`HALO720_v3_flash_schema.pdf`](HALO720_v3_flash_schema.pdf) | `hardware/v3/fabrication/BOM_flash.csv` (2 lignes, 3 composants) |
+| Carte principale CM4 (**43 × 69,5 mm**, FR4 4 couches) | [`HALO720_v3_schema.pdf`](HALO720_v3_schema.pdf) | `hardware/v3/fabrication/carte_CM4/BOM_carte_CM4.csv` (29 lignes, 47 composants) |
+| Carte flash IR (aluminium 1 couche, **24 × 14 mm**) | [`HALO720_v3_flash_schema.pdf`](HALO720_v3_flash_schema.pdf) | `hardware/v3/fabrication/flash/BOM_flash.csv` (2 lignes, 3 composants) |
 
 Projets KiCad 9 : `hardware/v3/kicad/` et `hardware/v3/kicad_flash/`. Les schémas sont **générés par script**
 (`hardware/v3/tools/gen_schematic.py`) ; `check_netlist.py` compare la netlist exportée par KiCad au câblage décrit.
@@ -18,15 +19,17 @@ Projets KiCad 9 : `hardware/v3/kicad/` et `hardware/v3/kicad_flash/`. Les schém
 
 | Contrôle | Carte CM4 | Carte flash |
 |---|---|---|
-| ERC KiCad 9 | 0 erreur (avertissements : empreintes DF40HC et FH12-22S à dessiner) | 0 erreur (empreinte LED OSRAM à dessiner) |
+| ERC KiCad 9 | 0 erreur | 0 erreur |
 | Netlist ↔ câblage voulu | 354 broches, 45 nets, 0 écart | 6 broches, 3 nets, 0 écart |
+| DRC du circuit imprimé (avec parité schéma ↔ carte) | 0 erreur, 0 connexion manquante, 0 écart (9 avertissements de sérigraphie, sans effet) | 0 erreur, 0 avertissement |
+| Fichiers d'usine | Gerber + perçage, BOM, CPL, PDF d'implantation, rendus 3D | idem |
 | Références LCSC | vérifiées sur jlcpcb.com / lcsc.com le 25/11/2026 | idem |
 
 ## Ce que fait l'usine (assemblage complet)
 
 1. Fabrique et assemble la carte CM4 et la carte flash aluminium.
 2. Achète et **clipse le CM4** (CM4101016 : Wi-Fi, 1 Go, eMMC 16 Go) et visse ses 4 entretoises.
-3. **Programme l'eMMC** : bouton BOOT (SW3) maintenu + USB-C → `rpiboot` → copie de l'image HALO.
+3. **Programme l'eMMC** : pont de soudure **JP1 BOOT** fermé + USB-C → `rpiboot` → copie de l'image HALO, puis JP1 rouvert.
 4. Branche la **nappe caméra** (Camera Module 3 NoIR, nappe 22 → 15) et le **câble JST-PH** de la carte flash.
 5. Teste : démarrage, point d'accès Wi-Fi, photo, éclair (procédure de test fournie avec la commande).
 
@@ -42,7 +45,7 @@ La batterie voyage à part (plus simple pour le transport des batteries lithium)
 3. **Flash** : convertisseur MT3608 en courant constant, **0,88 A** (0,6 V / 0,68 Ω). GPIO22 allume le convertisseur
    et le MOSFET Q2 : LED totalement coupée au repos. Zener 10 V : tension limitée vers 11 V si la carte flash est débranchée.
 4. **Caméra** : FPC 22 broches 0,5 mm (Hirose FH12-22S, comme la carte CM4 IO officielle).
-5. **Mémoire** : eMMC du CM4, **plus de carte microSD** ; bouton BOOT pour la programmation en usine.
+5. **Mémoire** : eMMC du CM4, **plus de carte microSD** ; pont de soudure JP1 BOOT pour la programmation en usine.
 6. **Interface** : déclencheur, marche, LED verte et LED rouge **soudés sur la carte** — le boîtier n'a que des poussoirs et une fenêtre.
 7. **Points de test** pour le contrôle en usine, 4 trous M2,5 alignés sur le CM4.
 
@@ -51,7 +54,8 @@ La batterie voyage à part (plus simple pour le transport des batteries lithium)
 - **2 LED OSRAM SFH 4715AS** (OSLON Black, 850 nm) en série sur carte **aluminium** (la carte sert de dissipateur).
 - Par LED à 1 A : Vf 2,9 V typique (≤ 3,4 V), flux ≈ 1,5 W → les deux ensemble éclairent **plus que la LED 10 W** de la v2.
 - Reliée à J7 de la carte principale par un câble JST-PH 2 fils.
-- **À vérifier au dessin** : que la pastille thermique de la LED est bien isolée électriquement (datasheet OSRAM).
+- Vérifié au dessin : la grande pastille centrale de la LED est **l'anode** (pas isolée). Le cuivre de la carte est donc découpé
+  en 3 surfaces (+, milieu, −) qui servent chacune de dissipateur ; la carte alu évacue la chaleur.
 
 ## Calculs
 
@@ -81,10 +85,36 @@ La batterie voyage à part (plus simple pour le transport des batteries lithium)
 2. **USB-C branché** : l'appareil reste allumé pendant la charge. Ça te va ?
 3. **Antenne Wi-Fi** : celle du CM4 suffit sauf boîtier métallique.
 
+## Cartes dessinées
+
+| | Carte CM4 | Carte flash |
+|---|---|---|
+| Taille | 43 × 69,5 mm (le CM4 fait 40 × 55 mm) | 24 × 14 mm, 2 trous M2 |
+| Couches | 4 : signaux/masse · plan de masse · plan 5 V · signaux/masse | 1 (aluminium) |
+| Dessus | CM4 (J1/J2), caméra J3, USB-C, déclencheur, marche, LED, JP1 | 2 LED + JST-PH (sortie de câble sur le bord) |
+| Dessous | chargeur IP5306, flash MT3608, connecteurs batterie J6 et flash J7 | — |
+| Points sensibles | bus caméra CSI-2 tiré en parallèle (< 25 mm, ≈ 100 Ω), pas de cuivre sous l'antenne du CM4, 136 vias de masse | larges surfaces par net |
+
+Le routage est fait par script (`hardware/v3/tools/run_main.sh`, routeur maison) et vérifié par la DRC de KiCad.
+Les modèles 3D manquent pour quelques pièces (DF40, boutons, LED OSRAM) : sans effet sur la fabrication.
+
+## Logiciel v3
+
+- `camera/halo_camera.py` (le même logiciel que la v2 : même brochage) + `camera/v3/` :
+  `install_v3.sh` (CM4, caméra CAM1, Wi-Fi **5 GHz** canal 36, USB-Ethernet), `halo_power.py` (IP5306 : charge 1 A,
+  niveau batterie dans l'app, extinction à batterie vide), `halo-poweroff` (2 appuis sur KEY en fin d'arrêt = coupure du 5 V),
+  `halo-firstboot` (nom Wi-Fi unique par appareil), `factory_test.py` (test usine).
+- Torche limitée à 30 s sur la v3.
+- Image eMMC pour l'usine : [IMAGE_EMMC.md](IMAGE_EMMC.md). Dossier usine en anglais : [FACTORY_ASSEMBLY_EN.md](FACTORY_ASSEMBLY_EN.md).
+
+## Ce qui reste à valider sur le premier prototype
+
+1. Démarrage caméra sur CAM1 (`dtoverlay=imx708,cam1`) et Wi-Fi 5 GHz en point d'accès.
+2. Registres IP5306 (réglage relu par `halo_power.py`, sinon réglages d'usine de la puce, l'appareil marche quand même).
+3. Extinction complète par double appui, chaleur des LED en torche 30 s, autonomie.
+
 ## Étapes suivantes
 
-1. Relecture des deux schémas.
-2. Empreintes manquantes (DF40HC, FH12-22S, LED OSRAM) d'après les plans constructeur.
-3. Placement / routage des deux cartes, DRC, rendus 3D ; position des boutons et LED calée sur le boîtier.
-4. Logiciel HALO v3 (image à programmer en usine) + procédure de test usine.
-5. Devis PCBWay « turnkey + box build » : 2 prototypes, puis 10 appareils.
+1. Devis PCBWay / JLCPCB / fournisseurs Alibaba avec [QUOTE_REQUEST_EN.md](QUOTE_REQUEST_EN.md) : **2 prototypes**, puis 10.
+2. À réception : image eMMC maître ([IMAGE_EMMC.md](IMAGE_EMMC.md)), essais ci-dessus.
+3. Boîtier v3 autour de la carte (43 × 69,5 mm), de la LiPo, de la caméra et de la carte flash.
