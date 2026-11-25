@@ -20,7 +20,7 @@
 | Camera Module 3 NoIR, objectif standard 75° (SC0873) | 1 | ✅ **commandée** 25/11 chez RaspberryPi.dk, commande n° 234746 (Kubii en rupture) | 239 kr |
 | Nappe caméra 22 → 15 broches (« Camera Cable Standard–Mini », 200 mm) | 2 | ✅ **commandées** 25/11 chez RaspberryPi.dk — total commande 341,76 kr ≈ 45,80 € port Mondial Relay compris | 36 kr |
 | LiPo **103665 3000 mAh** (68 × 35 × 10 mm), PH2.0, protection — Meshnology lot de 2, Amazon ASIN B0FJ1ZTVB9 — ✅ **commandée** 25/11, livraison 3/12 | 2 | Amazon | 29,48 € les 2 |
-| Câble JST-PH 2.0 2 broches femelle–femelle (ou lot de fiches PH2.0 pré-câblées, ex. GTIWUNG 20 paires — vérifier PH 2.0 et pas XH 2.54) | 1 lot | Amazon | ≈ 5–10 € |
+| Fiches JST-PH 2.0 pré-câblées GTIWUNG, 20 paires 80 mm — ✅ **commandées** 25/11, livraison 3/12 (câble J7↔J1 à souder fiche femelle–femelle) | 1 lot | Amazon | 6,99 € |
 | Rondelles/entretoises M2,5 × 1,5 mm + vis M2,5 × 4 mm | 8 + 8 | Amazon | ≈ 5 € |
 | Vis M2 × 4 mm (carte flash) | 4 | Amazon | — |
 | Câble USB-C silicone souple, données USB 2.0 | 1 | Amazon | ≈ 10 € |
@@ -34,6 +34,8 @@ Si aucun CM4 2 Go/8 Go n'est revenu vers le 15/12 : prendre la meilleure option 
 - Économique : verre noir HWB720 / « 720nm IR pass filter » rond Ø 10–15 mm (AliExpress, eBay).
 - **Choix retenu (25/11) : Hoya R72 Ø 12,5 × 2,5 mm.** Logement boîtier v3 : Ø 12,7 mm, profondeur 2,7 mm, épaulement Ø 11 mm côté objectif.
 - Le flash 850 nm (LED de la carte flash JLCPCB) passe entièrement à travers le R72 : rien à prévoir en plus.
+
+| Câble USB-C ↔ USB-C coudé 90°, 30 cm, USB 2.0 480 Mbps, silicone plat (YFYWINSH) — ✅ **commandé** 25/11, livraison 3/12 | 1 | Amazon | 6,99 € |
 
 ## ⚠️ Attention au montage
 
