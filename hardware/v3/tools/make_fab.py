@@ -88,6 +88,10 @@ def set_origin(pcb):
     return [float(v) for v in run(sys.executable, "-c", code, pcb).split()[-2:]]
 
 
+# corrections d'orientation constatées dans l'aperçu de placement JLCPCB (modèles de leur bibliothèque)
+JLC_ROT = {"J1": 90, "J2": 90}
+
+
 def cpl(b, outdir):
     """CPL JLC : Designator, Mid X, Mid Y, Layer, Rotation (mm, origine = coin bas-gauche de la carte)."""
     raw = "/tmp/pos_" + b["tag"] + ".csv"
@@ -103,8 +107,9 @@ def cpl(b, outdir):
         for r in rows:
             if r["Ref"] not in parts:
                 continue
+            rot = (float(r["Rot"]) + JLC_ROT.get(r["Ref"], 0)) % 360
             w.writerow([r["Ref"], r["PosX"] + "mm", r["PosY"] + "mm", "Top" if r["Side"] == "top" else "Bottom",
-                        r["Rot"]])
+                        f"{rot:.6f}"])
             n += 1
     return fn, n, parts - {r["Ref"] for r in rows}
 
