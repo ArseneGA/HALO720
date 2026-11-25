@@ -347,15 +347,15 @@
   "ref": "D3",
   "value": "VERTE",
   "fp": "LED_SMD:LED_0603_1608Metric",
-  "lcsc": "C72043",
+  "lcsc": "C12624",
   "mpn": "KT-0603G",
   "note": ""
  },
  {
   "ref": "R19",
-  "value": "1k",
+  "value": "100",
   "fp": "Resistor_SMD:R_0402_1005Metric",
-  "lcsc": "C11702",
+  "lcsc": "C25076",
   "mpn": "",
   "note": ""
  },

@@ -7,6 +7,7 @@ import os
 import shutil
 import subprocess
 import sys
+import unicodedata
 import zipfile
 from collections import OrderedDict
 
@@ -68,6 +69,8 @@ def bom(b, outdir):
         w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #", "Manufacturer Part", "Quantity"])
         for (val, fp, lcsc, mpn), refs in sorted(groups.items(), key=lambda kv: kv[1][0]):
             refs = sorted(refs, key=lambda r: (r.rstrip("0123456789"), int(r[len(r.rstrip("0123456789")):] or 0)))
+            # JLCPCB lit le CSV en GBK : pas d'accents dans le commentaire
+            val = unicodedata.normalize("NFKD", val).encode("ascii", "ignore").decode()
             w.writerow([val, ",".join(refs), fp, lcsc, mpn, len(refs)])
     return fn, sum(len(r) for r in groups.values())
 

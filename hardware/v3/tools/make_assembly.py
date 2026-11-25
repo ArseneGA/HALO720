@@ -18,7 +18,7 @@ MPN = {
     "C45783": ("Samsung Electro-Mechanics", "CL21A226MAQNNNE", "Condensateur céramique 22 µF 25 V X5R 0805"),
     "C8678": ("Vishay", "SS34-E3/57T", "Diode Schottky 40 V 3 A SMA"),
     "C2103": ("Diodes Incorporated", "BZT52C10-7-F", "Zener 10 V 500 mW SOD-123"),
-    "C72043": ("Kingbright", "APT1608SGC", "LED verte 0603"),
+    "C12624": ("Hubei KENTO", "KT-0603G", "LED verte 0603"),
     "C2286": ("Kingbright", "APT1608EC", "LED rouge 0603"),
     "C597931": ("Hirose", "DF40C-100DS-0.4V(51)", "Connecteur carte à carte 100 broches 0,4 mm, hauteur 1,5 mm (CM4)"),
     "C597981": ("Hirose", "FH12-22S-0.5SH(55)", "Connecteur FPC 22 broches 0,5 mm"),

@@ -557,9 +557,9 @@ def build():
            ref_at=(ix + 76.2, iy + 26.67), val_at=(ix + 76.2, iy + 34.29))
     res("R18", "10k", ix + 104.14, iy + 30.48, "+3V3", "BTN_SHUTTER")
     s.part("D3", "Device:LED", "VERTE", ix + 63.5, iy + 58.42, {"1": "GND", "2": "LED_ST_A"}, r=180,
-           fp="LED_SMD:LED_0603_1608Metric", lcsc="C72043", mpn="KT-0603G",
+           fp="LED_SMD:LED_0603_1608Metric", lcsc="C12624", mpn="KT-0603G",
            ref_at=(ix + 63.5, iy + 54.61), val_at=(ix + 63.5, iy + 62.23))
-    res("R19", "1k", ix + 15.24, iy + 58.42, "LED_STATUS", "LED_ST_A", r=90)
+    res("R19", "100", ix + 15.24, iy + 58.42, "LED_STATUS", "LED_ST_A", r=90)
     s.part("D4", "Device:LED", "ROUGE (ACT)", ix + 63.5, iy + 88.9, {"1": "LED_ACT_N", "2": "LED_ACT_A"}, r=180,
            fp="LED_SMD:LED_0603_1608Metric", lcsc="C2286", mpn="KT-0603R",
            ref_at=(ix + 63.5, iy + 85.09), val_at=(ix + 63.5, iy + 92.71))
