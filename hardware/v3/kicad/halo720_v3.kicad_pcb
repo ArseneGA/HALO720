@@ -410,7 +410,7 @@
 				)
 			)
 		)
-		(property "Value" "DF40HC(3.0)-100DS-0.4V(51)"
+		(property "Value" "DF40C-100DS-0.4V(51)"
 			(at 0 11.8 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -446,7 +446,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C424649"
+		(property "LCSC" "C597931"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -458,7 +458,7 @@
 				)
 			)
 		)
-		(property "MPN" "DF40HC(3.0)-100DS-0.4V(51)"
+		(property "MPN" "DF40C-100DS-0.4V(51)"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -1450,7 +1450,7 @@
 				)
 			)
 		)
-		(property "Value" "DF40HC(3.0)-100DS-0.4V(51)"
+		(property "Value" "DF40C-100DS-0.4V(51)"
 			(at 0 11.8 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -1486,7 +1486,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C424649"
+		(property "LCSC" "C597931"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -1498,7 +1498,7 @@
 				)
 			)
 		)
-		(property "MPN" "DF40HC(3.0)-100DS-0.4V(51)"
+		(property "MPN" "DF40C-100DS-0.4V(51)"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)

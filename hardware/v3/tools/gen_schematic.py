@@ -117,8 +117,8 @@ def sym_ip5306():
 
 
 PROJECT_SYMS = {
-    "CM4_J1": sym_cm4("CM4_J1", 1, "CM4 connecteur J1 (broches 1-100), Hirose DF40HC(3.0)-100DS-0.4V(51)"),
-    "CM4_J2": sym_cm4("CM4_J2", 101, "CM4 connecteur J2 (broches 101-200), Hirose DF40HC(3.0)-100DS-0.4V(51)"),
+    "CM4_J1": sym_cm4("CM4_J1", 1, "CM4 connecteur J1 (broches 1-100), Hirose DF40C-100DS-0.4V(51)"),
+    "CM4_J2": sym_cm4("CM4_J2", 101, "CM4 connecteur J2 (broches 101-200), Hirose DF40C-100DS-0.4V(51)"),
     "IP5306-I2C": sym_ip5306(),
 }
 
@@ -381,7 +381,7 @@ def build():
 
     # ================= Bloc 1 : CM4 =================
     title(1, "Compute Module 4 Wi-Fi eMMC 16 Go", 17.78, 25.4,
-          ["CM4101016 clipsé en usine sur 2 x Hirose DF40HC(3.0)-100DS-0.4V(51) : 1,5 mm libres dessous.",
+          ["CM4101016 clipsé en usine sur 2 x Hirose DF40C-100DS-0.4V(51) (hauteur 1,5 mm, comme la carte CM4 IO officielle) : rien sous le CM4 côté dessus.",
            "Pas de cuivre sous l'antenne du CM4. GPIO_VREF = 3,3 V."])
     j1 = {}
     for n in range(1, 101):
@@ -402,8 +402,8 @@ def build():
         "80": "CAM_SCL", "82": "CAM_SDA", "97": "CAM_EN",
         "92": "RUN_PG", "93": "RPIBOOT_N", "99": "GLOBAL_EN",
     })
-    s.part("J1", "halo720:CM4_J1", "DF40HC(3.0)-100DS-0.4V(51)", 80.01, 110.49, j1,
-           fp="halo720:Hirose_DF40HC3.0-100DS_CM4_J1", lcsc="C424649", mpn="DF40HC(3.0)-100DS-0.4V(51)",
+    s.part("J1", "halo720:CM4_J1", "DF40C-100DS-0.4V(51)", 80.01, 110.49, j1,
+           fp="halo720:Hirose_DF40HC3.0-100DS_CM4_J1", lcsc="C597931", mpn="DF40C-100DS-0.4V(51)",
            note="CM4 broches 1-100", ref_at=(80.01, 41.91), val_at=(80.01, 44.45))
     j2 = {}
     for n in range(101, 201):
@@ -415,8 +415,8 @@ def build():
         "127": "CAM_C_N", "129": "CAM_C_P", "133": "CAM_D2_N", "135": "CAM_D2_P",
         "139": "CAM_D3_N", "141": "CAM_D3_P",
     })
-    s.part("J2", "halo720:CM4_J2", "DF40HC(3.0)-100DS-0.4V(51)", 80.01, 285.75, j2,
-           fp="halo720:Hirose_DF40HC3.0-100DS_CM4_J2", lcsc="C424649", mpn="DF40HC(3.0)-100DS-0.4V(51)",
+    s.part("J2", "halo720:CM4_J2", "DF40C-100DS-0.4V(51)", 80.01, 285.75, j2,
+           fp="halo720:Hirose_DF40HC3.0-100DS_CM4_J2", lcsc="C597931", mpn="DF40C-100DS-0.4V(51)",
            note="CM4 broches 101-200", ref_at=(80.01, 217.17), val_at=(80.01, 219.71))
 
     # ================= Bloc 2 : USB-C + IP5306 =================
@@ -569,7 +569,7 @@ def build():
     tx, ty = 452.12, 129.54
     title(7, "Points de test", tx, ty,
           ["Points de test pour le contrôle en usine (tensions, UART).",
-           "H1-H4 : trous M2,5 alignés sur ceux du CM4 (entretoises 3 mm)."])
+           "H1-H4 : trous M2,5 alignés sur ceux du CM4 (entretoises 1,5 mm)."])
     tps = [("TP1", "UART_TX"), ("TP2", "UART_RX"), ("TP3", "RUN_PG"), ("TP4", "GLOBAL_EN"),
            ("TP5", "RPIBOOT_N"), ("TP6", "+5V"), ("TP7", "+BATT"), ("TP8", "GND"), ("TP9", "VLED"), ("TP10", "+3V3")]
     for i, (ref, net) in enumerate(tps):
@@ -650,7 +650,9 @@ def write_project(s, out=None, title="HALO 720 v3 - carte porteuse CM4", tag="")
            "schematic": {"legacy_lib_dir": "", "legacy_lib_list": []},
            "sheets": [[s.root, ""]], "boards": [], "libraries": {"pinned_footprint_libs": [], "pinned_symbol_libs": []},
            "text_variables": {}}
-    json.dump(pro, open(os.path.join(OUTD, project + ".kicad_pro"), "w"), indent=2)
+    pro_path = os.path.join(OUTD, project + ".kicad_pro")
+    if not os.path.exists(pro_path):   # ne jamais écraser : il contient les règles de la carte (DRC)
+        json.dump(pro, open(pro_path, "w"), indent=2)
     exp = {f"{r}.{p}": n for (r, p), n in s.expected.items()}
     json.dump(exp, open(os.path.join(HERE, f"expected_nets{tag}.json"), "w"), indent=0, sort_keys=True)
     json.dump(s.parts, open(os.path.join(HERE, f"parts{tag}.json"), "w"), indent=1, ensure_ascii=False)

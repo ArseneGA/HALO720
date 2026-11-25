@@ -4,7 +4,7 @@
     (property "Value" "CM4_J1" (at 0 66.04 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (property "ki_description" "CM4 connecteur J1 (broches 1-100), Hirose DF40HC(3.0)-100DS-0.4V(51)" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "ki_description" "CM4 connecteur J1 (broches 1-100), Hirose DF40C-100DS-0.4V(51)" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (symbol "CM4_J1_0_1"
       (rectangle (start -22.86 66.04) (end 22.86 -63.5) (stroke (width 0.254) (type default)) (fill (type background)))
     )
@@ -116,7 +116,7 @@
     (property "Value" "CM4_J2" (at 0 66.04 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
-    (property "ki_description" "CM4 connecteur J2 (broches 101-200), Hirose DF40HC(3.0)-100DS-0.4V(51)" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "ki_description" "CM4 connecteur J2 (broches 101-200), Hirose DF40C-100DS-0.4V(51)" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
     (symbol "CM4_J2_0_1"
       (rectangle (start -22.86 66.04) (end 22.86 -63.5) (stroke (width 0.254) (type default)) (fill (type background)))
     )

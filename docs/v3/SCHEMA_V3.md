@@ -38,7 +38,7 @@ La batterie voyage à part (plus simple pour le transport des batteries lithium)
 
 ## Carte principale — les 7 blocs
 
-1. **CM4 Wi-Fi eMMC 16 Go** sur 2 connecteurs Hirose DF40HC(3.0) : 1,5 mm libres sous le CM4 pour des petits composants. GPIO_VREF à 3,3 V.
+1. **CM4 Wi-Fi eMMC 16 Go** sur 2 connecteurs Hirose DF40C (1,5 mm), hauteur 1,5 mm (comme la carte CM4 IO officielle ; la version 3 mm DF40HC(3.0) est en rupture). Aucun composant sous le CM4 côté dessus. GPIO_VREF à 3,3 V.
    Brochage **identique à la v2** : déclencheur GPIO17, LED GPIO27, flash GPIO22. GPIO23 = extinction, GPIO2/3 = I2C de l'IP5306.
 2. **USB-C + IP5306-I2C** : charge la LiPo (2,1 A max), fabrique le 5 V (2,4 A max), se pilote en I2C (0x75).
    L'USB-C sert aussi à parler au CM4 (programmation, USB-Ethernet). Bouton **MARCHE** ; arrêt propre commandé par le CM4.
@@ -74,7 +74,7 @@ La batterie voyage à part (plus simple pour le transport des batteries lithium)
 | Raspberry Pi CM4101016 (Wi-Fi, 1 Go, eMMC 16 Go) | clipsé sur J1/J2 |
 | Camera Module 3 NoIR + nappe 22 → 15 broches (Pi Zero) | branchée sur J3 |
 | Câble JST-PH 2 fils ≈ 100 mm | carte flash ↔ J7 |
-| Entretoises M2,5 × 3 mm + vis | fixent le CM4 |
+| Entretoises M2,5 × 1,5 mm + vis | fixent le CM4 |
 
 À fournir de ton côté : **LiPo 1S** (≥ 2000 mAh, protection intégrée, câble JST-PH 2 broches, **sens + / − vérifié**),
 **plaquette filtre 720 nm**, le **boîtier** imprimé.

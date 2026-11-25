@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Empreintes du projet HALO 720 v3 (KiCad 9).
 
-- Hirose DF40HC(3.0)-100DS-0.4V : position des pastilles reprise de l'empreinte officielle
+- Hirose DF40C-100DS-0.4V(51) : position des pastilles reprise de l'empreinte officielle
   Raspberry Pi CM4IO (Raspberry-Pi-4-Compute-Module.kicad_mod, CC BY 4.0) : 0,2 x 0,7 mm,
   pas 0,4 mm, rangées à +/-1,54 mm (= motif recommandé Hirose : 3,78 / 2,38 mm).
   Une empreinte par connecteur (J1 broches 1-100, J2 broches 101-200), origine au centre.
@@ -49,7 +49,7 @@ def df40(name, pads, first):
     sel = {n: pads[n] for n in range(first, first + 100)}
     xs = [p[0] for p in sel.values()]; ys = [p[1] for p in sel.values()]
     cx, cy = (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
-    L = head(name, "Hirose DF40HC(3.0)-100DS-0.4V(51), réceptacle 100 broches pas 0,4 mm, hauteur d'empilage 3,0 mm (CM4)")
+    L = head(name, "Hirose DF40C-100DS-0.4V(51), réceptacle 100 broches pas 0,4 mm, hauteur 1,5 mm (CM4) ; même motif de pastilles que les versions DF40HC 2,5 à 4,0 mm")
     L += [text("Reference", "REF**", 0, -11.8, "F.SilkS"), text("Value", name, 0, 11.8, "F.Fab"),
           text("Footprint", "", 0, 0, "F.Fab", True)]
     # corps 22,6 x 3,38 mm (A x largeur) ; pastilles 0,7 de long en X

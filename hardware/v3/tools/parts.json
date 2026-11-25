@@ -1,18 +1,18 @@
 [
  {
   "ref": "J1",
-  "value": "DF40HC(3.0)-100DS-0.4V(51)",
+  "value": "DF40C-100DS-0.4V(51)",
   "fp": "halo720:Hirose_DF40HC3.0-100DS_CM4_J1",
-  "lcsc": "C424649",
-  "mpn": "DF40HC(3.0)-100DS-0.4V(51)",
+  "lcsc": "C597931",
+  "mpn": "DF40C-100DS-0.4V(51)",
   "note": "CM4 broches 1-100"
  },
  {
   "ref": "J2",
-  "value": "DF40HC(3.0)-100DS-0.4V(51)",
+  "value": "DF40C-100DS-0.4V(51)",
   "fp": "halo720:Hirose_DF40HC3.0-100DS_CM4_J2",
-  "lcsc": "C424649",
-  "mpn": "DF40HC(3.0)-100DS-0.4V(51)",
+  "lcsc": "C597931",
+  "mpn": "DF40C-100DS-0.4V(51)",
   "note": "CM4 broches 101-200"
  },
  {

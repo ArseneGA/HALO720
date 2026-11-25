@@ -30,7 +30,7 @@ bottom-side X coordinates seen from the top. **Please check component rotations 
 
 ## 3. Assembly — main board (both sides)
 
-- **Top**: J1/J2 Hirose DF40HC(3.0)-100DS-0.4V(51) (CM4 sockets), J3 FH12-22S-0.5SH(55) camera FPC, J5 USB-C,
+- **Top**: J1/J2 Hirose DF40C-100DS-0.4V(51) (CM4 sockets), J3 FH12-22S-0.5SH(55) camera FPC, J5 USB-C,
   SW1/SW2 push buttons, D3/D4 LEDs, small passives.
 - **Bottom**: IP5306-I2C power management (U2, exposed pad soldered), MT3608 flash driver (U3), inductors, J6 (battery) and J7 (flash) JST-PH SMD connectors.
 - JP1 "BOOT" is a solder jumper: **leave it open** (it is bridged with tweezers only during eMMC programming, see §5).
@@ -52,7 +52,7 @@ Parts purchased by the factory:
 | Raspberry Pi **Camera Module 3 NoIR** (standard lens, 75°) | 1 | |
 | Camera ribbon cable 22-pin → 15-pin, 0.5 mm pitch, ~100 mm (Pi Zero type) | 1 | 22-pin end into J3 |
 | JST-PH 2-pin cable, 2.0 mm, ~100 mm, both ends female housing, wires 1:1 (red pin 1, black pin 2) | 1 | flash board J1 ↔ main board J7 |
-| M2.5 × 3 mm brass standoffs + M2.5 screws | 4 + 4 | fix the CM4 to the main board |
+| M2.5 × 1.5 mm brass standoffs (1.5 mm stack height) + M2.5 screws | 4 + 4 | fix the CM4 to the main board |
 
 Steps:
 
