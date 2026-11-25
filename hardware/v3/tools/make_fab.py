@@ -61,18 +61,23 @@ def bom(b, outdir):
         if not p.get("in_bom", True):
             continue
         fp = p.get("fp", "").split(":")[-1]
-        k = (p["value"], fp, p.get("lcsc", ""), p.get("mpn", ""))
-        groups.setdefault(k, []).append(p["ref"])
+        # une ligne par référence LCSC : JLCPCB refuse la même pièce sur deux lignes
+        g = groups.setdefault(p.get("lcsc") or (p["value"], fp), {"vals": [], "fp": fp, "lcsc": p.get("lcsc", ""),
+                                                                   "mpn": p.get("mpn", ""), "refs": []})
+        g["vals"].append(p["value"])
+        g["refs"].append(p["ref"])
     fn = os.path.join(outdir, f"BOM_{b['tag']}.csv")
     with open(fn, "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #", "Manufacturer Part", "Quantity"])
-        for (val, fp, lcsc, mpn), refs in sorted(groups.items(), key=lambda kv: kv[1][0]):
+        for g in sorted(groups.values(), key=lambda g: g["refs"][0]):
+            refs, fp, lcsc, mpn = g["refs"], g["fp"], g["lcsc"], g["mpn"]
+            val = g["vals"][0] if len(set(g["vals"])) == 1 else (mpn or g["vals"][0])
             refs = sorted(refs, key=lambda r: (r.rstrip("0123456789"), int(r[len(r.rstrip("0123456789")):] or 0)))
             # JLCPCB lit le CSV en GBK : pas d'accents dans le commentaire
             val = unicodedata.normalize("NFKD", val).encode("ascii", "ignore").decode()
             w.writerow([val, ",".join(refs), fp, lcsc, mpn, len(refs)])
-    return fn, sum(len(r) for r in groups.values())
+    return fn, sum(len(g["refs"]) for g in groups.values())
 
 
 def set_origin(pcb):
