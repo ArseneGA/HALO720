@@ -17,7 +17,7 @@
 | Pièce | Qté | Où | Prix vu le 25/11/2026 |
 |---|---|---|---|
 | Compute Module 4 Wi-Fi + eMMC : **CM4102008** (2 Go / 8 Go), ou CM4101008 / CM4104008 — jamais « …000 » (sans eMMC), pas de CM5 | 2 | **Kubii** 67,50 € (rupture → alerte) · RaspberryPi.dk CM4102008 739 kr ≈ 99 €, CM4101008 609 kr ≈ 82 € (secours) · Berrybase 1 Go/8 Go 78,60 € (rupture) · Kubii 2 Go/16 Go 138 € (en stock) · **BCD Atlantik** (bcdatlantik.shop, UK) 65,63 £ + 35 £ port France + TVA/douane à l'arrivée (secours) | |
-| Camera Module 3 NoIR, objectif standard 75° (SC0873) | 1 | ✅ **commandée** 25/11 chez RaspberryPi.dk (Kubii en rupture) | 239 kr |
+| Camera Module 3 NoIR, objectif standard 75° (SC0873) | 1 | ✅ **commandée** 25/11 chez RaspberryPi.dk, commande n° 234746 (Kubii en rupture) | 239 kr |
 | Nappe caméra 22 → 15 broches (« Camera Cable Standard–Mini », 200 mm) | 2 | ✅ **commandées** 25/11 chez RaspberryPi.dk — total commande 341,76 kr ≈ 45,80 € port Mondial Relay compris | 36 kr |
 | LiPo 103450 (2000 mAh, 50 × 34 × 10 mm), PH2.0, protection, ≥ 3–4 A | 2 | Ampul (ampul.eu) | ≈ 8 € |
 | Câble JST-PH 2.0 2 broches femelle–femelle | 1 lot | Amazon | ≈ 5 € |
