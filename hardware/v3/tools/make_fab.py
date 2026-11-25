@@ -120,7 +120,7 @@ def gerbers(b, outdir):
     os.makedirs(g)
     run("kicad-cli", "pcb", "export", "gerbers", "--layers", ",".join(b["layers"]), "--subtract-soldermask",
         "--no-netlist", "--use-drill-file-origin", "-o", g, b["pcb"])
-    run("kicad-cli", "pcb", "export", "drill", "--format", "excellon", "--drill-origin", "absolute",
+    run("kicad-cli", "pcb", "export", "drill", "--format", "excellon", "--drill-origin", "plot",
         "--excellon-units", "mm", "--excellon-separate-th",
         "-o", g + "/", b["pcb"])
     fn = os.path.join(outdir, f"GERBER_{b['tag']}.zip")
