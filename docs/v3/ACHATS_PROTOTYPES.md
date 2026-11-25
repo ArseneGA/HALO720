@@ -19,7 +19,7 @@
 | Compute Module 4 Wi-Fi + eMMC : **CM4102008** (2 Go / 8 Go), ou CM4101008 / CM4104008 — jamais « …000 » (sans eMMC), pas de CM5 | 2 | **Kubii** 67,50 € (rupture → alerte) · RaspberryPi.dk CM4102008 739 kr ≈ 99 €, CM4101008 609 kr ≈ 82 € (secours) · Berrybase 1 Go/8 Go 78,60 € (rupture) · Kubii 2 Go/16 Go 138 € (en stock) · **BCD Atlantik** (bcdatlantik.shop, UK) 65,63 £ + 35 £ port France + TVA/douane à l'arrivée (secours) | |
 | Camera Module 3 NoIR, objectif standard 75° (SC0873) | 1 | ✅ **commandée** 25/11 chez RaspberryPi.dk, commande n° 234746 (Kubii en rupture) | 239 kr |
 | Nappe caméra 22 → 15 broches (« Camera Cable Standard–Mini », 200 mm) | 2 | ✅ **commandées** 25/11 chez RaspberryPi.dk — total commande 341,76 kr ≈ 45,80 € port Mondial Relay compris | 36 kr |
-| LiPo **103665 3000 mAh** (68 × 35 × 10 mm), PH2.0, protection — Meshnology lot de 2, Amazon ASIN B0FJ1ZTVB9 (retenue 25/11 ; repli : 103450 2000 mAh) | 2 | Amazon | 29,48 € les 2 |
+| LiPo **103665 3000 mAh** (68 × 35 × 10 mm), PH2.0, protection — Meshnology lot de 2, Amazon ASIN B0FJ1ZTVB9 — ✅ **commandée** 25/11, livraison 3/12 | 2 | Amazon | 29,48 € les 2 |
 | Câble JST-PH 2.0 2 broches femelle–femelle (ou lot de fiches PH2.0 pré-câblées, ex. GTIWUNG 20 paires — vérifier PH 2.0 et pas XH 2.54) | 1 lot | Amazon | ≈ 5–10 € |
 | Rondelles/entretoises M2,5 × 1,5 mm + vis M2,5 × 4 mm | 8 + 8 | Amazon | ≈ 5 € |
 | Vis M2 × 4 mm (carte flash) | 4 | Amazon | — |
