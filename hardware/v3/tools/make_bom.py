@@ -4,7 +4,9 @@ import csv, json, os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "fabrication")
 os.makedirs(OUT, exist_ok=True)
-parts = json.load(open(os.path.join(HERE, "parts.json")))
+import sys
+FLASH = len(sys.argv) > 1 and sys.argv[1] == "flash"
+parts = json.load(open(os.path.join(HERE, "parts_flash.json" if FLASH else "parts.json")))
 groups = {}
 for p in parts:
     key = (p["mpn"] or p["value"], p["fp"].split(":")[-1], p["lcsc"], p["mpn"])
@@ -13,7 +15,7 @@ def nat(r):
     m = re.match(r"([A-Z]+)(\d+)", r)
     return (m.group(1), int(m.group(2)))
 rows = sorted(groups.items(), key=lambda kv: nat(sorted(kv[1], key=nat)[0]))
-with open(os.path.join(OUT, "BOM_JLCPCB.csv"), "w", newline="", encoding="utf-8") as fh:
+with open(os.path.join(OUT, "BOM_flash.csv" if FLASH else "BOM_carte_CM4.csv"), "w", newline="", encoding="utf-8") as fh:
     w = csv.writer(fh)
     w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #"])
     for (val, fp, lcsc, mpn), refs in rows:

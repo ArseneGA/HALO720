@@ -185,7 +185,9 @@ def power_rot(base, want):
 # Construction du schéma
 # --------------------------------------------------------------------------
 class Sch:
-    def __init__(self):
+    def __init__(self, project=PROJECT):
+        self.project = project
+        self.root = ROOT_UUID if project == PROJECT else uid("root", project)
         self.items = []
         self.libs = set()
         self.expected = {}     # (ref, pin) -> net
@@ -233,7 +235,7 @@ class Sch:
                 continue
             seen.add(p["num"])
             out.append(f'    (pin "{p["num"]}" (uuid {uid("p", ref, unit, p["num"])}))')
-        out.append(f'    (instances (project "{PROJECT}" (path "/{ROOT_UUID}" (reference "{ref}") (unit {unit}))))')
+        out.append(f'    (instances (project "{self.project}" (path "/{self.root}" (reference "{ref}") (unit {unit}))))')
         out.append('  )')
         self.items.append("\n".join(out))
 
@@ -301,22 +303,25 @@ class Sch:
             else:
                 self.label(net, ex, ey, d)
 
+    paper = "A2"
+    comment1 = "Carte porteuse Raspberry Pi CM4 Wi-Fi eMMC - fabrication et assemblage complets en usine"
+
     def write(self, path, title, rev):
         libs = "\n".join(lib_text(l) for l in sorted(self.libs))
         today = date.today().isoformat()
         body = "\n".join(self.items)
         txt = f"""(kicad_sch (version 20250114) (generator "eeschema") (generator_version "9.0")
 
-  (uuid {ROOT_UUID})
+  (uuid {self.root})
 
-  (paper "A2")
+  (paper "{self.paper}")
 
   (title_block
     (title "{title}")
     (date "{today}")
     (rev "{rev}")
     (company "HALO 720 - Arsène Galliez")
-    (comment 1 "Carte porteuse Raspberry Pi CM4 Lite Wi-Fi - fabrication JLCPCB")
+    (comment 1 "{self.comment1}")
     (comment 2 "Généré par hardware/v3/tools/gen_schematic.py")
   )
 
@@ -375,8 +380,8 @@ def build():
                 s.text(l, x, y + 5.08 + i * 3.81)
 
     # ================= Bloc 1 : CM4 =================
-    title(1, "Compute Module 4 Lite Wi-Fi", 17.78, 25.4,
-          ["CM4101000 clipsé sur 2 x Hirose DF40HC(3.0)-100DS-0.4V(51) : 1,5 mm libres sous le CM4.",
+    title(1, "Compute Module 4 Wi-Fi eMMC 16 Go", 17.78, 25.4,
+          ["CM4101016 clipsé en usine sur 2 x Hirose DF40HC(3.0)-100DS-0.4V(51) : 1,5 mm libres dessous.",
            "Pas de cuivre sous l'antenne du CM4. GPIO_VREF = 3,3 V."])
     j1 = {}
     for n in range(1, 101):
@@ -394,7 +399,6 @@ def build():
         "58": "I2C1_SDA",       # GPIO2
         "55": "UART_TX",        # GPIO14
         "51": "UART_RX",        # GPIO15
-        "57": "SD_CLK", "61": "SD_DAT3", "62": "SD_CMD", "63": "SD_DAT0", "67": "SD_DAT1", "69": "SD_DAT2",
         "80": "CAM_SCL", "82": "CAM_SDA", "97": "CAM_EN",
         "92": "RUN_PG", "93": "RPIBOOT_N", "99": "GLOBAL_EN",
     })
@@ -482,7 +486,7 @@ def build():
     fx, fy = 160.02, 182.88
     title(3, "Flash IR 850 nm (MT3608 en courant constant)", fx, fy,
           ["GPIO22 (FLASH_EN) allume le boost ET le MOSFET Q2 : au repos la LED est coupée (aucune fuite).",
-           "Courant : I = 0,6 V / R10 = 0,6 / 0,68 = 0,88 A (v2 : 0,87 A réglés sur le XL4015)."])
+           "Courant : I = 0,6 V / R10 = 0,88 A dans 2 LED OSRAM SFH 4715AS en série (carte flash alu)."])
     s.part("U3", "Regulator_Switching:MT3608", "MT3608", fx + 50.8, fy + 33.02,
            {"1": "BST_SW", "2": "GND", "3": "LED_FB", "4": "FLASH_EN", "5": "+BATT"},
            fp="Package_TO_SOT_SMD:SOT-23-6", lcsc="C84817", mpn="MT3608",
@@ -498,11 +502,11 @@ def build():
     res("R9", "100k", fx + 33.02, fy + 58.42, "FLASH_EN", "GND")
     cap("C12", C22U, fx + 111.76, fy + 30.48, "VLED")
     cap("C13", C22U, fx + 124.46, fy + 30.48, "VLED")
-    s.part("J7", "Connector_Generic:Conn_01x02", "LED IR 10 W", fx + 142.24, fy + 30.48, {"1": "VLED", "2": "LED_K"},
+    s.part("J7", "Connector_Generic:Conn_01x02", "CARTE FLASH", fx + 142.24, fy + 30.48, {"1": "VLED", "2": "LED_K"},
            fp="Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal", lcsc="C295747",
-           mpn="S2B-PH-SM4-TB(LF)(SN)", note="1 = anode (+), 2 = cathode (-)",
+           mpn="S2B-PH-SM4-TB(LF)(SN)", note="câble JST-PH 2 fils vers la carte flash",
            ref_at=(fx + 144.78, fy + 25.4), val_at=(fx + 144.78, fy + 35.56))
-    s.text("J7 : 1 = + LED, 2 = - LED", fx + 130, fy + 41.91)
+    s.text("J7 -> carte flash (2 LED OSRAM en série)", fx + 125, fy + 41.91)
     s.part("Q2", "Transistor_FET:Q_NMOS_GSD", "AO3400A", fx + 152.4, fy + 63.5,
            {"1": "FLASH_G", "2": "LED_SENSE", "3": "LED_K"},
            fp="Package_TO_SOT_SMD:SOT-23", lcsc="C20917", mpn="AO3400A",
@@ -513,10 +517,10 @@ def build():
     s.text("R10 : 2512, 1 W", fx + 158.75, fy + 107.95)
     res("R11", "1k", fx + 76.2, fy + 63.5, "LED_SENSE", "LED_FB", r=90)
     res("R12", "1k", fx + 76.2, fy + 78.74, "LED_FB", "OVP", r=90)
-    s.part("D2", "Device:D_Zener", "8V2", fx + 104.14, fy + 78.74, {"1": "VLED", "2": "OVP"}, r=180,
-           fp="Diode_SMD:D_SOD-123", lcsc="C2122", mpn="BZT52C8V2",
+    s.part("D2", "Device:D_Zener", "10V", fx + 104.14, fy + 78.74, {"1": "VLED", "2": "OVP"}, r=180,
+           fp="Diode_SMD:D_SOD-123", lcsc="C2103", mpn="BZT52C10",
            ref_at=(fx + 104.14, fy + 74.93), val_at=(fx + 104.14, fy + 82.55))
-    s.text("D2 + R12 : LED débranchée -> tension limitée vers 9,4 V.", fx + 60, fy + 90.17)
+    s.text("D2 + R12 : LED débranchée -> tension limitée vers 11 V.", fx + 60, fy + 90.17)
     s.text("Torche limitée à 30 s par le logiciel.", fx + 60, fy + 93.98)
 
     # ================= Bloc 4 : caméra =================
@@ -534,31 +538,20 @@ def build():
     cap("C14", C10U, cx + 45.72, cy + 50.8, "+3V3")
     cap("C15", C100N, cx + 58.42, cy + 50.8, "+3V3")
 
-    # ================= Bloc 5 : microSD =================
+    # ================= Bloc 5 : mémoire + programmation =================
     sx, sy = 345.44, 129.54
-    title(5, "microSD (démarrage du CM4 Lite)", sx, sy,
-          ["Alimentée par le 3,3 V du CM4 (SD_PWR_ON non utilisé).",
-           "Tirages 47k sur CMD et DAT0-3 (norme SD)."])
-    sd = {"1": "SD_DAT2", "2": "SD_DAT3", "3": "SD_CMD", "4": "+3V3", "5": "SD_CLK", "6": "GND",
-          "7": "SD_DAT0", "8": "SD_DAT1", "9": "GND"}
-    s.part("J4", "Connector:Micro_SD_Card", "TF-01A", sx + 50.8, sy + 30.48, sd,
-           fp="halo720:microSD_TF-01A", lcsc="C91145", mpn="TF-01A",
-           ref_at=(sx + 50.8, sy + 15.24), val_at=(sx + 50.8, sy + 48.26))
-    for i, net in enumerate(["SD_CMD", "SD_DAT0", "SD_DAT1", "SD_DAT2", "SD_DAT3"]):
-        res(f"R{13 + i}", "47k", sx + 5.08 + i * 12.7, sy + 66.04, "+3V3", net)
-    cap("C16", C10U, sx + 71.12, sy + 66.04, "+3V3")
-    cap("C17", C100N, sx + 83.82, sy + 66.04, "+3V3")
+    title(5, "Mémoire eMMC et programmation en usine", sx, sy,
+          ["CM4 avec eMMC 16 Go intégrée : pas de carte microSD (bus SD du CM4 non utilisé).",
+           "Usine : maintenir BOOT (SW3), brancher l'USB-C, rpiboot puis copie de l'image HALO."])
+    s.part("SW3", "Switch:SW_Push", "BOOT", sx + 35.56, sy + 25.4, {"1": "RPIBOOT_N", "2": "GND"},
+           fp="Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A", lcsc="C318884", mpn="TS-1187A-B-A-B",
+           note="programmation eMMC en usine", ref_at=(sx + 35.56, sy + 21.59), val_at=(sx + 35.56, sy + 29.21))
 
     # ================= Bloc 6 : interface =================
     ix, iy = 452.12, 25.4
     title(6, "Interface (brochage de la v2)", ix, iy,
           ["Déclencheur GPIO17 (appui long 3 s = extinction), LED GPIO27, flash GPIO22.",
-           "J8 : 1 GND, 2 déclencheur, 3 marche, 4 LED façade (+), 5 3,3 V."])
-    s.part("J8", "Connector_Generic:Conn_01x05", "FAÇADE", ix + 30.48, iy + 30.48,
-           {"1": "GND", "2": "BTN_SHUTTER", "3": "PWR_KEY", "4": "LED_EXT", "5": "+3V3"},
-           fp="Connector_JST:JST_SH_SM05B-SRSS-TB_1x05-1MP_P1.00mm_Horizontal", lcsc="C136657",
-           mpn="SM05B-SRSS-TB(LF)(SN)", note="boutons et LED déportés dans le boîtier",
-           ref_at=(ix + 33.02, iy + 21.59), val_at=(ix + 33.02, iy + 39.37))
+           "Boutons et LED soudés sur la carte : le boîtier n'a que des poussoirs et une fenêtre."])
     s.part("SW1", "Switch:SW_Push", "DÉCLENCHEUR", ix + 76.2, iy + 30.48, {"1": "BTN_SHUTTER", "2": "GND"},
            fp="Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A", lcsc="C318884", mpn="TS-1187A-B-A-B",
            ref_at=(ix + 76.2, iy + 26.67), val_at=(ix + 76.2, iy + 34.29))
@@ -567,7 +560,6 @@ def build():
            fp="LED_SMD:LED_0603_1608Metric", lcsc="C72043", mpn="KT-0603G",
            ref_at=(ix + 63.5, iy + 54.61), val_at=(ix + 63.5, iy + 62.23))
     res("R19", "1k", ix + 15.24, iy + 58.42, "LED_STATUS", "LED_ST_A", r=90)
-    res("R20", "330", ix + 15.24, iy + 73.66, "LED_STATUS", "LED_EXT", r=90)
     s.part("D4", "Device:LED", "ROUGE (ACT)", ix + 63.5, iy + 88.9, {"1": "LED_ACT_N", "2": "LED_ACT_A"}, r=180,
            fp="LED_SMD:LED_0603_1608Metric", lcsc="C2286", mpn="KT-0603R",
            ref_at=(ix + 63.5, iy + 85.09), val_at=(ix + 63.5, iy + 92.71))
@@ -575,8 +567,8 @@ def build():
 
     # ================= Bloc 7 : test / flashage =================
     tx, ty = 452.12, 129.54
-    title(7, "Points de test et flashage", tx, ty,
-          ["Flasher : fermer JP1 (nRPIBOOT à la masse), brancher l'USB-C au PC, lancer rpiboot.",
+    title(7, "Points de test", tx, ty,
+          ["Points de test pour le contrôle en usine (tensions, UART).",
            "H1-H4 : trous M2,5 alignés sur ceux du CM4 (entretoises 3 mm)."])
     tps = [("TP1", "UART_TX"), ("TP2", "UART_RX"), ("TP3", "RUN_PG"), ("TP4", "GLOBAL_EN"),
            ("TP5", "RPIBOOT_N"), ("TP6", "+5V"), ("TP7", "+BATT"), ("TP8", "GND"), ("TP9", "VLED"), ("TP10", "+3V3")]
@@ -586,9 +578,6 @@ def build():
         s.part(ref, "Connector:TestPoint", net, xx, yy, {"1": net},
                fp="TestPoint:TestPoint_Pad_D1.0mm", bom=False,
                ref_at=(xx + 1.27, yy - 3.81), val_at=(xx + 1.27, yy - 6.35))
-    s.part("JP1", "Jumper:SolderJumper_2_Open", "RPIBOOT", tx + 15.24, ty + 81.28, {"1": "RPIBOOT_N", "2": "GND"},
-           fp="Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm", bom=False,
-           ref_at=(tx + 15.24, ty + 77.47), val_at=(tx + 15.24, ty + 85.09))
     for i in range(4):
         hx = tx + 50.8 + i * 12.7
         s._symbol("Mechanical:MountingHole", f"H{i + 1}", "M2.5", hx, ty + 81.28, 0,
@@ -599,42 +588,75 @@ def build():
     nx, ny = 345.44, 248.92
     notes = [
         "NOTES DE CONCEPTION",
-        "- CM4 Lite Wi-Fi 1 Go (CM4101000) acheté à part. Wi-Fi 2,4 / 5 GHz : point d'accès en 5 GHz (plus de conflit Bluetooth).",
+        "- CM4 Wi-Fi 1 Go eMMC 16 Go (CM4101016), fourni et clipsé par l'usine. Wi-Fi 2,4 / 5 GHz : point d'accès en 5 GHz.",
         "- Conso CM4 : ~0,4 A au repos, jusqu'à 1,4 A (datasheet). IP5306 : 5 V / 2,4 A max.",
         "- Pic batterie (CM4 + flash) : ~2,6 A + ~1,8 A. LiPo 1S >= 2000 mAh avec protection (PCM) >= 5 A.",
         "- Charge IP5306 jusqu'à 2,1 A par défaut : la réduire en I2C au démarrage, LiPo acceptant >= 1C.",
         "- USB-C branché : l'IP5306 alimente aussi le 5 V, l'appareil reste allumé pendant la charge.",
         "- Logiciel : dtoverlay=imx708 (CAM1), dtoverlay=dwc2,dr_mode=peripheral (USB gadget).",
         "- GPIO libres : 4-13, 16, 18-21, 24-26.",
-        "- Au placement : créer les empreintes DF40HC, FH12-22S et TF-01A d'après les plans constructeur.",
+        "- Au placement : créer les empreintes DF40HC et FH12-22S d'après les plans constructeur.",
+        "- Usine : CM4 clipsé, eMMC programmée, caméra et carte flash branchées, test. Batterie branchée par l'utilisateur.",
     ]
     for i, tx_ in enumerate(notes):
         s.text(tx_, nx, ny + i * 5.08, 2.0 if i == 0 else 1.5, i == 0)
     return s
 
 
-def write_project(s):
-    os.makedirs(OUT, exist_ok=True)
-    s.write(os.path.join(OUT, PROJECT + ".kicad_sch"), "HALO 720 v3 - carte porteuse CM4", "A")
-    # bibliothèque du projet
+def build_flash():
+    s = Sch("halo720_v3_flash")
+    s.paper = "A4"
+    s.comment1 = "Carte flash IR sur aluminium (MCPCB 1 couche) - fabrication et assemblage en usine"
+    s.text("Carte flash IR 850 nm - aluminium 1 couche, 1,6 mm", 25.4, 25.4, 2.54, True)
+    for i, l in enumerate([
+            "2 LED OSRAM SFH 4715AS (OSLON Black, 850 nm, double jonction) en série, 0,88 A fixés par la carte principale.",
+            "Vf typique 2,9 V par LED à 1 A (max 3,4 V) : environ 6 V au total.",
+            "Flux typique 1,53 W par LED à 1 A (datasheet OSRAM), soit plus que la LED 10 W de la v2.",
+            "Pastille thermique des LED sur le cuivre de la carte alu (vérifier sur la datasheet qu'elle est isolée).",
+            "Câble JST-PH 2 fils vers J7 de la carte principale, fourni et branché par l'usine."]):
+        s.text(l, 25.4, 31.75 + i * 3.81)
+    s.part("J1", "Connector_Generic:Conn_01x02", "VERS CARTE CM4", 45.72, 76.2, {"1": "LED_A", "2": "LED_K"},
+           fp="Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal", lcsc="C295747",
+           mpn="S2B-PH-SM4-TB(LF)(SN)", ref_at=(48.26, 71.12), val_at=(48.26, 81.28))
+    s.part("D1", "Device:LED", "SFH 4715AS", 76.2, 76.2, {"1": "LED_MID", "2": "LED_A"}, r=180,
+           fp="halo720:OSRAM_OSLON_Black_SFH4715AS", lcsc="C2880156", mpn="SFH 4715AS",
+           note="IR 850 nm, OSLON Black", ref_at=(76.2, 72.39), val_at=(76.2, 80.01))
+    s.part("D2", "Device:LED", "SFH 4715AS", 116.84, 76.2, {"1": "LED_K", "2": "LED_MID"}, r=180,
+           fp="halo720:OSRAM_OSLON_Black_SFH4715AS", lcsc="C2880156", mpn="SFH 4715AS",
+           note="IR 850 nm, OSLON Black", ref_at=(116.84, 72.39), val_at=(116.84, 80.01))
+    for i in range(2):
+        hx = 147.32 + i * 12.7
+        s._symbol("Mechanical:MountingHole", f"H{i + 1}", "M2", hx, 76.2, 0,
+                  fp="MountingHole:MountingHole_2.2mm_M2", in_bom=False,
+                  ref_at=(hx, 72.39), val_at=(hx, 80.01))
+    return s
+
+
+def write_project(s, out=None, title="HALO 720 v3 - carte porteuse CM4", tag=""):
+    out = out or OUT
+    project = s.project
+    OUTD = out
+    os.makedirs(OUTD, exist_ok=True)
+    s.write(os.path.join(OUTD, project + ".kicad_sch"), title, "A")
     lib = "(kicad_symbol_lib (version 20220914) (generator halo720)\n" + \
           "\n".join(PROJECT_SYMS[k] for k in sorted(PROJECT_SYMS)) + "\n)\n"
-    open(os.path.join(OUT, "halo720.kicad_sym"), "w", encoding="utf-8").write(lib)
-    open(os.path.join(OUT, "sym-lib-table"), "w").write(
+    open(os.path.join(OUTD, "halo720.kicad_sym"), "w", encoding="utf-8").write(lib)
+    open(os.path.join(OUTD, "sym-lib-table"), "w").write(
         '(sym_lib_table\n  (lib (name "halo720")(type "KiCad")(uri "${KIPRJMOD}/halo720.kicad_sym")(options "")(descr "HALO 720 v3"))\n)\n')
-    open(os.path.join(OUT, "fp-lib-table"), "w").write(
+    open(os.path.join(OUTD, "fp-lib-table"), "w").write(
         '(fp_lib_table\n  (lib (name "halo720")(type "KiCad")(uri "${KIPRJMOD}/halo720.pretty")(options "")(descr "HALO 720 v3"))\n)\n')
-    os.makedirs(os.path.join(OUT, "halo720.pretty"), exist_ok=True)
-    pro = {"meta": {"filename": PROJECT + ".kicad_pro", "version": 1},
+    os.makedirs(os.path.join(OUTD, "halo720.pretty"), exist_ok=True)
+    pro = {"meta": {"filename": project + ".kicad_pro", "version": 1},
            "schematic": {"legacy_lib_dir": "", "legacy_lib_list": []},
-           "sheets": [[ROOT_UUID, ""]], "boards": [], "libraries": {"pinned_footprint_libs": [], "pinned_symbol_libs": []},
+           "sheets": [[s.root, ""]], "boards": [], "libraries": {"pinned_footprint_libs": [], "pinned_symbol_libs": []},
            "text_variables": {}}
-    json.dump(pro, open(os.path.join(OUT, PROJECT + ".kicad_pro"), "w"), indent=2)
+    json.dump(pro, open(os.path.join(OUTD, project + ".kicad_pro"), "w"), indent=2)
     exp = {f"{r}.{p}": n for (r, p), n in s.expected.items()}
-    json.dump(exp, open(os.path.join(OUT, "..", "tools", "expected_nets.json"), "w"), indent=0, sort_keys=True)
-    json.dump(s.parts, open(os.path.join(OUT, "..", "tools", "parts.json"), "w"), indent=1, ensure_ascii=False)
-    print("schéma écrit :", OUT, "-", len(s.parts), "composants BOM,", len(exp), "broches")
+    json.dump(exp, open(os.path.join(HERE, f"expected_nets{tag}.json"), "w"), indent=0, sort_keys=True)
+    json.dump(s.parts, open(os.path.join(HERE, f"parts{tag}.json"), "w"), indent=1, ensure_ascii=False)
+    print("schéma écrit :", OUTD, "-", len(s.parts), "composants BOM,", len(exp), "broches")
 
 
 if __name__ == "__main__":
     write_project(build())
+    write_project(build_flash(), os.path.join(OUT, "..", "kicad_flash"), "HALO 720 v3 - carte flash IR", "_flash")

@@ -1,14 +1,14 @@
 # HALO 720 v3 — carte porteuse CM4
 
-- `kicad/` : projet KiCad 9 (schéma + bibliothèque `halo720`). Empreintes du projet à créer dans `halo720.pretty/`.
-- `fabrication/` : nomenclature JLCPCB (`BOM_JLCPCB.csv`) et netlist.
+- `kicad/` : carte principale CM4 (KiCad 9). `kicad_flash/` : carte flash aluminium.
+- `fabrication/` : nomenclatures (`BOM_carte_CM4.csv`, `BOM_flash.csv`) et netlists.
 - `tools/` : le schéma est généré par script.
 
 ```bash
 cd hardware/v3/tools
 python3 gen_schematic.py ../kicad   # régénère le schéma
-python3 check_netlist.py            # compare la netlist KiCad au câblage décrit
-python3 make_bom.py                 # régénère la BOM JLCPCB
+python3 check_netlist.py; python3 check_netlist.py flash
+python3 make_bom.py; python3 make_bom.py flash
 kicad-cli sch erc ../kicad/halo720_v3.kicad_sch
 ```
 

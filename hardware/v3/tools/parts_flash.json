@@ -1,0 +1,26 @@
+[
+ {
+  "ref": "J1",
+  "value": "VERS CARTE CM4",
+  "fp": "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal",
+  "lcsc": "C295747",
+  "mpn": "S2B-PH-SM4-TB(LF)(SN)",
+  "note": ""
+ },
+ {
+  "ref": "D1",
+  "value": "SFH 4715AS",
+  "fp": "halo720:OSRAM_OSLON_Black_SFH4715AS",
+  "lcsc": "C2880156",
+  "mpn": "SFH 4715AS",
+  "note": "IR 850 nm, OSLON Black"
+ },
+ {
+  "ref": "D2",
+  "value": "SFH 4715AS",
+  "fp": "halo720:OSRAM_OSLON_Black_SFH4715AS",
+  "lcsc": "C2880156",
+  "mpn": "SFH 4715AS",
+  "note": "IR 850 nm, OSLON Black"
+ }
+]

@@ -1,0 +1,506 @@
+(kicad_sch (version 20250114) (generator "eeschema") (generator_version "9.0")
+
+  (uuid 12bc6819-f824-5b71-88cd-be408cc2815f)
+
+  (paper "A4")
+
+  (title_block
+    (title "HALO 720 v3 - carte flash IR")
+    (date "2026-11-25")
+    (rev "A")
+    (company "HALO 720 - Arsène Galliez")
+    (comment 1 "Carte flash IR sur aluminium (MCPCB 1 couche) - fabrication et assemblage en usine")
+    (comment 2 "Généré par hardware/v3/tools/gen_schematic.py")
+  )
+
+  (lib_symbols
+(symbol "Connector_Generic:Conn_01x02"
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "J"
+			(at 0 2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x02"
+			(at 0 -5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "connector"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "Connector*:*_1x??_*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "Conn_01x02_1_1"
+			(rectangle
+				(start -1.27 1.27)
+				(end 1.27 -3.81)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(rectangle
+				(start -1.27 0.127)
+				(end 0 -0.127)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 -2.413)
+				(end 0 -2.667)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 3.81)
+				(name "Pin_1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -2.54 0)
+				(length 3.81)
+				(name "Pin_2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "Device:LED"
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "D"
+			(at 0 2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LED"
+			(at 0 -2.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "LED diode"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "LED_0_1"
+			(polyline
+				(pts
+					(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.27 0) (xy 1.27 0)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy -1.27 -1.27) (xy -1.27 1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+				)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "LED_1_1"
+			(pin passive line
+				(at -3.81 0 0)
+				(length 2.54)
+				(name "K"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 3.81 0 180)
+				(length 2.54)
+				(name "A"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+(symbol "Mechanical:MountingHole"
+		(pin_names
+			(offset 1.016)
+		)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(property "Reference" "H"
+			(at 0 5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 0 3.175 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_keywords" "mounting hole"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "ki_fp_filters" "MountingHole*"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "MountingHole_0_1"
+			(circle
+				(center 0 0)
+				(radius 1.27)
+				(stroke
+					(width 1.27)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+  )
+
+  (text "Carte flash IR 850 nm - aluminium 1 couche, 1,6 mm" (at 25.4 25.4 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid cf3fc350-ca52-5f47-aa1f-b1b693258ada))
+  (text "2 LED OSRAM SFH 4715AS (OSLON Black, 850 nm, double jonction) en série, 0,88 A fixés par la carte principale." (at 25.4 31.75 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid fcf56e0f-f068-5581-bb10-744fffb2bb8a))
+  (text "Vf typique 2,9 V par LED à 1 A (max 3,4 V) : environ 6 V au total." (at 25.4 35.56 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid f44faa43-fcf5-5ea3-aca1-786ce08e4098))
+  (text "Flux typique 1,53 W par LED à 1 A (datasheet OSRAM), soit plus que la LED 10 W de la v2." (at 25.4 39.37 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid f802d584-3319-5e41-8ab8-00eed4ce26a6))
+  (text "Pastille thermique des LED sur le cuivre de la carte alu (vérifier sur la datasheet qu'elle est isolée)." (at 25.4 43.18 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 5a54582f-6487-5ba7-af79-2a8750740daf))
+  (text "Câble JST-PH 2 fils vers J7 de la carte principale, fourni et branché par l'usine." (at 25.4 46.99 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 9bac7140-2948-5851-9a1a-407a81909af9))
+  (symbol (lib_id "Connector_Generic:Conn_01x02") (at 45.72 76.2 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid ec2d3ca9-a79a-5316-bf1e-87ef041cacbe)
+    (property "Reference" "J1" (at 48.26 71.12 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "VERS CARTE CM4" (at 48.26 81.28 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal" (at 45.72 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 45.72 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C295747" (at 45.72 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "S2B-PH-SM4-TB(LF)(SN)" (at 45.72 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid d557d6a9-877b-5cf0-9e24-f6980986780c))
+    (pin "2" (uuid 33d9f7cd-0b2b-509c-92f8-dc9d241ec524))
+    (instances (project "halo720_v3_flash" (path "/12bc6819-f824-5b71-88cd-be408cc2815f" (reference "J1") (unit 1))))
+  )
+  (wire (pts (xy 40.64 76.2) (xy 38.1 76.2)) (stroke (width 0) (type default)) (uuid d438d171-2c95-5129-8306-1f778c69efbe))
+  (label "LED_A" (at 38.1 76.2 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 0088191a-d120-58a0-bcf3-5266af55415c))
+  (wire (pts (xy 40.64 78.74) (xy 38.1 78.74)) (stroke (width 0) (type default)) (uuid c04479c2-b41c-5ceb-805f-7903466f5acd))
+  (label "LED_K" (at 38.1 78.74 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 65dc9531-dbdf-59ed-b7ad-bee08f7b932b))
+  (symbol (lib_id "Device:LED") (at 76.2 76.2 180) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid d45b1c8f-4ac9-5234-a2f9-02e82795c1d9)
+    (property "Reference" "D1" (at 76.2 72.39 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "SFH 4715AS" (at 76.2 80.01 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "halo720:OSRAM_OSLON_Black_SFH4715AS" (at 76.2 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 76.2 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C2880156" (at 76.2 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "SFH 4715AS" (at 76.2 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid b1833dde-2de2-5744-b9ea-8821dbffd246))
+    (pin "2" (uuid 33f6d7fb-52fe-53b4-80a1-73ca5f4e0043))
+    (instances (project "halo720_v3_flash" (path "/12bc6819-f824-5b71-88cd-be408cc2815f" (reference "D1") (unit 1))))
+  )
+  (wire (pts (xy 80.01 76.2) (xy 82.55 76.2)) (stroke (width 0) (type default)) (uuid d1c4f4ac-caee-551b-b758-82a996194406))
+  (label "LED_MID" (at 82.55 76.2 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 4989aa85-78be-5ede-806e-2b6767005b08))
+  (wire (pts (xy 72.39 76.2) (xy 69.85 76.2)) (stroke (width 0) (type default)) (uuid 08858a80-fea4-5a1b-b007-7b951a033de0))
+  (label "LED_A" (at 69.85 76.2 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 11d30e3c-57e1-5fbe-80fa-c4b397a72bd7))
+  (symbol (lib_id "Device:LED") (at 116.84 76.2 180) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid ce116c40-7544-5794-8eb4-461a96c35042)
+    (property "Reference" "D2" (at 116.84 72.39 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "SFH 4715AS" (at 116.84 80.01 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "halo720:OSRAM_OSLON_Black_SFH4715AS" (at 116.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 116.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C2880156" (at 116.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "SFH 4715AS" (at 116.84 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid a1415a06-7a86-5507-bc6c-f5294585ca05))
+    (pin "2" (uuid b2b98cc3-7338-5d99-a529-eccaf9a5bbff))
+    (instances (project "halo720_v3_flash" (path "/12bc6819-f824-5b71-88cd-be408cc2815f" (reference "D2") (unit 1))))
+  )
+  (wire (pts (xy 120.65 76.2) (xy 123.19 76.2)) (stroke (width 0) (type default)) (uuid f1185bb0-47ec-5c77-b8a6-d6bd556c55a1))
+  (label "LED_K" (at 123.19 76.2 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 1a32a037-b616-56d7-9dd2-a26aa2767a0f))
+  (wire (pts (xy 113.03 76.2) (xy 110.49 76.2)) (stroke (width 0) (type default)) (uuid bfa3bf6f-096d-594a-a1a2-c761956679e4))
+  (label "LED_MID" (at 110.49 76.2 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid cdb57850-2610-517a-9630-185491961079))
+  (symbol (lib_id "Mechanical:MountingHole") (at 147.32 76.2 0) (unit 1)
+    (in_bom no) (on_board yes) (dnp no)
+    (uuid 8dd57550-1b05-5be8-a1d7-02d2a8514fda)
+    (property "Reference" "H1" (at 147.32 72.39 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "M2" (at 147.32 80.01 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "MountingHole:MountingHole_2.2mm_M2" (at 147.32 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 147.32 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (instances (project "halo720_v3_flash" (path "/12bc6819-f824-5b71-88cd-be408cc2815f" (reference "H1") (unit 1))))
+  )
+  (symbol (lib_id "Mechanical:MountingHole") (at 160.02 76.2 0) (unit 1)
+    (in_bom no) (on_board yes) (dnp no)
+    (uuid 04b0552a-c5ce-5f1e-8687-46ccc7c1cda7)
+    (property "Reference" "H2" (at 160.02 72.39 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "M2" (at 160.02 80.01 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "MountingHole:MountingHole_2.2mm_M2" (at 160.02 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 160.02 76.2 0) (effects (font (size 1.27 1.27)) hide))
+    (instances (project "halo720_v3_flash" (path "/12bc6819-f824-5b71-88cd-be408cc2815f" (reference "H2") (unit 1))))
+  )
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+)

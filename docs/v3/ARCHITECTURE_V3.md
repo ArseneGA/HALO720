@@ -6,10 +6,10 @@ Statut : **choix validés le 25/11/2026**, **schéma rév. A terminé** (voir [S
 
 | Sujet | Choix |
 |---|---|
-| Plateforme | **Raspberry Pi Compute Module 4** Lite, Wi-Fi 2,4 + 5 GHz, 1 Go (CM4101000) |
-| Fabrication | carte porteuse **HALO** assemblée chez JLCPCB (devis Europe à comparer) |
+| Plateforme | **Raspberry Pi Compute Module 4** Wi-Fi 2,4 + 5 GHz, 1 Go, **eMMC 16 Go** (CM4101016) — logiciel installé en usine |
+| Fabrication | **tout en usine** (PCBWay turnkey + box build) : cartes, CM4, caméra, flash, logiciel, test. Seule la batterie est branchée par l'utilisateur |
 | Batterie | **LiPo plate 1S** ≈ 2000 mAh (≈ 50 × 34 × 10 mm), connecteur JST-PH |
-| Flash | **LED IR 850 nm 10 W conservée**, avec un **dissipateur réduit** (voir plus bas) |
+| Flash | **carte flash aluminium séparée** : 2 LED OSRAM SFH 4715AS 850 nm soudées en usine (remplace la LED 10 W) |
 | Filtre | **plaquette de verre 720 nm ≈ 15 mm** collée devant l'objectif (fin du Zomei 37 mm) |
 | Logiciel | nouveau logiciel (à définir), même caméra : Camera Module 3 NoIR, libcamera |
 
@@ -20,11 +20,11 @@ USB-C ──► IP5306-I2C : charge LiPo 2,1 A · boost 5 V 2,4 A · niveau batt
              │                       │
          LiPo 1S                5 V ──► CM4 (connecteurs Hirose DF40 2 × 100 broches)
              │                               ├── CSI-2 (22 broches) ──► Camera Module 3 NoIR
-             │                               ├── microSD (CM4 Lite)
+             │                               ├── eMMC 16 Go (programmée en usine)
              │                               ├── Wi-Fi 2,4 / 5 GHz (antenne du module)
              │                               ├── I2C ──► IP5306-I2C (niveau batterie)
              │                               └── GPIO : flash, déclencheur, LED témoin
-             └──► MT3608 en courant constant 0,88 A ──► LED IR 10 W (GPIO22 : EN + MOSFET)
+             └──► MT3608 en courant constant 0,88 A ──► carte flash alu : 2 × OSRAM SFH 4715AS
 USB-C (données) ──► USB 2.0 du CM4 : flasher la microSD / rpiboot, maintenance
 ```
 
@@ -36,7 +36,7 @@ USB-C (données) ──► USB 2.0 du CM4 : flasher la microSD / rpiboot, mainte
 - Encombrement total visé, hors filtre et poignées : **≈ 60 × 45 × 30 mm** pour électronique +
   batterie + caméra (contre le boîtier v2 de ≈ 198 × 114 × 90 mm).
 
-## Flash et dissipateur réduit
+## Flash (historique : LED 10 W, remplacée par la carte flash alu — voir SCHEMA_V3.md)
 
 La LED dissipe ≈ 3 W de chaleur quand elle est allumée. En usage flash (éclairs < 1 s), la chaleur est
 négligeable ; c'est la torche qui dimensionne le dissipateur.

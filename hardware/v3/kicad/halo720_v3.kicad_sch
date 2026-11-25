@@ -9,361 +9,11 @@
     (date "2026-11-25")
     (rev "A")
     (company "HALO 720 - Arsène Galliez")
-    (comment 1 "Carte porteuse Raspberry Pi CM4 Lite Wi-Fi - fabrication JLCPCB")
+    (comment 1 "Carte porteuse Raspberry Pi CM4 Wi-Fi eMMC - fabrication et assemblage complets en usine")
     (comment 2 "Généré par hardware/v3/tools/gen_schematic.py")
   )
 
   (lib_symbols
-(symbol "Connector:Micro_SD_Card"
-		(pin_names
-			(offset 1.016)
-		)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(property "Reference" "J"
-			(at -16.51 15.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Micro_SD_Card"
-			(at 16.51 15.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 29.21 7.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.we-online.com/components/products/datasheet/693072010801.pdf"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Micro SD Card Socket"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "ki_keywords" "connector SD microsd"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "ki_fp_filters" "microSD*"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(symbol "Micro_SD_Card_0_1"
-			(polyline
-				(pts
-					(xy -8.89 -11.43) (xy -8.89 8.89) (xy -1.27 8.89) (xy 2.54 12.7) (xy 3.81 12.7) (xy 3.81 11.43)
-					(xy 6.35 11.43) (xy 7.62 12.7) (xy 20.32 12.7) (xy 20.32 -11.43) (xy -8.89 -11.43)
-				)
-				(stroke
-					(width 0.254)
-					(type default)
-				)
-				(fill
-					(type background)
-				)
-			)
-			(rectangle
-				(start -7.62 8.255)
-				(end -5.08 6.985)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(rectangle
-				(start -7.62 5.715)
-				(end -5.08 4.445)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(rectangle
-				(start -7.62 3.175)
-				(end -5.08 1.905)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(rectangle
-				(start -7.62 0.635)
-				(end -5.08 -0.635)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(rectangle
-				(start -7.62 -1.905)
-				(end -5.08 -3.175)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(rectangle
-				(start -7.62 -4.445)
-				(end -5.08 -5.715)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(rectangle
-				(start -7.62 -6.985)
-				(end -5.08 -8.255)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(rectangle
-				(start -7.62 -9.525)
-				(end -5.08 -10.795)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(polyline
-				(pts
-					(xy 16.51 12.7) (xy 16.51 13.97) (xy -19.05 13.97) (xy -19.05 -16.51) (xy 16.51 -16.51) (xy 16.51 -11.43)
-				)
-				(stroke
-					(width 0.254)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-		)
-		(symbol "Micro_SD_Card_1_1"
-			(pin bidirectional line
-				(at -22.86 7.62 0)
-				(length 3.81)
-				(name "DAT2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at -22.86 5.08 0)
-				(length 3.81)
-				(name "DAT3/CD"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin input line
-				(at -22.86 2.54 0)
-				(length 3.81)
-				(name "CMD"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at -22.86 0 0)
-				(length 3.81)
-				(name "VDD"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin input line
-				(at -22.86 -2.54 0)
-				(length 3.81)
-				(name "CLK"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at -22.86 -5.08 0)
-				(length 3.81)
-				(name "VSS"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "6"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at -22.86 -7.62 0)
-				(length 3.81)
-				(name "DAT0"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "7"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at -22.86 -10.16 0)
-				(length 3.81)
-				(name "DAT1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 20.32 -15.24 180)
-				(length 3.81)
-				(name "SHIELD"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
-		(embedded_fonts no)
-	)
 (symbol "Connector:TestPoint"
 		(pin_numbers
 			(hide yes)
@@ -1300,235 +950,6 @@
 					)
 				)
 				(number "2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
-		(embedded_fonts no)
-	)
-(symbol "Connector_Generic:Conn_01x05"
-		(pin_names
-			(offset 1.016)
-			(hide yes)
-		)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(property "Reference" "J"
-			(at 0 7.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_01x05"
-			(at 0 -7.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "ki_keywords" "connector"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "ki_fp_filters" "Connector*:*_1x??_*"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(symbol "Conn_01x05_1_1"
-			(rectangle
-				(start -1.27 6.35)
-				(end 1.27 -6.35)
-				(stroke
-					(width 0.254)
-					(type default)
-				)
-				(fill
-					(type background)
-				)
-			)
-			(rectangle
-				(start -1.27 5.207)
-				(end 0 4.953)
-				(stroke
-					(width 0.1524)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(rectangle
-				(start -1.27 2.667)
-				(end 0 2.413)
-				(stroke
-					(width 0.1524)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(rectangle
-				(start -1.27 0.127)
-				(end 0 -0.127)
-				(stroke
-					(width 0.1524)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(rectangle
-				(start -1.27 -2.413)
-				(end 0 -2.667)
-				(stroke
-					(width 0.1524)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(rectangle
-				(start -1.27 -4.953)
-				(end 0 -5.207)
-				(stroke
-					(width 0.1524)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(pin passive line
-				(at -5.08 5.08 0)
-				(length 3.81)
-				(name "Pin_1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -5.08 2.54 0)
-				(length 3.81)
-				(name "Pin_2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -5.08 0 0)
-				(length 3.81)
-				(name "Pin_3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -5.08 -2.54 0)
-				(length 3.81)
-				(name "Pin_4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -5.08 -5.08 0)
-				(length 3.81)
-				(name "Pin_5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "5"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3191,192 +2612,6 @@
 				(at 0 -3.81 90)
 				(length 1.27)
 				(name "~"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
-		(embedded_fonts no)
-	)
-(symbol "Jumper:SolderJumper_2_Open"
-		(pin_numbers
-			(hide yes)
-		)
-		(pin_names
-			(offset 0)
-			(hide yes)
-		)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(property "Reference" "JP"
-			(at 0 2.032 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SolderJumper_2_Open"
-			(at 0 -2.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Solder Jumper, 2-pole, open"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "ki_keywords" "solder jumper SPST"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "ki_fp_filters" "SolderJumper*Open*"
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(symbol "SolderJumper_2_Open_0_1"
-			(polyline
-				(pts
-					(xy -0.254 1.016) (xy -0.254 -1.016)
-				)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(arc
-				(start -0.254 -1.016)
-				(mid -1.2656 0)
-				(end -0.254 1.016)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(arc
-				(start -0.254 -1.016)
-				(mid -1.2656 0)
-				(end -0.254 1.016)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(arc
-				(start 0.254 1.016)
-				(mid 1.2656 0)
-				(end 0.254 -1.016)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(arc
-				(start 0.254 1.016)
-				(mid 1.2656 0)
-				(end 0.254 -1.016)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type outline)
-				)
-			)
-			(polyline
-				(pts
-					(xy 0.254 1.016) (xy 0.254 -1.016)
-				)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-		)
-		(symbol "SolderJumper_2_Open_1_1"
-			(pin passive line
-				(at -3.81 0 0)
-				(length 2.54)
-				(name "A"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 3.81 0 180)
-				(length 2.54)
-				(name "B"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -5504,8 +4739,8 @@
 	)
   )
 
-  (text "1 - Compute Module 4 Lite Wi-Fi" (at 17.78 25.4 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid c739aa95-d64d-5773-b93f-d86b2e477878))
-  (text "CM4101000 clipsé sur 2 x Hirose DF40HC(3.0)-100DS-0.4V(51) : 1,5 mm libres sous le CM4." (at 17.78 30.48 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid f3f7c806-7b71-5cdb-b2ce-bec4e5292df3))
+  (text "1 - Compute Module 4 Wi-Fi eMMC 16 Go" (at 17.78 25.4 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid f02a43ea-7a9d-516d-b80e-882df2383a62))
+  (text "CM4101016 clipsé en usine sur 2 x Hirose DF40HC(3.0)-100DS-0.4V(51) : 1,5 mm libres dessous." (at 17.78 30.48 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid eaba9b26-ff8f-507d-9476-d806c682989d))
   (text "Pas de cuivre sous l'antenne du CM4. GPIO_VREF = 3,3 V." (at 17.78 34.29 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid f0add3e6-ca88-510c-8eb5-586f79fb54ca))
   (symbol (lib_id "halo720:CM4_J1") (at 80.01 110.49 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
@@ -5822,8 +5057,7 @@
   (label "UART_TX" (at 52.07 115.57 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid d9911c69-f609-5c8b-95a6-88ddce199fd3))
   (wire (pts (xy 105.41 115.57) (xy 107.95 115.57)) (stroke (width 0) (type default)) (uuid 3c706064-514a-503d-9f12-671326605635))
   (label "I2C1_SCL" (at 107.95 115.57 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 2e09ea8b-d4c8-5be6-90cb-3a88b963868a))
-  (wire (pts (xy 54.61 118.11) (xy 52.07 118.11)) (stroke (width 0) (type default)) (uuid 51d89e26-a699-5679-b3a8-c838ade280b7))
-  (label "SD_CLK" (at 52.07 118.11 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 3342ac77-b534-5351-a4f4-944b478394f8))
+  (no_connect (at 54.61 118.11) (uuid d0571fae-6e38-5ea1-b704-08564a7badaa))
   (wire (pts (xy 105.41 118.11) (xy 107.95 118.11)) (stroke (width 0) (type default)) (uuid b22fb7ba-229e-5942-b86c-b3c764f10ab6))
   (label "I2C1_SDA" (at 107.95 118.11 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 7122e8eb-5308-5d6d-a67e-c43923ba44fe))
   (wire (pts (xy 54.61 120.65) (xy 52.07 120.65)) (stroke (width 0) (type default)) (uuid e9329395-ec16-5fa8-818c-78dca85a917b))
@@ -5848,12 +5082,9 @@
     (pin "1" (uuid 4770a440-b1e7-5fa0-b85d-346caee64690))
     (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR016") (unit 1))))
   )
-  (wire (pts (xy 54.61 123.19) (xy 52.07 123.19)) (stroke (width 0) (type default)) (uuid 7aa123c5-8c00-54bb-93f4-745bc07e9eee))
-  (label "SD_DAT3" (at 52.07 123.19 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 2983d8dc-ab87-568a-8f1d-8e55841cc55c))
-  (wire (pts (xy 105.41 123.19) (xy 107.95 123.19)) (stroke (width 0) (type default)) (uuid 9a39c39d-4412-5e3f-88c5-c61a1011c8ef))
-  (label "SD_CMD" (at 107.95 123.19 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 1f228a56-60f2-53d4-8da9-c3e8f4164a6f))
-  (wire (pts (xy 54.61 125.73) (xy 52.07 125.73)) (stroke (width 0) (type default)) (uuid cd6d84ed-a4eb-57c1-9826-36713bc03390))
-  (label "SD_DAT0" (at 52.07 125.73 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid aa303205-61c0-5124-9f7b-342bd47b673a))
+  (no_connect (at 54.61 123.19) (uuid ddfe3513-b809-5004-beeb-87d3a52bce4f))
+  (no_connect (at 105.41 123.19) (uuid a7767ab9-60d0-5d48-a8e7-e3993ed509d2))
+  (no_connect (at 54.61 125.73) (uuid 1b01c13d-1314-523c-85fd-170b0c83e46e))
   (no_connect (at 105.41 125.73) (uuid eb86522c-21f3-5adb-81ae-e2d688bb4023))
   (wire (pts (xy 54.61 128.27) (xy 52.07 128.27)) (stroke (width 0) (type default)) (uuid 5b46ad2a-f530-5dd6-881a-5ae38cc37567))
   (symbol (lib_id "power:GND") (at 52.07 128.27 270) (unit 1)
@@ -5877,11 +5108,9 @@
     (pin "1" (uuid 3b6a45a9-0146-55e2-88a9-3f814d036367))
     (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR018") (unit 1))))
   )
-  (wire (pts (xy 54.61 130.81) (xy 52.07 130.81)) (stroke (width 0) (type default)) (uuid d008e7da-bb54-58f0-bca0-9e0d97f21251))
-  (label "SD_DAT1" (at 52.07 130.81 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 55828f5e-2cc4-5b60-82a4-71b85346ded7))
+  (no_connect (at 54.61 130.81) (uuid 2706abf4-c68f-5d92-aed5-de87c4cc9927))
   (no_connect (at 105.41 130.81) (uuid e6afe92b-9652-558c-b2f0-3d304baa9beb))
-  (wire (pts (xy 54.61 133.35) (xy 52.07 133.35)) (stroke (width 0) (type default)) (uuid 75f751bf-8b37-57e7-afba-84aff65e648d))
-  (label "SD_DAT2" (at 52.07 133.35 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 7d4a2476-aa71-5014-be6d-7c163d7f5d42))
+  (no_connect (at 54.61 133.35) (uuid c215f50b-87d5-584e-9893-9eeddab461e1))
   (no_connect (at 105.41 133.35) (uuid c78e6efa-92d4-5171-8d53-8b21c4bdf06b))
   (wire (pts (xy 54.61 135.89) (xy 52.07 135.89)) (stroke (width 0) (type default)) (uuid 5820c60a-1572-57a9-afb8-23fc6b8d269e))
   (symbol (lib_id "power:GND") (at 52.07 135.89 270) (unit 1)
@@ -7375,7 +6604,7 @@
   )
   (text "3 - Flash IR 850 nm (MT3608 en courant constant)" (at 160.02 182.88 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid ad8fb3a9-d1ce-5d7f-ac9c-300ce9f5566a))
   (text "GPIO22 (FLASH_EN) allume le boost ET le MOSFET Q2 : au repos la LED est coupée (aucune fuite)." (at 160.02 187.96 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid ce294d88-ee79-5378-a194-91feca20b52f))
-  (text "Courant : I = 0,6 V / R10 = 0,6 / 0,68 = 0,88 A (v2 : 0,87 A réglés sur le XL4015)." (at 160.02 191.77 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 8eeaf457-fbc6-52bf-a262-ba492f56afe0))
+  (text "Courant : I = 0,6 V / R10 = 0,88 A dans 2 LED OSRAM SFH 4715AS en série (carte flash alu)." (at 160.02 191.77 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 03e8c5bc-844e-5598-86f2-69e57270071e))
   (symbol (lib_id "Regulator_Switching:MT3608") (at 210.82 215.9 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4814395f-74f7-5937-8f23-a5664b1856ce)
@@ -7611,7 +6840,7 @@
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 48ea9216-4cfa-584e-b36b-beb8399a105e)
     (property "Reference" "J7" (at 304.8 208.28 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "LED IR 10 W" (at 304.8 218.44 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "CARTE FLASH" (at 304.8 218.44 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal" (at 302.26 213.36 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 302.26 213.36 0) (effects (font (size 1.27 1.27)) hide))
     (property "LCSC" "C295747" (at 302.26 213.36 0) (effects (font (size 1.27 1.27)) hide))
@@ -7624,7 +6853,7 @@
   (label "VLED" (at 294.64 213.36 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 9305e019-a5f3-5b0b-8e46-c4dc15f4b5c3))
   (wire (pts (xy 297.18 215.9) (xy 294.64 215.9)) (stroke (width 0) (type default)) (uuid 07121a8e-7649-5591-9354-90f596ec73c6))
   (label "LED_K" (at 294.64 215.9 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid a528195c-c5b7-538f-ab57-cda5a7be960f))
-  (text "J7 : 1 = + LED, 2 = - LED" (at 290.02 224.79 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 60032611-74c5-57b4-9341-cf4591a8b243))
+  (text "J7 -> carte flash (2 LED OSRAM en série)" (at 285.02 224.79 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid d163b40a-9e2d-5ed5-99b7-5cd2bda68f46))
   (symbol (lib_id "Transistor_FET:Q_NMOS_GSD") (at 312.42 246.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9b6a4cfb-01db-5d8e-8c5d-8a01474f129d)
@@ -7724,11 +6953,11 @@
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ce116c40-7544-5794-8eb4-461a96c35042)
     (property "Reference" "D2" (at 264.16 257.81 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "8V2" (at 264.16 265.43 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10V" (at 264.16 265.43 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "Diode_SMD:D_SOD-123" (at 264.16 261.62 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 264.16 261.62 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C2122" (at 264.16 261.62 0) (effects (font (size 1.27 1.27)) hide))
-    (property "MPN" "BZT52C8V2" (at 264.16 261.62 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C2103" (at 264.16 261.62 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "BZT52C10" (at 264.16 261.62 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid a1415a06-7a86-5507-bc6c-f5294585ca05))
     (pin "2" (uuid b2b98cc3-7338-5d99-a529-eccaf9a5bbff))
     (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "D2") (unit 1))))
@@ -7737,7 +6966,7 @@
   (label "VLED" (at 270.51 261.62 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 2fc95b21-e932-5956-8ed3-8cc9bd46a4e7))
   (wire (pts (xy 260.35 261.62) (xy 257.81 261.62)) (stroke (width 0) (type default)) (uuid 5f758aa3-87be-5b08-847b-fc5bbf4472c4))
   (label "OVP" (at 257.81 261.62 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid a179a765-0608-566d-b93f-ae838172f00e))
-  (text "D2 + R12 : LED débranchée -> tension limitée vers 9,4 V." (at 220.02 273.05 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 6de22766-6efd-5de2-88ff-c0b9b469deae))
+  (text "D2 + R12 : LED débranchée -> tension limitée vers 11 V." (at 220.02 273.05 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid d4b532c6-caf6-5f5a-85de-1828703eb72b))
   (text "Torche limitée à 30 s par le logiciel." (at 220.02 276.86 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 609848ad-36eb-56df-8983-444dcf9b217a))
   (text "4 - Caméra (FPC 22 broches 0,5 mm, CAM1)" (at 345.44 25.4 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid 9367a65f-1273-5e88-a3b2-b98ff8b704b4))
   (text "Camera Module 3 NoIR, nappe 22->15 broches (type Pi Zero)." (at 345.44 30.48 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 5490506d-e115-5d98-b3fb-cf3f0ccc729f))
@@ -7970,314 +7199,38 @@
     (pin "1" (uuid c25df3b3-7948-5587-b4b0-f83d10783d2a))
     (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR124") (unit 1))))
   )
-  (text "5 - microSD (démarrage du CM4 Lite)" (at 345.44 129.54 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid 0193059b-6ca9-544b-9375-75bd4123b70b))
-  (text "Alimentée par le 3,3 V du CM4 (SD_PWR_ON non utilisé)." (at 345.44 134.62 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid bcb0239f-764c-5a4e-9d5b-f74e6408fce8))
-  (text "Tirages 47k sur CMD et DAT0-3 (norme SD)." (at 345.44 138.43 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid a569f912-2168-52ef-98a7-e22cce2c08f0))
-  (symbol (lib_id "Connector:Micro_SD_Card") (at 396.24 160.02 0) (unit 1)
+  (text "5 - Mémoire eMMC et programmation en usine" (at 345.44 129.54 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid 0e13575f-375d-554e-870f-30beccffa0f9))
+  (text "CM4 avec eMMC 16 Go intégrée : pas de carte microSD (bus SD du CM4 non utilisé)." (at 345.44 134.62 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 45fa61c7-2b24-5959-845d-100b14ae954c))
+  (text "Usine : maintenir BOOT (SW3), brancher l'USB-C, rpiboot puis copie de l'image HALO." (at 345.44 138.43 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 60e7ef9e-323d-5512-8d7b-676b5f51e2d4))
+  (symbol (lib_id "Switch:SW_Push") (at 381 154.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
-    (uuid c3499b36-1854-52ef-89a4-18dec5e0a9ba)
-    (property "Reference" "J4" (at 396.24 144.78 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "TF-01A" (at 396.24 177.8 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "halo720:microSD_TF-01A" (at 396.24 160.02 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 396.24 160.02 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C91145" (at 396.24 160.02 0) (effects (font (size 1.27 1.27)) hide))
-    (property "MPN" "TF-01A" (at 396.24 160.02 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid a9d14c5d-ab2a-5117-8367-31a4212340d6))
-    (pin "2" (uuid 330e441a-8be1-527a-b52c-3539efc38631))
-    (pin "3" (uuid ff573c40-2628-5b48-b2c3-ff034bb4f2ec))
-    (pin "4" (uuid 5632e645-de33-5208-8608-9abad806edc1))
-    (pin "5" (uuid 1471684f-a474-513f-9ba6-b6f0bd82d041))
-    (pin "6" (uuid 49d517a4-da78-5c84-867b-6703888f04cc))
-    (pin "7" (uuid dd559075-1f3b-5e3a-8d1f-fe3caea6e8ab))
-    (pin "8" (uuid 0d425443-d19e-5d1c-a374-53e7507c3195))
-    (pin "9" (uuid 87791bcf-5952-51e5-9e10-446d9cb5e09f))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "J4") (unit 1))))
+    (uuid d9f1a744-7a11-5403-80e8-c3e3309f9035)
+    (property "Reference" "SW3" (at 381 151.13 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BOOT" (at 381 158.75 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_XKB_TS-1187A" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C318884" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "MPN" "TS-1187A-B-A-B" (at 381 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (pin "1" (uuid d2a8c722-3eb5-52dc-a7fd-7b19ac3b2196))
+    (pin "2" (uuid 94b34070-ff60-506f-815d-4318a47d9a74))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "SW3") (unit 1))))
   )
-  (wire (pts (xy 373.38 152.4) (xy 370.84 152.4)) (stroke (width 0) (type default)) (uuid 96b5af22-4f8d-5a02-b418-65e3e52c759f))
-  (label "SD_DAT2" (at 370.84 152.4 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 4b23967d-602d-5ceb-9606-971cbc3a01d5))
-  (wire (pts (xy 373.38 154.94) (xy 370.84 154.94)) (stroke (width 0) (type default)) (uuid 8ac494e2-61b7-507a-bbbd-882ff4c608b6))
-  (label "SD_DAT3" (at 370.84 154.94 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid ce562dd3-be44-5781-8c77-7d3667c004cf))
-  (wire (pts (xy 373.38 157.48) (xy 370.84 157.48)) (stroke (width 0) (type default)) (uuid 4a649602-8823-51f3-9a18-c17ffee95f8f))
-  (label "SD_CMD" (at 370.84 157.48 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid e79ae131-5a52-5b0d-aee9-a247f62f9b6f))
-  (wire (pts (xy 373.38 160.02) (xy 370.84 160.02)) (stroke (width 0) (type default)) (uuid e2ba7b99-9a1c-58fa-9de6-bf89f61fcc36))
-  (symbol (lib_id "power:+3V3") (at 370.84 160.02 90) (unit 1)
+  (wire (pts (xy 375.92 154.94) (xy 373.38 154.94)) (stroke (width 0) (type default)) (uuid eb19dd6c-97cb-5da8-98db-605352df5249))
+  (label "RPIBOOT_N" (at 373.38 154.94 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid f113b34a-b499-58fb-a41b-759f71908764))
+  (wire (pts (xy 386.08 154.94) (xy 388.62 154.94)) (stroke (width 0) (type default)) (uuid fa489027-9811-5b49-aa0a-af09d49f1e4f))
+  (symbol (lib_id "power:GND") (at 388.62 154.94 90) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
     (uuid c01051f1-310b-5fd6-aa87-140bd92b447a)
-    (property "Reference" "#PWR125" (at 370.84 160.02 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 365.34 159.385 90) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 370.84 160.02 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 370.84 160.02 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Reference" "#PWR125" (at 388.62 154.94 90) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 394.12 154.305 90) (effects (font (size 1.27 1.27)) hide))
+    (property "Footprint" "" (at 388.62 154.94 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "" (at 388.62 154.94 0) (effects (font (size 1.27 1.27)) hide))
     (pin "1" (uuid bf689781-7a72-5f9f-8533-da321685f171))
     (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR125") (unit 1))))
   )
-  (wire (pts (xy 373.38 162.56) (xy 370.84 162.56)) (stroke (width 0) (type default)) (uuid 07f7bda1-e77f-5ccc-a2c1-bddd62b57c22))
-  (label "SD_CLK" (at 370.84 162.56 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 2e52e1c3-a490-57c6-91ef-5427c258f51f))
-  (wire (pts (xy 373.38 165.1) (xy 370.84 165.1)) (stroke (width 0) (type default)) (uuid 630bf25f-7a78-57bc-b456-0eb3db1f37f0))
-  (symbol (lib_id "power:GND") (at 370.84 165.1 270) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid 3246a776-35cf-517f-bb0a-60f093a2eb6a)
-    (property "Reference" "#PWR126" (at 370.84 165.1 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 365.34 164.465 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Footprint" "" (at 370.84 165.1 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 370.84 165.1 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 699d7c17-bcae-5476-bcde-e6aea6933dfb))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR126") (unit 1))))
-  )
-  (wire (pts (xy 373.38 167.64) (xy 370.84 167.64)) (stroke (width 0) (type default)) (uuid 4d30114c-f0c0-554c-a776-ba1e5a0d70a6))
-  (label "SD_DAT0" (at 370.84 167.64 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 20b1a82c-bd95-5a68-8f6d-1f5a238eb152))
-  (wire (pts (xy 373.38 170.18) (xy 370.84 170.18)) (stroke (width 0) (type default)) (uuid 1835f1d7-1beb-52f8-a632-1e853ffed8c0))
-  (label "SD_DAT1" (at 370.84 170.18 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 3e61f0e8-8526-50b0-a219-56a4e29c929c))
-  (wire (pts (xy 416.56 175.26) (xy 419.1 175.26)) (stroke (width 0) (type default)) (uuid e81a194e-c40d-5fa8-8eb2-15e9c521aaad))
-  (symbol (lib_id "power:GND") (at 419.1 175.26 90) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid 00137486-f56e-5954-85a7-cd1ff062c8d7)
-    (property "Reference" "#PWR127" (at 419.1 175.26 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 424.6 174.625 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Footprint" "" (at 419.1 175.26 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 419.1 175.26 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 0e10a3e5-8a7d-5575-9e0b-a250a5b32299))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR127") (unit 1))))
-  )
-  (symbol (lib_id "Device:R") (at 350.52 195.58 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 204502f2-b99b-56f2-8006-453eb7be96ab)
-    (property "Reference" "R13" (at 353.06 194.31 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "47k" (at 353.06 196.85 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 350.52 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 350.52 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C25792" (at 350.52 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 8ddae9ba-caba-5b4b-8f7f-1c35fd16395d))
-    (pin "2" (uuid 8f98dd0f-dde3-55fc-a4aa-31821df026ce))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "R13") (unit 1))))
-  )
-  (wire (pts (xy 350.52 191.77) (xy 350.52 189.23)) (stroke (width 0) (type default)) (uuid d791b385-1e56-56f2-b31e-e185fb70b8a6))
-  (symbol (lib_id "power:+3V3") (at 350.52 189.23 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid c67b3fba-e13f-5fba-995f-fedd7dfc6d5f)
-    (property "Reference" "#PWR128" (at 350.52 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 350.52 183.73 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 350.52 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 350.52 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid ad68d984-3933-51a4-9a79-d5a8b9e19f41))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR128") (unit 1))))
-  )
-  (wire (pts (xy 350.52 199.39) (xy 350.52 201.93)) (stroke (width 0) (type default)) (uuid 8b3fccde-82a9-51c4-92b8-13bfe177a589))
-  (label "SD_CMD" (at 350.52 201.93 270) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid b1df7926-dca7-57bb-9d3f-2b237b616eff))
-  (symbol (lib_id "Device:R") (at 363.22 195.58 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 280ed0d7-bf28-52db-b4e7-d9c8f294b1a5)
-    (property "Reference" "R14" (at 365.76 194.31 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "47k" (at 365.76 196.85 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 363.22 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 363.22 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C25792" (at 363.22 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 6dd41d76-bea2-5c22-bd50-ded85364edd5))
-    (pin "2" (uuid c25dc77d-daf5-5b5f-af51-16c9f1abcec5))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "R14") (unit 1))))
-  )
-  (wire (pts (xy 363.22 191.77) (xy 363.22 189.23)) (stroke (width 0) (type default)) (uuid e28eb880-8cdf-5e38-bcc6-6262d4e30646))
-  (symbol (lib_id "power:+3V3") (at 363.22 189.23 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid 25274f81-e801-5194-8b4a-8f0b7a2f98ae)
-    (property "Reference" "#PWR129" (at 363.22 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 363.22 183.73 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 363.22 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 363.22 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 6200e322-c461-5e78-8f27-412ea9bb71b8))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR129") (unit 1))))
-  )
-  (wire (pts (xy 363.22 199.39) (xy 363.22 201.93)) (stroke (width 0) (type default)) (uuid 5baadec3-5ce4-5799-a4d4-ca8cdbbb54a3))
-  (label "SD_DAT0" (at 363.22 201.93 270) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 5460ff0b-3d48-51db-949f-d8bc69b470b0))
-  (symbol (lib_id "Device:R") (at 375.92 195.58 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid e7432d50-b247-5a2e-8a96-f53fde0f0456)
-    (property "Reference" "R15" (at 378.46 194.31 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "47k" (at 378.46 196.85 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 375.92 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 375.92 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C25792" (at 375.92 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 8a135508-688b-514c-a52a-27ead169e917))
-    (pin "2" (uuid 0a862a32-1fb5-502a-a66f-671ca38d40e8))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "R15") (unit 1))))
-  )
-  (wire (pts (xy 375.92 191.77) (xy 375.92 189.23)) (stroke (width 0) (type default)) (uuid 3e7bdc46-dac0-5c90-bb84-a7a60bf14a9e))
-  (symbol (lib_id "power:+3V3") (at 375.92 189.23 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid a6ba715b-b1b8-5c6d-b335-dc0d3708e8b2)
-    (property "Reference" "#PWR130" (at 375.92 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 375.92 183.73 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 375.92 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 375.92 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid cff3ed7b-66ec-5885-ba58-2050c87a5b87))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR130") (unit 1))))
-  )
-  (wire (pts (xy 375.92 199.39) (xy 375.92 201.93)) (stroke (width 0) (type default)) (uuid b601beed-5e9b-574b-90d2-2771bb962822))
-  (label "SD_DAT1" (at 375.92 201.93 270) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid bb92bc49-920b-5810-bbdd-5beedd485dc0))
-  (symbol (lib_id "Device:R") (at 388.62 195.58 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid b3053de8-5b5f-5a2c-ba4f-667dc3c90cf9)
-    (property "Reference" "R16" (at 391.16 194.31 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "47k" (at 391.16 196.85 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 388.62 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 388.62 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C25792" (at 388.62 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 8323d93f-cda9-5dd2-aa42-2c853537843f))
-    (pin "2" (uuid f884b56f-4cec-566a-a772-cfdd735c5a12))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "R16") (unit 1))))
-  )
-  (wire (pts (xy 388.62 191.77) (xy 388.62 189.23)) (stroke (width 0) (type default)) (uuid ef1d2c38-6a39-5621-92d9-8d5747c5126e))
-  (symbol (lib_id "power:+3V3") (at 388.62 189.23 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid 6e207f19-d23e-586a-8cff-84c446f40775)
-    (property "Reference" "#PWR131" (at 388.62 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 388.62 183.73 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 388.62 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 388.62 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 6bfd3cc8-70da-5217-8120-a657440c4003))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR131") (unit 1))))
-  )
-  (wire (pts (xy 388.62 199.39) (xy 388.62 201.93)) (stroke (width 0) (type default)) (uuid 19b475b3-d132-5b48-9dbe-b8460f3a5f5b))
-  (label "SD_DAT2" (at 388.62 201.93 270) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 5aee94ad-0983-5721-95fd-88abe8545a67))
-  (symbol (lib_id "Device:R") (at 401.32 195.58 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid bafad858-646a-5f07-8e61-eb6d6f9d8249)
-    (property "Reference" "R17" (at 403.86 194.31 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "47k" (at 403.86 196.85 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 401.32 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 401.32 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C25792" (at 401.32 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 40f69fa9-9a69-512b-aba8-a512b18b287e))
-    (pin "2" (uuid d2d75504-9f46-5c4a-befc-107462bdc04d))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "R17") (unit 1))))
-  )
-  (wire (pts (xy 401.32 191.77) (xy 401.32 189.23)) (stroke (width 0) (type default)) (uuid a7efb889-01ca-5b8d-9025-2ad7436edce9))
-  (symbol (lib_id "power:+3V3") (at 401.32 189.23 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid 04ed63e4-e2ff-5c77-809f-4172c77400f0)
-    (property "Reference" "#PWR132" (at 401.32 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 401.32 183.73 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 401.32 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 401.32 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 01acafc4-f3e9-58ba-b224-ae4a45cd2565))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR132") (unit 1))))
-  )
-  (wire (pts (xy 401.32 199.39) (xy 401.32 201.93)) (stroke (width 0) (type default)) (uuid cd55d14c-9dc6-5c14-97cc-fa23ee81a1ce))
-  (label "SD_DAT3" (at 401.32 201.93 270) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 401574f8-c774-55b1-a977-5976d1099290))
-  (symbol (lib_id "Device:C") (at 416.56 195.58 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 3457ed3a-05a8-5177-b253-333ad3b4b471)
-    (property "Reference" "C16" (at 419.1 194.31 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "10uF" (at 419.1 196.85 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 416.56 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 416.56 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C19702" (at 416.56 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 4cc8e832-cbcd-5a18-bd70-af895b120452))
-    (pin "2" (uuid f19b9618-cca1-515c-a1d7-ca048e593ccc))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "C16") (unit 1))))
-  )
-  (wire (pts (xy 416.56 191.77) (xy 416.56 189.23)) (stroke (width 0) (type default)) (uuid a5933105-058e-5dc5-bb86-917bd476281b))
-  (symbol (lib_id "power:+3V3") (at 416.56 189.23 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid f786c83a-3f4d-55b0-83d7-785f99a7d4e1)
-    (property "Reference" "#PWR133" (at 416.56 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 416.56 183.73 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 416.56 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 416.56 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 1f87d0dd-8bbf-5582-9477-51ccad31eedb))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR133") (unit 1))))
-  )
-  (wire (pts (xy 416.56 199.39) (xy 416.56 201.93)) (stroke (width 0) (type default)) (uuid ab0dd5b3-aa91-568e-842c-0ed55789d432))
-  (symbol (lib_id "power:GND") (at 416.56 201.93 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid 8ba36015-1703-5044-83ed-750602e249e5)
-    (property "Reference" "#PWR134" (at 416.56 201.93 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 416.56 207.43 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 416.56 201.93 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 416.56 201.93 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 4bff323c-6d34-5e7c-8d59-8424061c8ef5))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR134") (unit 1))))
-  )
-  (symbol (lib_id "Device:C") (at 429.26 195.58 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 253df1df-e0c8-5944-904c-b3302f393340)
-    (property "Reference" "C17" (at 431.8 194.31 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "100nF" (at 431.8 196.85 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Capacitor_SMD:C_0402_1005Metric" (at 429.26 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 429.26 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C1525" (at 429.26 195.58 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid a100e9fe-50e8-5507-9c21-ff11738468bc))
-    (pin "2" (uuid d741c819-237d-56e0-b5b8-d26f5e0c7159))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "C17") (unit 1))))
-  )
-  (wire (pts (xy 429.26 191.77) (xy 429.26 189.23)) (stroke (width 0) (type default)) (uuid e3622fea-dedf-5115-be79-4ee28ab30f5d))
-  (symbol (lib_id "power:+3V3") (at 429.26 189.23 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid cbaf8c8b-5867-5867-8693-4ce36a6ae51d)
-    (property "Reference" "#PWR135" (at 429.26 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 429.26 183.73 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 429.26 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 429.26 189.23 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 4467cd59-67ba-57ed-99c4-f73fc2200109))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR135") (unit 1))))
-  )
-  (wire (pts (xy 429.26 199.39) (xy 429.26 201.93)) (stroke (width 0) (type default)) (uuid ed88e235-6ef2-5c9e-b7f1-96474c5fbfcd))
-  (symbol (lib_id "power:GND") (at 429.26 201.93 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid d67e70b7-d02e-5b7c-88c6-c2ccb9d3337d)
-    (property "Reference" "#PWR136" (at 429.26 201.93 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 429.26 207.43 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 429.26 201.93 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 429.26 201.93 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 70dde562-b8b7-5a8e-ba77-0ad39a6673f1))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR136") (unit 1))))
-  )
   (text "6 - Interface (brochage de la v2)" (at 452.12 25.4 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid ea928a25-aad5-5be0-8767-a6c4a974576a))
   (text "Déclencheur GPIO17 (appui long 3 s = extinction), LED GPIO27, flash GPIO22." (at 452.12 30.48 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid f6601cae-fca1-5d1d-b093-1afe6c2688cb))
-  (text "J8 : 1 GND, 2 déclencheur, 3 marche, 4 LED façade (+), 5 3,3 V." (at 452.12 34.29 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid d4aacced-d62c-5b83-ac21-4a14eb0f8314))
-  (symbol (lib_id "Connector_Generic:Conn_01x05") (at 482.6 55.88 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid b802d379-aa72-54e0-84d7-eaa28df918f5)
-    (property "Reference" "J8" (at 485.14 46.99 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "FAÇADE" (at 485.14 64.77 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Connector_JST:JST_SH_SM05B-SRSS-TB_1x05-1MP_P1.00mm_Horizontal" (at 482.6 55.88 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 482.6 55.88 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C136657" (at 482.6 55.88 0) (effects (font (size 1.27 1.27)) hide))
-    (property "MPN" "SM05B-SRSS-TB(LF)(SN)" (at 482.6 55.88 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 79d1d75c-e925-526a-a003-ce0658ee7879))
-    (pin "2" (uuid d1b46ed5-3fe7-5939-ba8f-ce23a092b236))
-    (pin "3" (uuid 23cace71-156f-592d-ad15-8be1b05297a4))
-    (pin "4" (uuid 35a9965a-18fa-5554-a566-46d0e01268eb))
-    (pin "5" (uuid f91d3170-1098-53fb-beec-439479077e75))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "J8") (unit 1))))
-  )
-  (wire (pts (xy 477.52 50.8) (xy 474.98 50.8)) (stroke (width 0) (type default)) (uuid 7e01a672-0792-5db4-a902-52cf7cf2237f))
-  (symbol (lib_id "power:GND") (at 474.98 50.8 270) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid 68e8a9a0-48a9-5e51-8dd3-dc3d7c511221)
-    (property "Reference" "#PWR137" (at 474.98 50.8 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 469.48 50.165 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Footprint" "" (at 474.98 50.8 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 474.98 50.8 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 018dd486-de6b-5ac0-8216-fcdb62e4c722))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR137") (unit 1))))
-  )
-  (wire (pts (xy 477.52 53.34) (xy 474.98 53.34)) (stroke (width 0) (type default)) (uuid 6abe2b28-3621-5db3-98f1-e8a3e1c163b2))
-  (label "BTN_SHUTTER" (at 474.98 53.34 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid a2607a51-f614-5ffb-b487-f6e8aa688e65))
-  (wire (pts (xy 477.52 55.88) (xy 474.98 55.88)) (stroke (width 0) (type default)) (uuid cd8340e9-5c64-55a0-9ac2-4697ce605de0))
-  (label "PWR_KEY" (at 474.98 55.88 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid a90ac265-5732-5b10-8dd3-f8211e1d1d64))
-  (wire (pts (xy 477.52 58.42) (xy 474.98 58.42)) (stroke (width 0) (type default)) (uuid 5423e50f-e745-5ec0-9471-cbec9f8c83f5))
-  (label "LED_EXT" (at 474.98 58.42 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 9eaa3c39-2935-5363-acb5-6be9f10fd6a6))
-  (wire (pts (xy 477.52 60.96) (xy 474.98 60.96)) (stroke (width 0) (type default)) (uuid 93a08ef5-5a96-58df-ac79-3d949bcf0d28))
-  (symbol (lib_id "power:+3V3") (at 474.98 60.96 90) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid bb9967d4-9f36-53f9-b710-3f0d6ecf52cd)
-    (property "Reference" "#PWR138" (at 474.98 60.96 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "+3V3" (at 469.48 60.325 90) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "" (at 474.98 60.96 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 474.98 60.96 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 74d0f398-3738-529a-b698-5ccce190fb2b))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR138") (unit 1))))
-  )
+  (text "Boutons et LED soudés sur la carte : le boîtier n'a que des poussoirs et une fenêtre." (at 452.12 34.29 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 2602d298-a3ba-53a6-ba62-3b7620274e0f))
   (symbol (lib_id "Switch:SW_Push") (at 528.32 55.88 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 010aed88-9ee0-522e-89a1-c63251448ffe)
@@ -8296,13 +7249,13 @@
   (wire (pts (xy 533.4 55.88) (xy 535.94 55.88)) (stroke (width 0) (type default)) (uuid dfa4276f-7fd9-58be-8605-325c1be2811f))
   (symbol (lib_id "power:GND") (at 535.94 55.88 90) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
-    (uuid 9d30901c-f143-526c-b5c0-1065b3fbda59)
-    (property "Reference" "#PWR139" (at 535.94 55.88 90) (effects (font (size 1.27 1.27)) hide))
+    (uuid 3246a776-35cf-517f-bb0a-60f093a2eb6a)
+    (property "Reference" "#PWR126" (at 535.94 55.88 90) (effects (font (size 1.27 1.27)) hide))
     (property "Value" "GND" (at 541.44 55.245 90) (effects (font (size 1.27 1.27)) hide))
     (property "Footprint" "" (at 535.94 55.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 535.94 55.88 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 6926083d-0e76-5e8d-a089-b96833f65f50))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR139") (unit 1))))
+    (pin "1" (uuid 699d7c17-bcae-5476-bcde-e6aea6933dfb))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR126") (unit 1))))
   )
   (symbol (lib_id "Device:R") (at 556.26 55.88 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
@@ -8319,13 +7272,13 @@
   (wire (pts (xy 556.26 52.07) (xy 556.26 49.53)) (stroke (width 0) (type default)) (uuid 07b42475-0d53-5cdf-980d-f176c345ae79))
   (symbol (lib_id "power:+3V3") (at 556.26 49.53 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
-    (uuid c5a2fde8-932b-53b7-9f4c-99c8f552f6ab)
-    (property "Reference" "#PWR140" (at 556.26 49.53 0) (effects (font (size 1.27 1.27)) hide))
+    (uuid 00137486-f56e-5954-85a7-cd1ff062c8d7)
+    (property "Reference" "#PWR127" (at 556.26 49.53 0) (effects (font (size 1.27 1.27)) hide))
     (property "Value" "+3V3" (at 556.26 44.03 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 556.26 49.53 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 556.26 49.53 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid c1d25ba1-1502-5f5f-9de1-a465159bec23))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR140") (unit 1))))
+    (pin "1" (uuid 0e10a3e5-8a7d-5575-9e0b-a250a5b32299))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR127") (unit 1))))
   )
   (wire (pts (xy 556.26 59.69) (xy 556.26 62.23)) (stroke (width 0) (type default)) (uuid e372f84d-ed60-57fc-bc7e-c7af953b1748))
   (label "BTN_SHUTTER" (at 556.26 62.23 270) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 41f5381b-deb6-5fce-9e7c-5c4730701393))
@@ -8345,13 +7298,13 @@
   (wire (pts (xy 519.43 83.82) (xy 521.97 83.82)) (stroke (width 0) (type default)) (uuid a6f2eeb8-0ba1-54f0-85e1-77c60c6946d8))
   (symbol (lib_id "power:GND") (at 521.97 83.82 90) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
-    (uuid 7e60478d-1ff5-57de-9662-fe8f9d4a22e1)
-    (property "Reference" "#PWR141" (at 521.97 83.82 90) (effects (font (size 1.27 1.27)) hide))
+    (uuid c67b3fba-e13f-5fba-995f-fedd7dfc6d5f)
+    (property "Reference" "#PWR128" (at 521.97 83.82 90) (effects (font (size 1.27 1.27)) hide))
     (property "Value" "GND" (at 527.47 83.185 90) (effects (font (size 1.27 1.27)) hide))
     (property "Footprint" "" (at 521.97 83.82 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 521.97 83.82 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid e4f7302c-5082-5933-9b5a-da91a0a34426))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR141") (unit 1))))
+    (pin "1" (uuid ad68d984-3933-51a4-9a79-d5a8b9e19f41))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR128") (unit 1))))
   )
   (wire (pts (xy 511.81 83.82) (xy 509.27 83.82)) (stroke (width 0) (type default)) (uuid 6f189432-2995-5f30-b89b-04c2383bf113))
   (label "LED_ST_A" (at 509.27 83.82 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 47f99dcf-8bed-5081-8551-e0d55bbf41bd))
@@ -8371,22 +7324,6 @@
   (label "LED_STATUS" (at 461.01 83.82 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 4614d5ca-c9aa-5d1e-bebf-b851f31340a7))
   (wire (pts (xy 471.17 83.82) (xy 473.71 83.82)) (stroke (width 0) (type default)) (uuid 612d98ff-520f-541b-9504-849b3b7e4058))
   (label "LED_ST_A" (at 473.71 83.82 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 4f8eb9c8-0923-54b6-bccb-6fd90cb4ba92))
-  (symbol (lib_id "Device:R") (at 467.36 99.06 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 0c5c4394-6f98-5341-b099-1ca3b1f40599)
-    (property "Reference" "R20" (at 467.36 96.52 90) (effects (font (size 1.27 1.27))))
-    (property "Value" "330" (at 467.36 101.6 90) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Resistor_SMD:R_0402_1005Metric" (at 467.36 99.06 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 467.36 99.06 0) (effects (font (size 1.27 1.27)) hide))
-    (property "LCSC" "C25104" (at 467.36 99.06 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 36b8c41d-a8b0-50fe-bddf-50541699d3e4))
-    (pin "2" (uuid e688748c-f037-5d16-85d9-2e001d577b6e))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "R20") (unit 1))))
-  )
-  (wire (pts (xy 463.55 99.06) (xy 461.01 99.06)) (stroke (width 0) (type default)) (uuid 51bb6466-0856-5c1a-878a-34c45c66991f))
-  (label "LED_STATUS" (at 461.01 99.06 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid deb2f9ca-16b7-5463-a4d0-cd7b23580ad7))
-  (wire (pts (xy 471.17 99.06) (xy 473.71 99.06)) (stroke (width 0) (type default)) (uuid db78bc25-3f4e-50e2-bdc5-7bda5f67f53d))
-  (label "LED_EXT" (at 473.71 99.06 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 37741320-2300-587c-87c1-28d25de828cd))
   (symbol (lib_id "Device:LED") (at 515.62 114.3 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid af4a0ba6-0a6a-549d-9d0e-cb804bd15057)
@@ -8419,18 +7356,18 @@
   (wire (pts (xy 463.55 114.3) (xy 461.01 114.3)) (stroke (width 0) (type default)) (uuid 0b037241-6191-50d5-bc32-389b5f5b7976))
   (symbol (lib_id "power:+3V3") (at 461.01 114.3 90) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
-    (uuid 35388b0e-eb0f-5628-b485-fc7a3a505118)
-    (property "Reference" "#PWR142" (at 461.01 114.3 90) (effects (font (size 1.27 1.27)) hide))
+    (uuid 25274f81-e801-5194-8b4a-8f0b7a2f98ae)
+    (property "Reference" "#PWR129" (at 461.01 114.3 90) (effects (font (size 1.27 1.27)) hide))
     (property "Value" "+3V3" (at 455.51 113.665 90) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 461.01 114.3 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 461.01 114.3 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 0d3e2de9-ce94-54f7-a945-549ec2eb8a8d))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR142") (unit 1))))
+    (pin "1" (uuid 6200e322-c461-5e78-8f27-412ea9bb71b8))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR129") (unit 1))))
   )
   (wire (pts (xy 471.17 114.3) (xy 473.71 114.3)) (stroke (width 0) (type default)) (uuid 03347ba4-3b39-59be-a7b8-adf3d5ae3b39))
   (label "LED_ACT_A" (at 473.71 114.3 0) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid eef5c8a6-703b-5b2f-9ab0-961de23b45ca))
-  (text "7 - Points de test et flashage" (at 452.12 129.54 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid 3d05d039-59c4-5386-a723-04bc6631f4c6))
-  (text "Flasher : fermer JP1 (nRPIBOOT à la masse), brancher l'USB-C au PC, lancer rpiboot." (at 452.12 134.62 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 682cb59d-c74a-574f-9551-a98e1e8fef08))
+  (text "7 - Points de test" (at 452.12 129.54 0) (effects (font (size 2.54 2.54) bold) (justify left bottom)) (uuid 3de7aca7-36e9-584e-a177-2a26953d1c0b))
+  (text "Points de test pour le contrôle en usine (tensions, UART)." (at 452.12 134.62 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 874ad99d-2ebb-5ab9-bff8-0336be8fa5d8))
   (text "H1-H4 : trous M2,5 alignés sur ceux du CM4 (entretoises 3 mm)." (at 452.12 138.43 0) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid 5f502b5e-0bf4-5662-94e2-7710de6f8b4a))
   (symbol (lib_id "Connector:TestPoint") (at 457.2 152.4 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
@@ -8505,13 +7442,13 @@
   (wire (pts (xy 457.2 180.34) (xy 457.2 182.88)) (stroke (width 0) (type default)) (uuid 02968f66-7356-585a-a006-cfe53ff016f4))
   (symbol (lib_id "power:+5V") (at 457.2 182.88 180) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
-    (uuid 2e1bc9fb-5398-510e-8fd9-64c0e0fbbe5b)
-    (property "Reference" "#PWR143" (at 457.2 182.88 0) (effects (font (size 1.27 1.27)) hide))
+    (uuid a6ba715b-b1b8-5c6d-b335-dc0d3708e8b2)
+    (property "Reference" "#PWR130" (at 457.2 182.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Value" "+5V" (at 457.2 188.38 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 457.2 182.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 457.2 182.88 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid fe635a23-3d8b-52f0-a4b8-7376acfc832a))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR143") (unit 1))))
+    (pin "1" (uuid cff3ed7b-66ec-5885-ba58-2050c87a5b87))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR130") (unit 1))))
   )
   (symbol (lib_id "Connector:TestPoint") (at 477.52 180.34 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
@@ -8526,13 +7463,13 @@
   (wire (pts (xy 477.52 180.34) (xy 477.52 182.88)) (stroke (width 0) (type default)) (uuid 7d81fef9-7545-5454-9d9e-9d65f01778ce))
   (symbol (lib_id "power:+BATT") (at 477.52 182.88 180) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
-    (uuid 8c8c0d34-747e-5c9b-a77d-5f4d2eb24e5e)
-    (property "Reference" "#PWR144" (at 477.52 182.88 0) (effects (font (size 1.27 1.27)) hide))
+    (uuid 6e207f19-d23e-586a-8cff-84c446f40775)
+    (property "Reference" "#PWR131" (at 477.52 182.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Value" "+BATT" (at 477.52 188.38 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 477.52 182.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 477.52 182.88 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid f0a005a5-7798-5f2c-93c1-6ba0b70f1c53))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR144") (unit 1))))
+    (pin "1" (uuid 6bfd3cc8-70da-5217-8120-a657440c4003))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR131") (unit 1))))
   )
   (symbol (lib_id "Connector:TestPoint") (at 497.84 180.34 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
@@ -8547,13 +7484,13 @@
   (wire (pts (xy 497.84 180.34) (xy 497.84 182.88)) (stroke (width 0) (type default)) (uuid 248486eb-828f-57af-a72f-7cda72385a26))
   (symbol (lib_id "power:GND") (at 497.84 182.88 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
-    (uuid 7372341b-131b-56c9-bef9-5e7b38bd3427)
-    (property "Reference" "#PWR145" (at 497.84 182.88 0) (effects (font (size 1.27 1.27)) hide))
+    (uuid 04ed63e4-e2ff-5c77-809f-4172c77400f0)
+    (property "Reference" "#PWR132" (at 497.84 182.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Value" "GND" (at 497.84 188.38 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 497.84 182.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 497.84 182.88 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid bd06c7f4-b6ad-5152-b033-61b6dd6a68e9))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR145") (unit 1))))
+    (pin "1" (uuid 01acafc4-f3e9-58ba-b224-ae4a45cd2565))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR132") (unit 1))))
   )
   (symbol (lib_id "Connector:TestPoint") (at 518.16 180.34 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
@@ -8580,37 +7517,13 @@
   (wire (pts (xy 538.48 180.34) (xy 538.48 182.88)) (stroke (width 0) (type default)) (uuid 1c160680-7b08-5491-9e74-8e61b4bb9b9a))
   (symbol (lib_id "power:+3V3") (at 538.48 182.88 180) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
-    (uuid 3ef39b52-e86a-5a2a-a991-d7b389c8e734)
-    (property "Reference" "#PWR146" (at 538.48 182.88 0) (effects (font (size 1.27 1.27)) hide))
+    (uuid f786c83a-3f4d-55b0-83d7-785f99a7d4e1)
+    (property "Reference" "#PWR133" (at 538.48 182.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Value" "+3V3" (at 538.48 188.38 0) (effects (font (size 1.27 1.27))))
     (property "Footprint" "" (at 538.48 182.88 0) (effects (font (size 1.27 1.27)) hide))
     (property "Datasheet" "" (at 538.48 182.88 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 9c7ea6dd-63bd-52d8-b9b5-5b8e1da6f92a))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR146") (unit 1))))
-  )
-  (symbol (lib_id "Jumper:SolderJumper_2_Open") (at 467.36 210.82 0) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid ddbf149d-1265-5c72-8de4-d07a54933930)
-    (property "Reference" "JP1" (at 467.36 207.01 0) (effects (font (size 1.27 1.27))))
-    (property "Value" "RPIBOOT" (at 467.36 214.63 0) (effects (font (size 1.27 1.27))))
-    (property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" (at 467.36 210.82 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 467.36 210.82 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid e21222df-c06e-5f3f-bced-3a79b7653a63))
-    (pin "2" (uuid 0539aa41-a137-5bcb-b3bf-19ff8df5f98d))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "JP1") (unit 1))))
-  )
-  (wire (pts (xy 463.55 210.82) (xy 461.01 210.82)) (stroke (width 0) (type default)) (uuid 571cbe13-705a-5dd0-b7ea-3a8e7bf3dd81))
-  (label "RPIBOOT_N" (at 461.01 210.82 180) (fields_autoplaced yes) (effects (font (size 1.27 1.27)) (justify right bottom)) (uuid 07bb37e0-6e48-5e5d-b95d-007118310336))
-  (wire (pts (xy 471.17 210.82) (xy 473.71 210.82)) (stroke (width 0) (type default)) (uuid d2cafcdd-3f45-5722-8674-c387d2d13f12))
-  (symbol (lib_id "power:GND") (at 473.71 210.82 90) (unit 1)
-    (in_bom no) (on_board yes) (dnp no)
-    (uuid d73dcf7c-fb22-516d-b7ff-3f0566244c06)
-    (property "Reference" "#PWR147" (at 473.71 210.82 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Value" "GND" (at 479.21 210.185 90) (effects (font (size 1.27 1.27)) hide))
-    (property "Footprint" "" (at 473.71 210.82 0) (effects (font (size 1.27 1.27)) hide))
-    (property "Datasheet" "" (at 473.71 210.82 0) (effects (font (size 1.27 1.27)) hide))
-    (pin "1" (uuid 10b34b7c-79c0-5b01-900b-6e9f063409af))
-    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR147") (unit 1))))
+    (pin "1" (uuid 1f87d0dd-8bbf-5582-9477-51ccad31eedb))
+    (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "#PWR133") (unit 1))))
   )
   (symbol (lib_id "Mechanical:MountingHole") (at 502.92 210.82 0) (unit 1)
     (in_bom no) (on_board yes) (dnp no)
@@ -8649,14 +7562,15 @@
     (instances (project "halo720_v3" (path "/642cc948-4399-56f6-8f42-d17ae2f6dc1f" (reference "H4") (unit 1))))
   )
   (text "NOTES DE CONCEPTION" (at 345.44 248.92 0) (effects (font (size 2.0 2.0) bold) (justify left bottom)) (uuid fcf48567-f9c9-5f0b-aff2-4f1c2945526d))
-  (text "- CM4 Lite Wi-Fi 1 Go (CM4101000) acheté à part. Wi-Fi 2,4 / 5 GHz : point d'accès en 5 GHz (plus de conflit Bluetooth)." (at 345.44 254 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid d23c3822-ca8c-572c-9acb-faf6020d1235))
+  (text "- CM4 Wi-Fi 1 Go eMMC 16 Go (CM4101016), fourni et clipsé par l'usine. Wi-Fi 2,4 / 5 GHz : point d'accès en 5 GHz." (at 345.44 254 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 45275823-9a01-5855-9e7d-9537d9daceda))
   (text "- Conso CM4 : ~0,4 A au repos, jusqu'à 1,4 A (datasheet). IP5306 : 5 V / 2,4 A max." (at 345.44 259.08 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid fe2f41d2-467c-518e-8601-eddbcaff828c))
   (text "- Pic batterie (CM4 + flash) : ~2,6 A + ~1,8 A. LiPo 1S >= 2000 mAh avec protection (PCM) >= 5 A." (at 345.44 264.16 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 028d0fb9-984d-5242-b0ed-d7b3b7f15160))
   (text "- Charge IP5306 jusqu'à 2,1 A par défaut : la réduire en I2C au démarrage, LiPo acceptant >= 1C." (at 345.44 269.24 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid a755ebfc-d274-5acd-abf1-b7d57c2e1756))
   (text "- USB-C branché : l'IP5306 alimente aussi le 5 V, l'appareil reste allumé pendant la charge." (at 345.44 274.32 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid af1c9197-9d3c-55d6-8d59-a65142f0207c))
   (text "- Logiciel : dtoverlay=imx708 (CAM1), dtoverlay=dwc2,dr_mode=peripheral (USB gadget)." (at 345.44 279.4 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 90d908b2-3311-5ff5-947d-74e47d96cef5))
   (text "- GPIO libres : 4-13, 16, 18-21, 24-26." (at 345.44 284.48 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 5bec9d12-2945-5345-9f19-f98139e9e211))
-  (text "- Au placement : créer les empreintes DF40HC, FH12-22S et TF-01A d'après les plans constructeur." (at 345.44 289.56 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 03048e66-afb3-5c73-a4cf-2967a2daa677))
+  (text "- Au placement : créer les empreintes DF40HC et FH12-22S d'après les plans constructeur." (at 345.44 289.56 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 377a2e9c-ba00-5189-ab0d-3738135181e1))
+  (text "- Usine : CM4 clipsé, eMMC programmée, caméra et carte flash branchées, test. Batterie branchée par l'utilisateur." (at 345.44 294.64 0) (effects (font (size 1.5 1.5)) (justify left bottom)) (uuid 20886714-09ba-561c-9d82-15de7ba11744))
 
   (sheet_instances
     (path "/" (page "1"))

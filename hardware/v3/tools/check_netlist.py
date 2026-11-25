@@ -3,10 +3,11 @@
 import json, os, subprocess, sys, tempfile
 import xml.etree.ElementTree as ET
 HERE = os.path.dirname(os.path.abspath(__file__))
-sch = os.path.join(HERE, "..", "kicad", "halo720_v3.kicad_sch")
+FLASH = len(sys.argv) > 1 and sys.argv[1] == "flash"
+sch = os.path.join(HERE, "..", "kicad_flash" if FLASH else "kicad", "halo720_v3_flash.kicad_sch" if FLASH else "halo720_v3.kicad_sch")
 xml = os.path.join(tempfile.gettempdir(), "halo_net.xml")
 subprocess.run(["kicad-cli", "sch", "export", "netlist", "--format", "kicadxml", "-o", xml, sch], check=True, capture_output=True)
-exp = json.load(open(os.path.join(HERE, "expected_nets.json")))
+exp = json.load(open(os.path.join(HERE, "expected_nets_flash.json" if FLASH else "expected_nets.json")))
 got = {}
 for net in ET.parse(xml).getroot().find("nets"):
     name = net.get("name").lstrip("/")
