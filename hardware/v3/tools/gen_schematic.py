@@ -492,7 +492,7 @@ def build():
            fp="Package_TO_SOT_SMD:SOT-23-6", lcsc="C84817", mpn="MT3608",
            ref_at=(fx + 50.8, fy + 25.4), val_at=(fx + 50.8, fy + 43.18))
     s.part("L2", "Device:L", "4.7uH", fx + 50.8, fy + 17.78, {"1": "+BATT", "2": "BST_SW"}, r=270,
-           fp="Inductor_SMD:L_Sunlord_MWSA0518S", lcsc="C408347", mpn="MWSA0518S-4R7MT",
+           fp="Inductor_SMD:L_Sunlord_MWSA0518S", lcsc="C2045677", mpn="SRP5030T-4R7M",
            note="Isat 4 A", ref_at=(fx + 50.8, fy + 15.24), val_at=(fx + 50.8, fy + 20.32))
     s.part("D1", "Device:D_Schottky", "SS34", fx + 88.9, fy + 30.48, {"1": "VLED", "2": "BST_SW"}, r=180,
            fp="Diode_SMD:D_SMA", lcsc="C8678", mpn="SS34",

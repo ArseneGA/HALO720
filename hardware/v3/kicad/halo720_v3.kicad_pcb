@@ -14179,7 +14179,7 @@
 				(justify mirror)
 			)
 		)
-		(property "LCSC" "C408347"
+		(property "LCSC" "C2045677"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
@@ -14192,7 +14192,7 @@
 				(justify mirror)
 			)
 		)
-		(property "MPN" "MWSA0518S-4R7MT"
+		(property "MPN" "SRP5030T-4R7M"
 			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)

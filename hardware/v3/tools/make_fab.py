@@ -148,6 +148,8 @@ def main():
         if missing:
             sys.exit(f"{b['tag']} : composants de la BOM absents du PCB : {missing}")
         renders(b, d)
+        import make_assembly
+        make_assembly.build(b["tag"], b["pcb"], d)
         report.append(f"{b['tag']}: ERC 0, DRC 0 erreur / 0 non connecté / parité 0 ({warn} avertissements sérigraphie), "
                       f"{w:.1f} x {h:.1f} mm, {len(gl)} fichiers Gerber+perçage, BOM {nb} composants, CPL {nc} positions")
     print("\n".join(report))

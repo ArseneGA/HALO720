@@ -1,7 +1,7 @@
 (export (version "E")
   (design
     (source "/home/claude/halo720/hardware/v3/kicad/halo720_v3.kicad_sch")
-    (date "2026-11-25T13:46:01+0100")
+    (date "2026-11-25T13:52:11+0100")
     (tool "Eeschema 9.0.9-9.0.9~ubuntu24.04.1")
     (sheet (number "1") (name "/") (tstamps "/")
       (title_block
@@ -533,14 +533,14 @@
       (value "4.7uH")
       (footprint "Inductor_SMD:L_Sunlord_MWSA0518S")
       (fields
-        (field (name "LCSC") "C408347")
-        (field (name "MPN") "MWSA0518S-4R7MT")
+        (field (name "LCSC") "C2045677")
+        (field (name "MPN") "SRP5030T-4R7M")
         (field (name "Footprint") "Inductor_SMD:L_Sunlord_MWSA0518S")
         (field (name "Datasheet"))
         (field (name "Description")))
       (libsource (lib "Device") (part "L") (description "Inductor"))
-      (property (name "LCSC") (value "C408347"))
-      (property (name "MPN") (value "MWSA0518S-4R7MT"))
+      (property (name "LCSC") (value "C2045677"))
+      (property (name "MPN") (value "SRP5030T-4R7M"))
       (property (name "Sheetname") (value ""))
       (property (name "Sheetfile") (value "halo720_v3.kicad_sch"))
       (property (name "ki_keywords") (value "inductor choke coil reactor magnetic"))
